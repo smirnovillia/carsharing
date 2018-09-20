@@ -12,3 +12,4 @@ service/.settings/org.eclipse.wst.common.component
 service/.settings/org.eclipse.wst.common.project.facet.core.xml
 dao-jdbc-impl/.settings/org.eclipse.wst.common.component
 dao-jdbc-impl/.settings/org.eclipse.wst.common.project.facet.core.xml
+/.metadata/

@@ -17,5 +17,9 @@
 			<groupId>com.itacademy.jd2.is.carsharing</groupId>
 			<artifactId>dao-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 	</dependencies>
 </project>
