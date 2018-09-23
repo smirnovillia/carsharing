@@ -5,21 +5,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import com.itacademy.jd2.is.carsharing.dao.api.IBrandDao;
+import com.itacademy.jd2.is.carsharing.dao.api.IBlackListDao;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IBlackList;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
+import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.BlackList;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Brand;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
-public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IBrandDao {
+public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> implements IBlackListDao {
 
-	public IBrand createEntity() {
-		return new Brand();
+	public IBlackList createEntity() {
+		return new BlackList();
 	}
 
-	public void insert(final IBrand entity) {
-		executeStatement(new PreparedStatementAction<IBrand>(
-				String.format("insert into %s (name, created, updated) values(?,?,?)", getTableName()), true) {
-			public IBrand doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
+	public void insert(final IBlackList entity) {
+		executeStatement(new PreparedStatementAction<IBlackList>(
+				String.format("insert into %s (customer_id, reason, created, updated) values(?,?,?,?)", getTableName()),
+				true) {
+			public IBlackList doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setObject(2, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(3, entity.getUpdated(), Types.TIMESTAMP);
@@ -54,7 +58,7 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 	}
 
 	protected String getTableName() {
-		return "brand";
+		return "black_list";
 	}
 
 	protected IBrand parseRow(final ResultSet resultSet) throws SQLException {
