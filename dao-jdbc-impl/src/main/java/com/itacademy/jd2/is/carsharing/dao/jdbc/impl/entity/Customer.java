@@ -2,7 +2,9 @@ package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
 
 import java.util.Date;
 
-public class Customer extends BaseEntity{
+import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
+
+public class Customer extends BaseEntity implements ICustomer{
 
 	private String firstName;
 	private String lastName;

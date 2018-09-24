@@ -11,6 +11,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.BlackList;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Brand;
+import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Customer;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
 public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> implements IBlackListDao {
@@ -24,9 +25,10 @@ public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> imple
 				String.format("insert into %s (customer_id, reason, created, updated) values(?,?,?,?)", getTableName()),
 				true) {
 			public IBlackList doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setString(1, entity.getName());
-				pStmt.setObject(2, entity.getCreated(), Types.TIMESTAMP);
-				pStmt.setObject(3, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(1, entity.getCustomer().getId());
+				pStmt.setString(2, entity.getReason());
+				pStmt.setObject(3, entity.getCreated(), Types.TIMESTAMP);
+				pStmt.setObject(4, entity.getUpdated(), Types.TIMESTAMP);
 
 				pStmt.executeUpdate();
 
@@ -43,11 +45,12 @@ public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> imple
 
 	}
 
-	public void update(final IBrand entity) {
-		executeStatement(new PreparedStatementAction<IBrand>(
-				String.format("update %s set name=?, updated=? where id=?", getTableName())) {
-			public IBrand doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setString(1, entity.getName());
+	public void update(final IBlackList entity) {
+		executeStatement(new PreparedStatementAction<IBlackList>(
+				String.format("update %s set customer_id=?, reason=?, updated=? where id=?", getTableName())) {
+			public IBlackList doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
+				pStmt.setInt(1, entity.getCustomer().getId());
+				pStmt.setString(2, entity.getReason());
 				pStmt.setObject(2, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.setInt(3, entity.getId());
 
@@ -57,16 +60,22 @@ public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> imple
 		});
 	}
 
+	@Override
 	protected String getTableName() {
 		return "black_list";
 	}
 
-	protected IBrand parseRow(final ResultSet resultSet) throws SQLException {
-		final IBrand entity = createEntity();
+	@Override
+	protected IBlackList parseRow(final ResultSet resultSet) throws SQLException {
+		final IBlackList entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setName(resultSet.getString("name"));
+		entity.setReason(resultSet.getString("reason"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
+		
+		final ICustomer customer = new Customer();
+		customer.setId((Integer) resultSet.getObject("customer_id"));
+		entity.setCustomer(customer);
 		return entity;
 	}
 
