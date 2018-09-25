@@ -12,5 +12,12 @@ public class Brand extends BaseEntity implements IBrand{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
+	public String toString() {
+		return "Brand [name=" + name + "]";
+	}
+	
+	
 
 }

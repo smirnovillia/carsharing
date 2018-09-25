@@ -3,16 +3,22 @@ package com.itacademy.jd2.is.carsharing.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.itacademy.jd2.is.carsharing.dao.api.IBrandDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.BrandDaoImpl;
 import com.itacademy.jd2.is.carsharing.service.IBrandService;
 
 public class BrandServiceImpl implements IBrandService {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(BrandServiceImpl.class);
 	private IBrandDao dao = new BrandDaoImpl();
 
 	@Override
 	public IBrand createEntity() {
+		
 		return dao.createEntity();
 	}
 
@@ -21,9 +27,11 @@ public class BrandServiceImpl implements IBrandService {
 		final Date modifedOn = new Date();
 		entity.setUpdated(modifedOn);
 		if (entity.getId() == null) {
+			LOGGER.info("new brand created" + entity);
 			entity.setCreated(modifedOn);
 			dao.insert(entity);
 		} else {
+			LOGGER.info("brand updated" + entity);
 			dao.update(entity);
 		}
 	}
