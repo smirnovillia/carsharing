@@ -9,7 +9,6 @@ public class Tracking extends BaseEntity implements ITracking{
 
 	private ICar car;
 	private Date trackingDate;
-	private Date trackingTime;
 	private double latitude;
 	private double longitude;
 
@@ -27,14 +26,6 @@ public class Tracking extends BaseEntity implements ITracking{
 
 	public void setTrackingDate(Date trackingDate) {
 		this.trackingDate = trackingDate;
-	}
-
-	public Date getTrackingTime() {
-		return trackingTime;
-	}
-
-	public void setTrackingTime(Date trackingTime) {
-		this.trackingTime = trackingTime;
 	}
 
 	public double getLatitude() {

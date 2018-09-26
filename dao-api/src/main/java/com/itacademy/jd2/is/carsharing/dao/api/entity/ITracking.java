@@ -14,10 +14,6 @@ public interface ITracking extends IBaseEntity {
 
 	void setTrackingDate(Date trackingDate);
 
-	Date getTrackingTime();
-
-	void setTrackingTime(Date trackingTime);
-
 	double getLatitude();
 
 	void setLatitude(double latitude);

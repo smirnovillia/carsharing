@@ -22,22 +22,6 @@ public interface ICarServiceHistory extends IBaseEntity {
 
 	 void setServiceCompany(String serviceCompany);
 
-	 String getOperation();
-
-	 void setOperation(String operation);
-
-	 double getOperationPrice();
-
-	 void setOperationPrice(double operationPrice);
-
-	 String getSparePart();
-
-	 void setSparePart(String sparePart);
-
-	 double getSparePartPrice();
-
-	 void setSparePartPrice(double sparePartPrice);
-
 	 double getServicePrice();
 
 	 void setServicePrice(double servicePrice);

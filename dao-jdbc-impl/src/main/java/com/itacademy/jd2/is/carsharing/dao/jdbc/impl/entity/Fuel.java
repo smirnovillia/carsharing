@@ -1,8 +1,6 @@
 package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
 
-import com.itacademy.jd2.is.carsharing.dao.api.entity.IFuel;
-
-public enum Fuel implements IFuel{
+public enum Fuel{
 	
 	DIESEL("Diesel"), PETROL("Petrol"), HYBRID("Hybrid"), ELECTRIC("Electric");
 	

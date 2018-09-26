@@ -1,30 +1,32 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
+import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Body;
+import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Drive;
+import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Fuel;
+import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Gearbox;
 
 public interface IModification extends IBaseEntity {
 
-	public IBody getBody();
+	void setBody(Body body);
 
-	public void setBody(IBody body);
+	Fuel getFuel();
 
-	public IFuel getFuel();
+	void setFuel(Fuel fuel);
 
-	public void setFuel(IFuel fuel);
+	int getEngineCapacity();
 
-	public int getEngineCapacity();
+	void setEngineCapacity(int engineCapacity);
 
-	public void setEngineCapacity(int engineCapacity);
+	Drive getDrive();
 
-	public IDrive getDrive();
+	void setDrive(Drive drive);
 
-	public void setDrive(IDrive drive);
+	Gearbox getGearbox();
 
-	public IGearbox getGearbox();
+	void setGearbox(Gearbox gearbox);
 
-	public void setGearbox(IGearbox gearbox);
+	int getTankCapacity();
 
-	public int getTankCapacity();
-
-	public void setTankCapacity(int tankCapacity);
+	void setTankCapacity(int tankCapacity);
 }
