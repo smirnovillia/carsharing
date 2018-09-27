@@ -1,6 +1,10 @@
 package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
+import com.itacademy.jd2.is.carsharing.dao.api.modification.Body;
+import com.itacademy.jd2.is.carsharing.dao.api.modification.Drive;
+import com.itacademy.jd2.is.carsharing.dao.api.modification.Fuel;
+import com.itacademy.jd2.is.carsharing.dao.api.modification.Gearbox;
 
 public class Modification extends BaseEntity implements IModification {
 
