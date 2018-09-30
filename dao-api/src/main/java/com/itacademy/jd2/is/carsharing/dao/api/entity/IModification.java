@@ -9,8 +9,10 @@ import com.itacademy.jd2.is.carsharing.dao.api.mod.Gearbox;
 
 public interface IModification extends IBaseEntity {
 
+	Body getBody();
+	
 	void setBody(Body body);
-
+	
 	Fuel getFuel();
 
 	void setFuel(Fuel fuel);

@@ -20,7 +20,7 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 	@Override
 	public void update(ICustomer entity) {
 		executeStatement(new PreparedStatementAction<ICustomer>(String.format(
-				"update %s (first_name=?, last_name=?, birthday=?, driver_license=?,"
+				"update %s set first_name=?, last_name=?, birthday=?, driver_license=?,"
 						+ " driver_license_status=?, customer_passport=?, customer_image=?, updated=? where id=?",
 				getTableName())) {
 
