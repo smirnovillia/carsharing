@@ -4,4 +4,11 @@ import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
 
 public interface ISparePart extends IBaseEntity{
 
+	 String getName();
+
+	 void setName(String name);
+
+	 double getPrice();
+
+	 void setPrice(double price);
 }
