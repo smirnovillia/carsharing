@@ -16,14 +16,18 @@ import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementActio
 
 public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> implements IBlackListDao {
 
+	@Override
 	public IBlackList createEntity() {
 		return new BlackList();
 	}
 
+	@Override
 	public void insert(final IBlackList entity) {
 		executeStatement(new PreparedStatementAction<IBlackList>(
 				String.format("insert into %s (customer_id, reason, created, updated) values(?,?,?,?)", getTableName()),
 				true) {
+			
+			@Override
 			public IBlackList doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getCustomer().getId());
 				pStmt.setString(2, entity.getReason());
@@ -45,9 +49,12 @@ public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> imple
 
 	}
 
+	@Override
 	public void update(final IBlackList entity) {
 		executeStatement(new PreparedStatementAction<IBlackList>(
 				String.format("update %s set customer_id=?, reason=?, updated=? where id=?", getTableName())) {
+			
+			@Override
 			public IBlackList doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getCustomer().getId());
 				pStmt.setString(2, entity.getReason());

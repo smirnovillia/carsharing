@@ -18,13 +18,13 @@ public interface ICustomer extends IBaseEntity {
 
 	void setBirthday(Date birthday);
 
-	String getDriverLicence();
+	String getDriverLicense();
 
-	void setDriverLicence(String driverLicence);
+	void setDriverLicense(String driverLicense);
 
-	boolean isDriverLicenceStatus();
+	boolean isDriverLicenseStatus();
 
-	void setDriverLicenceStatus(boolean driverLicenceStatus);
+	void setDriverLicenseStatus(boolean driverLicenseStatus);
 
 	String getCustomerPassport();
 

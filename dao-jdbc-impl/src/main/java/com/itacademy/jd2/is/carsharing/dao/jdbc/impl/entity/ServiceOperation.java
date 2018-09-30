@@ -1,8 +1,9 @@
 package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
 
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IServiceOperation;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ISparePart;
 
-public class ServiceOperation extends BaseEntity {
+public class ServiceOperation extends BaseEntity implements IServiceOperation{
 
 	private String name;
 	private double price;

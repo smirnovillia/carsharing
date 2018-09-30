@@ -4,9 +4,9 @@ import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
 
 public interface ICarServiceDetail extends IBaseEntity {
 
-	ICarServiceHistory getService();
+	ICarServiceHistory getCarServiceHistory();
 
-	void setService(ICarServiceHistory service);
+	void setCarServiceHistory(ICarServiceHistory carServiceHistory);
 
 	IServiceOperation getServiceOperation();
 

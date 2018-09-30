@@ -18,14 +18,19 @@ import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementActio
 
 public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDao{
 	
+	@Override
 	public ICar createEntity() {
 		return new Car();
 	}
 
+	@Override
 	public void insert(final ICar entity) {
 		executeStatement(new PreparedStatementAction<ICar>(
-				String.format("insert into %s (model_id, modification_id, release_date, vin, color_id, mileage, created, updated) values(?,?,?,?)", getTableName()),
+				String.format("insert into %s (model_id, modification_id, release_date, vin, color_id,"
+						+ " mileage, created, updated) values(?,?,?,?,?,?,?,?)", getTableName()),
 				true) {
+			
+			@Override
 			public ICar doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getModel().getId());
 				pStmt.setInt(2, entity.getModification().getId());
@@ -51,9 +56,13 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 
 	}
 
+	@Override
 	public void update(final ICar entity) {
 		executeStatement(new PreparedStatementAction<ICar>(
-				String.format("update %s set model_id=?, modification_id=?, release_date=?, vin=?, color_id=?, mileage=?, updated=? where id=?", getTableName())) {
+				String.format("update %s set model_id=?, modification_id=?, release_date=?, vin=?, "
+						+ "color_id=?, mileage=?, updated=? where id=?", getTableName())) {
+			
+			@Override
 			public ICar doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getModel().getId());
 				pStmt.setInt(2, entity.getModification().getId());

@@ -9,8 +9,8 @@ public class Customer extends BaseEntity implements ICustomer{
 	private String firstName;
 	private String lastName;
 	private Date birthday;
-	private String driverLicence;
-	private boolean driverLicenceStatus;
+	private String driverLicense;
+	private boolean driverLicenseStatus;
 	private String customerPassport;
 	private String customerImage;
 	
@@ -32,17 +32,17 @@ public class Customer extends BaseEntity implements ICustomer{
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public String getDriverLicence() {
-		return driverLicence;
+	public String getDriverLicense() {
+		return driverLicense;
 	}
-	public void setDriverLicence(String driverLicence) {
-		this.driverLicence = driverLicence;
+	public void setDriverLicense(String driverLicense) {
+		this.driverLicense = driverLicense;
 	}
-	public boolean isDriverLicenceStatus() {
-		return driverLicenceStatus;
+	public boolean isDriverLicenseStatus() {
+		return driverLicenseStatus;
 	}
-	public void setDriverLicenceStatus(boolean driverLicenceStatus) {
-		this.driverLicenceStatus = driverLicenceStatus;
+	public void setDriverLicenseStatus(boolean driverLicenseStatus) {
+		this.driverLicenseStatus = driverLicenseStatus;
 	}
 	public String getCustomerPassport() {
 		return customerPassport;

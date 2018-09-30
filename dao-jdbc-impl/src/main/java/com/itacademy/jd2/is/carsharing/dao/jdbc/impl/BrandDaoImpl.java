@@ -12,6 +12,7 @@ import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementActio
 
 public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IBrandDao {
 
+	@Override
 	public IBrand createEntity() {
 		return new Brand();
 	}
@@ -19,6 +20,8 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 	public void insert(final IBrand entity) {
 		executeStatement(new PreparedStatementAction<IBrand>(
 				String.format("insert into %s (name, created, updated) values(?,?,?)", getTableName()), true) {
+			
+			@Override
 			public IBrand doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setObject(2, entity.getCreated(), Types.TIMESTAMP);
@@ -39,9 +42,12 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 
 	}
 
+	@Override
 	public void update(final IBrand entity) {
 		executeStatement(new PreparedStatementAction<IBrand>(
 				String.format("update %s set name=?, updated=? where id=?", getTableName())) {
+			
+			@Override
 			public IBrand doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setObject(2, entity.getUpdated(), Types.TIMESTAMP);
@@ -53,10 +59,12 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 		});
 	}
 
+	@Override
 	protected String getTableName() {
 		return "brand";
 	}
 
+	@Override
 	protected IBrand parseRow(final ResultSet resultSet) throws SQLException {
 		final IBrand entity = createEntity();
 		entity.setId((Integer) resultSet.getObject("id"));
