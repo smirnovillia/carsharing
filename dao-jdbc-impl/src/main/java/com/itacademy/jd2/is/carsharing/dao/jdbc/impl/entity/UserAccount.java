@@ -1,6 +1,7 @@
 package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
+import com.itacademy.jd2.is.carsharing.dao.api.role.Role;
 
 public class UserAccount extends BaseEntity implements IUserAccount{
 

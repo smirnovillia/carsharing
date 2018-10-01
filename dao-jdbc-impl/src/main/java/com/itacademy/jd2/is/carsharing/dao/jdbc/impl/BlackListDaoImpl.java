@@ -7,10 +7,8 @@ import java.sql.Types;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IBlackListDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBlackList;
-import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.BlackList;
-import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Brand;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Customer;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 

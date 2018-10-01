@@ -11,7 +11,7 @@ public class OrderHistory extends BaseEntity implements IOrderHistory{
 	private ICustomer customer;
 	private ICar car;
 	private Date orderDate;
-	private Date orderMileage;
+	private double orderMileage;
 	private double rate;
 	private double price;
 
@@ -39,11 +39,11 @@ public class OrderHistory extends BaseEntity implements IOrderHistory{
 		this.orderDate = orderDate;
 	}
 
-	public Date getOrderMileage() {
+	public double getOrderMileage() {
 		return orderMileage;
 	}
 
-	public void setOrderMileage(Date orderMileage) {
+	public void setOrderMileage(double orderMileage) {
 		this.orderMileage = orderMileage;
 	}
 

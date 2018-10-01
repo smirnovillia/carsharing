@@ -1,4 +1,4 @@
-package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
+package com.itacademy.jd2.is.carsharing.dao.api.role;
 
 public enum Role {
 	

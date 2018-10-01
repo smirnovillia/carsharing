@@ -18,9 +18,9 @@ public interface IOrderHistory extends IBaseEntity {
 
 	void setOrderDate(Date orderDate);
 
-	Date getOrderMileage();
+	double getOrderMileage();
 
-	void setOrderMileage(Date orderMileage);
+	void setOrderMileage(double orderMileage);
 
 	double getRate();
 
