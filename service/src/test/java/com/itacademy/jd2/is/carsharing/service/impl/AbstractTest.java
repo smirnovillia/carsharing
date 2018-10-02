@@ -6,26 +6,30 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.service.IBrandService;
 
 public class AbstractTest {
-	 protected IBrandService brandService = new BrandServiceImpl();
+	protected IBrandService brandService;
 
-	    private static final Random RANDOM = new Random();
+	public AbstractTest() {
+		super();
+	}
 
-	    protected String getRandomPrefix() {
-	        return RANDOM.nextInt(99999) + "";
-	    }
+	private static final Random RANDOM = new Random();
 
-	    protected int getRandomObjectsCount() {
-	        return RANDOM.nextInt(9) + 1;
-	    }
+	protected String getRandomPrefix() {
+		return RANDOM.nextInt(99999) + "";
+	}
 
-	    public Random getRANDOM() {
-	        return RANDOM;
-	    }
+	protected int getRandomObjectsCount() {
+		return RANDOM.nextInt(9) + 1;
+	}
 
-	    protected IBrand saveNewBrand() {
-	        final IBrand entity = brandService.createEntity();
-	        entity.setName("brand-" + getRandomPrefix());
-	        brandService.save(entity);
-	        return entity;
-	    }
+	public Random getRANDOM() {
+		return RANDOM;
+	}
+
+	protected IBrand saveNewBrand() {
+		final IBrand entity = brandService.createEntity();
+		entity.setName("brand-" + getRandomPrefix());
+		brandService.save(entity);
+		return entity;
+	}
 }
