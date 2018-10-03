@@ -1,21 +1,7 @@
 package com.itacademy.jd2.is.carsharing.dao.api.mod;
 
-public enum Fuel{
-	
-	DIESEL("Diesel"), PETROL("Petrol"), HYBRID("Hybrid"), ELECTRIC("Electric");
-	
-	private String name;
-	
-	private Fuel( String name) {
-		this.name = name;
-	}
+public enum Fuel {
 
-	public String getName() {
-		return name;
-	}
+	DIESEL, PETROL, HYBRID, ELECTRIC
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 }
