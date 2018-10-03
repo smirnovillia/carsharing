@@ -29,11 +29,11 @@ public class ModificationDaoImpl extends AbstractDaoImpl<IModification, Integer>
 
 			@Override
 			public IModification doWithPreparedStatement(PreparedStatement pStmt) throws SQLException {
-				pStmt.setObject(1, entity.getBody());
-				pStmt.setObject(2, entity.getFuel());
+				pStmt.setString(1, entity.getBody().toString());
+				pStmt.setString(2, entity.getFuel().toString());
 				pStmt.setInt(3, entity.getEngineCapacity());
-				pStmt.setObject(4, entity.getDrive());
-				pStmt.setObject(5, entity.getGearbox());
+				pStmt.setString(4, entity.getDrive().toString());
+				pStmt.setString(5, entity.getGearbox().toString());
 				pStmt.setInt(6, entity.getTankCapacity());
 				pStmt.setObject(7, entity.getUpdated(), Types.TIMESTAMP);
 
@@ -46,26 +46,27 @@ public class ModificationDaoImpl extends AbstractDaoImpl<IModification, Integer>
 
 	@Override
 	public void insert(IModification entity) {
-		executeStatement(new PreparedStatementAction<IModification>(
-				String.format("insert into %s (body, fuel, engine_capacity, drive, gearbox, tank_capacity, created, updated) values (?,?,?,?,?,?,?,?)", getTableName(), true) ) {
-			
+		executeStatement(new PreparedStatementAction<IModification>(String.format(
+				"insert into %s (body, fuel, engine_capacity, drive, gearbox, tank_capacity, created, updated) values (?,?,?,?,?,?,?,?)",
+				getTableName(), true)) {
+
 			@Override
 			public IModification doWithPreparedStatement(PreparedStatement pStmt) throws SQLException {
-				pStmt.setObject(1, entity.getBody());
-				pStmt.setObject(2, entity.getFuel());
+				pStmt.setString(1, entity.getBody().toString());
+				pStmt.setString(2, entity.getFuel().toString());
 				pStmt.setInt(3, entity.getEngineCapacity());
-				pStmt.setObject(4, entity.getDrive());
-				pStmt.setObject(5, entity.getGearbox());
+				pStmt.setString(4, entity.getDrive().toString());
+				pStmt.setString(5, entity.getGearbox().toString());
 				pStmt.setInt(6, entity.getTankCapacity());
 				pStmt.setObject(7, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(8, entity.getUpdated(), Types.TIMESTAMP);
-				
+
 				pStmt.executeUpdate();
-				
+
 				final ResultSet rs = pStmt.getGeneratedKeys();
 				rs.next();
 				final int id = rs.getInt("id");
-				
+
 				rs.close();
 				entity.setId(id);
 				return entity;
@@ -77,17 +78,17 @@ public class ModificationDaoImpl extends AbstractDaoImpl<IModification, Integer>
 	protected IModification parseRow(ResultSet resultSet) throws SQLException {
 		final IModification entity = new Modification();
 		entity.setId((Integer) resultSet.getObject("id"));
-		entity.setBody((Body) resultSet.getObject("body"));
-		entity.setFuel((Fuel) resultSet.getObject("fuel"));
+		entity.setBody(Body.valueOf(resultSet.getString("body")));
+		entity.setFuel(Fuel.valueOf(resultSet.getString("fuel")));
 		entity.setEngineCapacity(resultSet.getInt("engine_capacity"));
-		entity.setDrive((Drive) resultSet.getObject("drive"));
-		entity.setGearbox((Gearbox) resultSet.getObject("gearbox"));
+		entity.setDrive(Drive.valueOf(resultSet.getString("drive")));
+		entity.setGearbox(Gearbox.valueOf(resultSet.getString("gearbox")));
 		entity.setTankCapacity(resultSet.getInt("tank_capacity"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
-		
+
 		return entity;
-	} 
+	}
 
 	@Override
 	protected String getTableName() {

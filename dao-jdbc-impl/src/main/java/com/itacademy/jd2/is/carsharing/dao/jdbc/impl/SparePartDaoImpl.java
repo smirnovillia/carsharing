@@ -59,7 +59,7 @@ public class SparePartDaoImpl extends AbstractDaoImpl<ISparePart, Integer> imple
 				}
 		});
 	}
-
+	
 	@Override
 	protected ISparePart parseRow(ResultSet resultSet) throws SQLException {
 		final ISparePart entity = new SparePart();
