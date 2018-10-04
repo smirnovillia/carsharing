@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.service.IBrandService;
 
-@SpringJUnitConfig(locations = "classpath:service-context.xml")
+@SpringJUnitConfig(locations="classpath:service-context-test.xml")
 public class AbstractTest {
 	@Autowired
 	protected IBrandService brandService;
