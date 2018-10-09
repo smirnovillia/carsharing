@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
@@ -67,24 +66,28 @@
 				<version>5.1.0</version>
 				<scope>test</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-engine</artifactId>
 				<version>5.1.0</version>
 				<scope>test</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.junit.vintage</groupId>
 				<artifactId>junit-vintage-engine</artifactId>
 				<version>5.1.0</version>
 				<scope>test</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.junit.platform</groupId>
 				<artifactId>junit-platform-launcher</artifactId>
 				<version>1.1.0</version>
 				<scope>test</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.junit.platform</groupId>
 				<artifactId>junit-platform-runner</artifactId>
@@ -97,26 +100,31 @@
 				<artifactId>jboss-logging</artifactId>
 				<version>3.2.0.Final</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-api</artifactId>
 				<version>2.1</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>
 				<version>2.1</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-slf4j-impl</artifactId>
 				<version>2.1</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-jcl</artifactId>
 				<version>2.1</version>
 			</dependency>
+			
 			<!-- Spring -->
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -153,11 +161,13 @@
 				<artifactId>spring-security-config</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-taglibs</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
@@ -197,6 +207,111 @@
 				<scope>test</scope>
 			</dependency>
 
+
+			<!-- JUnit -->
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>5.1.0</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>5.1.0</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.junit.vintage</groupId>
+				<artifactId>junit-vintage-engine</artifactId>
+				<version>5.1.0</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-launcher</artifactId>
+				<version>1.1.0</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-runner</artifactId>
+				<version>1.1.0</version>
+				<scope>test</scope>
+			</dependency>
+
+
+			<!-- Logging libraries -->
+			<dependency>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging</artifactId>
+				<version>3.2.0.Final</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>2.1</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>2.1</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>2.1</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-jcl</artifactId>
+				<version>2.1</version>
+			</dependency>
+
+
+			<!-- JETTY DEPENDENCIES -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-server</artifactId>
+				<version>${jetty9.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>${jetty9.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-annotations</artifactId>
+				<version>${jetty9.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-util</artifactId>
+				<version>${jetty9.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-jmx</artifactId>
+				<version>${jetty9.version}</version>
+				<scope>test</scope>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>
