@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Set;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.is.carsharing.dao.api.IModelDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
@@ -13,6 +15,7 @@ import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Brand;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Model;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class ModelDaoImpl extends AbstractDaoImpl<IModel, Integer> implements IModelDao {
 
 	public IModel createEntity() {

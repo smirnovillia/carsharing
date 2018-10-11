@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.is.carsharing.dao.api.ICarServiceDetailDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICarServiceDetail;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICarServiceHistory;
@@ -14,6 +16,7 @@ import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.CarServiceHistory;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.ServiceOperation;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class CarServiceDetailDaoImpl extends AbstractDaoImpl<ICarServiceDetail, Integer>
 		implements ICarServiceDetailDao {
 

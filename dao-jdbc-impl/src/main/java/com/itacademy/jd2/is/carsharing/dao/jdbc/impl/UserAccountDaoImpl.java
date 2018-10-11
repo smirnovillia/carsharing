@@ -5,12 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.is.carsharing.dao.api.IUserAccountDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 import com.itacademy.jd2.is.carsharing.dao.api.role.Role;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.UserAccount;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> implements IUserAccountDao {
 
 	@Override

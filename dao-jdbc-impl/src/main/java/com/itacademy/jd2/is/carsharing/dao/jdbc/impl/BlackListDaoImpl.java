@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.is.carsharing.dao.api.IBlackListDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBlackList;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
@@ -12,6 +14,7 @@ import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.BlackList;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Customer;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> implements IBlackListDao {
 
 	@Override

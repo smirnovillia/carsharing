@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.is.carsharing.dao.api.ITrackingDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
@@ -12,6 +14,7 @@ import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Car;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Tracking;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class TrackingDaoImpl extends AbstractDaoImpl<ITracking, Integer> implements ITrackingDao {
 
 	@Override

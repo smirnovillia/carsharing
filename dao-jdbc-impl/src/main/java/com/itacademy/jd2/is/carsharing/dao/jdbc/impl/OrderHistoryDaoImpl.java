@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.is.carsharing.dao.api.IOrderHistoryDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
@@ -14,6 +16,7 @@ import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Customer;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.OrderHistory;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class OrderHistoryDaoImpl extends AbstractDaoImpl<IOrderHistory, Integer> implements IOrderHistoryDao {
 
 	@Override

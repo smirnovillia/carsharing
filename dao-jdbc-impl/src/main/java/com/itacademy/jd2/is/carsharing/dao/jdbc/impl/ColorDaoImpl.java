@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.is.carsharing.dao.api.IColorDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Color;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class ColorDaoImpl extends AbstractDaoImpl<IColor, Integer> implements IColorDao{
 
 	@Override

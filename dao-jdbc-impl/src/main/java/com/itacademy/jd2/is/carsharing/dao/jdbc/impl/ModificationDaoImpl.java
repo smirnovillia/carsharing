@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import org.springframework.stereotype.Repository;
+
 import com.itacademy.jd2.is.carsharing.dao.api.IModificationDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
 import com.itacademy.jd2.is.carsharing.dao.api.mod.Body;
@@ -14,6 +16,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.mod.Gearbox;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Modification;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
+@Repository
 public class ModificationDaoImpl extends AbstractDaoImpl<IModification, Integer> implements IModificationDao {
 
 	@Override
