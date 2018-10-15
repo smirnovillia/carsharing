@@ -18,6 +18,4 @@ public class Brand extends BaseEntity implements IBrand{
 		return "Brand [name=" + name + "]";
 	}
 	
-	
-
 }

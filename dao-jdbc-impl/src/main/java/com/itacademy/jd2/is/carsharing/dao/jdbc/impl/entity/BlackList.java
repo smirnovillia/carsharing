@@ -21,4 +21,9 @@ public class BlackList extends BaseEntity implements IBlackList{
 		this.reason = reason;
 	}
 	
+	@Override
+	public String toString() {
+		return "BlackList [customer=" + customer + ", reason=" + reason + "]";
+	}
+	
 }

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IModificationDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
-import com.itacademy.jd2.is.carsharing.dao.api.mod.Body;
-import com.itacademy.jd2.is.carsharing.dao.api.mod.Drive;
-import com.itacademy.jd2.is.carsharing.dao.api.mod.Fuel;
-import com.itacademy.jd2.is.carsharing.dao.api.mod.Gearbox;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Drive;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Fuel;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Modification;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 

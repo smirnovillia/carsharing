@@ -6,7 +6,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IOrderHistory;
 
-public class OrderHistory extends BaseEntity implements IOrderHistory{
+public class OrderHistory extends BaseEntity implements IOrderHistory {
 
 	private ICustomer customer;
 	private ICar car;
@@ -62,4 +62,11 @@ public class OrderHistory extends BaseEntity implements IOrderHistory{
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderHistory [customer=" + customer + ", car=" + car + ", orderDate=" + orderDate + ", orderMileage="
+				+ orderMileage + ", rate=" + rate + ", price=" + price + "]";
+	}
+
 }

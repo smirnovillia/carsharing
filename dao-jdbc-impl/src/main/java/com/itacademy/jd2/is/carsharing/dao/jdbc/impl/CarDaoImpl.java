@@ -12,6 +12,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Status;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Car;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Color;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Model;
@@ -30,7 +31,7 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 	public void insert(final ICar entity) {
 		executeStatement(new PreparedStatementAction<ICar>(
 				String.format("insert into %s (model_id, modification_id, release_date, vin, color_id,"
-						+ " mileage, created, updated) values(?,?,?,?,?,?,?,?)", getTableName()),
+						+ " mileage, status, created, updated) values(?,?,?,?,?,?,?,?)", getTableName()),
 				true) {
 			
 			@Override
@@ -41,8 +42,9 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 				pStmt.setString(4, entity.getVin());
 				pStmt.setInt(5, entity.getColor().getId());
 				pStmt.setDouble(6, entity.getMileage());
-				pStmt.setObject(7, entity.getCreated(), Types.TIMESTAMP);
-				pStmt.setObject(8, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setString(7, entity.getStatus().toString());
+				pStmt.setObject(8, entity.getCreated(), Types.TIMESTAMP);
+				pStmt.setObject(9, entity.getUpdated(), Types.TIMESTAMP);
 
 				pStmt.executeUpdate();
 
@@ -63,7 +65,7 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 	public void update(final ICar entity) {
 		executeStatement(new PreparedStatementAction<ICar>(
 				String.format("update %s set model_id=?, modification_id=?, release_date=?, vin=?, "
-						+ "color_id=?, mileage=?, updated=? where id=?", getTableName())) {
+						+ "color_id=?, mileage=?, status=?, updated=? where id=?", getTableName())) {
 			
 			@Override
 			public ICar doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
@@ -73,8 +75,9 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 				pStmt.setString(4, entity.getVin());
 				pStmt.setInt(5, entity.getColor().getId());
 				pStmt.setDouble(6, entity.getMileage());
-				pStmt.setObject(7, entity.getUpdated(), Types.TIMESTAMP);
-				pStmt.setInt(8, entity.getId());
+				pStmt.setString(7, entity.getStatus().toString());
+				pStmt.setObject(8, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(9, entity.getId());
 
 				pStmt.executeUpdate();
 				return entity;
@@ -94,6 +97,7 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 		entity.setReleaseDate(resultSet.getInt("release_date"));
 		entity.setVin(resultSet.getString("vin"));
 		entity.setMileage(resultSet.getDouble("mileage"));
+		entity.setStatus(Status.valueOf(resultSet.getString("status")));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		

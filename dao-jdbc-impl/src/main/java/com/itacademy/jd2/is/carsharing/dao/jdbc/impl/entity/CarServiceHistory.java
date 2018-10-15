@@ -53,4 +53,10 @@ public class CarServiceHistory extends BaseEntity implements ICarServiceHistory 
 		this.servicePrice = servicePrice;
 	}
 
+	@Override
+	public String toString() {
+		return "CarServiceHistory [car=" + car + ", serviceDate=" + serviceDate + ", carMileage=" + carMileage
+				+ ", serviceCompany=" + serviceCompany + ", servicePrice=" + servicePrice + "]";
+	}
+	
 }

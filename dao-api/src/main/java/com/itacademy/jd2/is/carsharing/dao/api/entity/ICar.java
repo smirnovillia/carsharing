@@ -1,6 +1,7 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Status;
 
 public interface ICar extends IBaseEntity {
 
@@ -27,4 +28,8 @@ public interface ICar extends IBaseEntity {
 	double getMileage();
 
 	void setMileage(double mileage);
+
+	Status getStatus();
+
+	void setStatus(Status status);
 }

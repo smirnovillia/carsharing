@@ -1,10 +1,10 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
-import com.itacademy.jd2.is.carsharing.dao.api.mod.Body;
-import com.itacademy.jd2.is.carsharing.dao.api.mod.Drive;
-import com.itacademy.jd2.is.carsharing.dao.api.mod.Fuel;
-import com.itacademy.jd2.is.carsharing.dao.api.mod.Gearbox;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Drive;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Fuel;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
 
 
 public interface IModification extends IBaseEntity {

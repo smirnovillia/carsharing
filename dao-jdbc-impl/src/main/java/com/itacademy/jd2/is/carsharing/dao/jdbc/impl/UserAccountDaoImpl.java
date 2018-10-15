@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IUserAccountDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
-import com.itacademy.jd2.is.carsharing.dao.api.role.Role;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.UserAccount;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 

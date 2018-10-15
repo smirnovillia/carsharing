@@ -25,4 +25,10 @@ public class CarServiceDetail extends BaseEntity implements ICarServiceDetail{
 		this.serviceOperation = serviceOperation;
 	}
 
+	@Override
+	public String toString() {
+		return "CarServiceDetail [carServiceHistory=" + carServiceHistory + ", serviceOperation=" + serviceOperation
+				+ "]";
+	}
+
 }

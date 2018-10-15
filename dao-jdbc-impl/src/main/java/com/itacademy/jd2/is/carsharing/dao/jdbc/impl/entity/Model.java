@@ -4,7 +4,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 
 public class Model extends BaseEntity implements IModel {
-	
+
 	private String name;
 	private IBrand brand;
 
@@ -22,6 +22,11 @@ public class Model extends BaseEntity implements IModel {
 
 	public void setBrand(IBrand brand) {
 		this.brand = brand;
+	}
+
+	@Override
+	public String toString() {
+		return "Model [name=" + name + ", brand=" + brand + "]";
 	}
 
 }

@@ -1,7 +1,7 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
-import com.itacademy.jd2.is.carsharing.dao.api.role.Role;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
 
 public interface IUserAccount extends IBaseEntity {
 

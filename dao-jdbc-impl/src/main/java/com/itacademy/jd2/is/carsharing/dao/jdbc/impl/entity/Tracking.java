@@ -5,7 +5,7 @@ import java.util.Date;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
 
-public class Tracking extends BaseEntity implements ITracking{
+public class Tracking extends BaseEntity implements ITracking {
 
 	private ICar car;
 	private Date trackingDate;
@@ -42,6 +42,12 @@ public class Tracking extends BaseEntity implements ITracking{
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+
+	@Override
+	public String toString() {
+		return "Tracking [car=" + car + ", trackingDate=" + trackingDate + ", latitude=" + latitude + ", longitude="
+				+ longitude + "]";
 	}
 
 }

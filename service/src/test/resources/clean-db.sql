@@ -1,0 +1,1 @@
+truncate car, color, color_2_model, modification, model, brand, tracking, insurance, car_service_history, order_history, customer, black_list, user_account, car_service_detail, service_operation, spare_part;
