@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IBrandDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.BrandFilter;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Brand;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
@@ -23,7 +25,7 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 	public void insert(final IBrand entity) {
 		executeStatement(new PreparedStatementAction<IBrand>(
 				String.format("insert into %s (name, created, updated) values(?,?,?)", getTableName()), true) {
-			
+
 			@Override
 			public IBrand doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
@@ -49,7 +51,7 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 	public void update(final IBrand entity) {
 		executeStatement(new PreparedStatementAction<IBrand>(
 				String.format("update %s set name=?, updated=? where id=?", getTableName())) {
-			
+
 			@Override
 			public IBrand doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
@@ -75,6 +77,14 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
+	}
+
+	@Override
+	public List<IBrand> find(final BrandFilter filter) {
+		final StringBuilder sqlTile = new StringBuilder("");
+		appendSort(filter, sqlTile);
+		// appendPaging(filter, sqlTile);
+		return executeFindQuery(sqlTile.toString());
 	}
 
 }

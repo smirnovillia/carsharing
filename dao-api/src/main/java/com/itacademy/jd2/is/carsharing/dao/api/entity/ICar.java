@@ -1,7 +1,8 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
+import javax.net.ssl.SSLEngineResult.Status;
+
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
-import com.itacademy.jd2.is.carsharing.dao.api.enums.Status;
 
 public interface ICar extends IBaseEntity {
 

@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IBrandDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.BrandFilter;
 import com.itacademy.jd2.is.carsharing.service.IBrandService;
 
 @Service
 public class BrandServiceImpl implements IBrandService {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(BrandServiceImpl.class);
 	private IBrandDao dao;
-	
-	
+
 	@Autowired
 	public BrandServiceImpl(IBrandDao dao) {
 		super();
@@ -27,7 +27,7 @@ public class BrandServiceImpl implements IBrandService {
 
 	@Override
 	public IBrand createEntity() {
-		
+
 		return dao.createEntity();
 	}
 
@@ -66,4 +66,10 @@ public class BrandServiceImpl implements IBrandService {
 		final List<IBrand> all = dao.selectAll();
 		return all;
 	}
+
+	@Override
+	public List<IBrand> find(BrandFilter filter) {
+		return dao.find(filter);
+	}
+
 }
