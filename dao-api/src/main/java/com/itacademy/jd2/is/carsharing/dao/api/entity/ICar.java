@@ -1,8 +1,7 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
-import javax.net.ssl.SSLEngineResult.Status;
-
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
 
 public interface ICar extends IBaseEntity {
 
@@ -30,7 +29,7 @@ public interface ICar extends IBaseEntity {
 
 	void setMileage(double mileage);
 
-	Status getStatus();
+	Condition getCondition();
 
-	void setStatus(Status status);
+	void setCondition(Condition condition);
 }

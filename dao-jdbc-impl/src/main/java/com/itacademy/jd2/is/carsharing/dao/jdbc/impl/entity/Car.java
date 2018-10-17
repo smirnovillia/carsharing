@@ -4,7 +4,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
-import com.itacademy.jd2.is.carsharing.dao.api.enums.Status;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
 
 public class Car extends BaseEntity implements ICar {
 
@@ -14,7 +14,7 @@ public class Car extends BaseEntity implements ICar {
 	private String vin;
 	private IColor color;
 	private double mileage;
-	private Status status;
+	private Condition condition;
 
 	public IModel getModel() {
 		return model;
@@ -64,18 +64,18 @@ public class Car extends BaseEntity implements ICar {
 		this.mileage = mileage;
 	}
 
-	public Status getStatus() {
-		return status;
+	public Condition getCondition() {
+		return condition;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setCondition(Condition condition) {
+		this.condition = condition;
 	}
 
 	@Override
 	public String toString() {
 		return "Car [model=" + model + ", modification=" + modification + ", releaseDate=" + releaseDate + ", vin="
-				+ vin + ", color=" + color + ", mileage=" + mileage + ", status=" + status + "]";
+				+ vin + ", color=" + color + ", mileage=" + mileage + ", condition=" + condition + "]";
 	}
 	
 }

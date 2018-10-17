@@ -2,7 +2,6 @@ package com.itacademy.jd2.is.carsharing.service.impl;
 
 import java.util.Random;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -13,7 +12,9 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Drive;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Fuel;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
@@ -126,6 +127,18 @@ public class AbstractTest {
 	protected double getRandomMileage() {
 		return RANDOM.nextDouble()*300000;
 	}
+	
+	protected Condition getRandomCondition() {
+		return Condition.values()[RANDOM.nextInt(Condition.values().length)];
+	}
+	
+	protected double getRandomLatitude() {
+		return RANDOM.nextDouble()*90;
+	}
+	
+	protected double getRandomLongitude() {
+		return RANDOM.nextDouble()*180;
+	}
 
 	public Random getRANDOM() {
 		return RANDOM;
@@ -177,6 +190,16 @@ public class AbstractTest {
 		entity.setVin(getRandomVin());
 		entity.setColor(color);
 		entity.setMileage(getRandomMileage());
+		entity.setCondition(getRandomCondition());
+		return entity;
+	}
+	
+	protected ITracking saveNewTracking() {
+		final ICar car = saveNewCar();
+		final ITracking entity = trackingService.createEntity();
+		entity.setCar(car);
+		entity.setLatitude(getRandomLatitude());
+		entity.setLongitude(getRandomLongitude());
 		return entity;
 	}
 
