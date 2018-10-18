@@ -45,16 +45,19 @@ public class BrandController extends AbstractController<BrandDTO> {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(final HttpServletRequest req,
-			@RequestParam(name = "sort", required = false, defaultValue = "id") final String sortColumn) {
+			@RequestParam(name = "page", required = false) final Integer pageNumber,
+			@RequestParam(name = "sort", required = false) final String sortColumn) {
 
 		final ListDTO<BrandDTO> listDTO = getListDTO(req);
-		listDTO.setSort(sortColumn);
+		listDTO.setPage(pageNumber);
+		listDTO.setSort(sortColumn, "id");
 
 		final BrandFilter filter = new BrandFilter();
 		prepareFilter(listDTO, filter);
 
 		final List<IBrand> entities = brandService.find(filter);
 		listDTO.setList(entities.stream().map(toDtoConverter).collect(Collectors.toList()));
+		listDTO.setTotalCount(brandService.getCount(filter));
 
 		final HashMap<String, Object> models = new HashMap<>();
 		models.put(ListDTO.LIST_MODEL_ATTRIBUTE, listDTO);

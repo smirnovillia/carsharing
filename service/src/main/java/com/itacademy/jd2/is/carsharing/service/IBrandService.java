@@ -19,4 +19,6 @@ public interface IBrandService {
 	IBrand createEntity();
 
 	List<IBrand> find(BrandFilter filter);
+	
+	long getCount(BrandFilter filter);
 }

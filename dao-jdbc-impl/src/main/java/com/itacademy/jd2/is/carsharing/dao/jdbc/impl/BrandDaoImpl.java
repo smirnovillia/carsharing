@@ -83,8 +83,13 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 	public List<IBrand> find(final BrandFilter filter) {
 		final StringBuilder sqlTile = new StringBuilder("");
 		appendSort(filter, sqlTile);
-		// appendPaging(filter, sqlTile);
+		appendPaging(filter, sqlTile);
 		return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(final BrandFilter filter) {
+		return executeCountQuery("");
 	}
 
 }

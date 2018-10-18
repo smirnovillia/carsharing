@@ -10,7 +10,7 @@
 			<div class="input-field col s12">
 				<form:input path="name" type="text" disabled="${readonly}" />
 				<form:errors path="name" cssClass="red-text" />
-				<label for="name">name</label>
+				<label for="name">название</label>
 			</div>
 		</div>
 
@@ -18,13 +18,24 @@
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">save<i class="material-icons right">save</i></button>
+					<button class="btn waves-effect waves-light right" type="submit">сохранить</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${baseUrl}">list<i class="material-icons right">list</i>
+				<a class="btn waves-effect waves-light right" href="${baseUrl}">к
+					списку<i class="material-icons right">arrow_forward</i>
 				</a>
 			</div>
 		</div>
 	</form:form>
 </div>
+
+<c:if test='${param["showAlerts"]}'>
+	<!-- checks the URL parameter -->
+	<script src="${contextPath}/resources/js/sample-alert-with-params.js"></script>
+
+	<script>
+		showMessage('Hello JS'); // execute function defined somewhere above
+	</script>
+</c:if>
+

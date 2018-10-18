@@ -72,4 +72,9 @@ public class BrandServiceImpl implements IBrandService {
 		return dao.find(filter);
 	}
 
+	@Override
+	public long getCount(BrandFilter filter) {
+		return dao.getCount(filter);
+	}
+
 }

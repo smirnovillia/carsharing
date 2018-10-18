@@ -8,5 +8,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.filter.BrandFilter;
 public interface IBrandDao extends IBaseDao<IBrand, Integer> {
 	
 	  List<IBrand> find(BrandFilter filter);
+	  
+	  long getCount(BrandFilter filter);
 
 }
