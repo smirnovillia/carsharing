@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
-
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout
@@ -18,17 +17,17 @@
 				<SizeBasedTriggeringPolicy size="250 MB" />
 			</Policies>
 		</RollingFile>
-
 	</Appenders>
 
 	<Loggers>
 		<Root level="info">
 			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
 		</Root>
 
-		<Logger name="abstractDAOLogger" level="debug">
+		<Logger name="com.itacademy.jd2.is.carsharing.service" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
 		</Logger>
 
 	</Loggers>
-
 </Configuration>

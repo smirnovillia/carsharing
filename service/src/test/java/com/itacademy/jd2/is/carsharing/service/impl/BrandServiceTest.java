@@ -49,7 +49,7 @@ public class BrandServiceTest extends AbstractTest {
 
 	@Test
 	public void testGetAll() {
-		final int intialCount = brandService.getAll().size();
+		final int initialCount = brandService.getAll().size();
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
@@ -65,7 +65,7 @@ public class BrandServiceTest extends AbstractTest {
 			assertNotNull(entityFromDb.getUpdated());
 		}
 
-		assertEquals(randomObjectsCount + intialCount, allEntities.size());
+		assertEquals(randomObjectsCount + initialCount, allEntities.size());
 	}
 
 	@Test
@@ -73,5 +73,14 @@ public class BrandServiceTest extends AbstractTest {
 		final IBrand entity = saveNewBrand();
 		brandService.delete(entity.getId());
 		assertNull(brandService.get(entity.getId()));
+	}
+	
+	@Test
+	public void testDeleteAll() {
+		for (int i = 0; i < getRandomObjectsCount(); i++) {
+			saveNewBrand();
+		}
+		brandService.deleteAll();
+		assertEquals(0, brandService.getAll().size());
 	}
 }
