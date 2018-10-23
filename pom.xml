@@ -445,7 +445,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>ROOT</finalName>
+		<finalName>carsharing</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>

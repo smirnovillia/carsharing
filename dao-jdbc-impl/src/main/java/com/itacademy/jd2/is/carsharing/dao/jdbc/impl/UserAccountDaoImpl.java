@@ -42,7 +42,7 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 	@Override
 	public void insert(IUserAccount entity) {
 		executeStatement(new PreparedStatementAction<IUserAccount>(
-				String.format("isert into %s (login, password, role_id, created, updated) values (?,?,?,?,?)",
+				String.format("insert into %s (login, password, role_id, created, updated) values (?,?,?,?,?)",
 						getTableName()),
 				true) {
 			@Override

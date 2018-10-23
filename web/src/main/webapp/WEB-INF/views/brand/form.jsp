@@ -1,9 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="baseUrl" value="${contextPath}/brand" />
 <h4 class="header">Edit brand</h4>
 <div class="row">
-	<form:form class="col s12" method="POST" action="${baseUrl}"
+	<form:form class="col s12" method="POST" action="${pagesBrand}"
 		modelAttribute="formModel">
 		<form:input path="id" type="hidden" />
 		<div class="row">
@@ -13,16 +12,16 @@
 				<label for="name">name</label>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">save<i class="material-icons right">save</i></button>
+					<button class="btn waves-effect waves-light right" type="submit">save</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${baseUrl}">list<i class="material-icons right">arrow_forward</i>
+				<a class="btn waves-effect waves-light right" href="${pagesBrand}">list<i
+					class="material-icons right"></i>
 				</a>
 			</div>
 		</div>

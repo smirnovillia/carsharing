@@ -46,7 +46,7 @@ import com.itacademy.jd2.is.carsharing.service.ITrackingService;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
-@Sql("classpath:sql/clean-db.sql")
+// @Sql("classpath:sql/clean-db.sql")
 public class AbstractTest {
 	@Autowired
 	protected IBrandService brandService;
@@ -85,9 +85,6 @@ public class AbstractTest {
 
 	private static final Random RANDOM = new Random();
 
-	
-
-	
 	protected Date getRandomDate() {
 		Calendar calendar = Calendar.getInstance();
 		int year = RANDOM.nextInt(5) + 2017;
@@ -97,11 +94,11 @@ public class AbstractTest {
 		Date date = calendar.getTime();
 		return date;
 	}
-	
+
 	protected boolean getRandomBoolean() {
 		return RANDOM.nextBoolean();
 	}
-	
+
 	public Random getRANDOM() {
 		return RANDOM;
 	}
@@ -133,7 +130,7 @@ public class AbstractTest {
 		modificationService.save(entity);
 		return entity;
 	}
-	
+
 	protected IColor saveNewColor() {
 		final IColor entity = colorService.createEntity();
 		entity.setName("color-" + getRandomPrefix());
@@ -156,7 +153,7 @@ public class AbstractTest {
 		carService.save(entity);
 		return entity;
 	}
-	
+
 	protected ITracking saveNewTracking() {
 		final ICar car = saveNewCar();
 		final ITracking entity = trackingService.createEntity();
@@ -166,7 +163,7 @@ public class AbstractTest {
 		trackingService.save(entity);
 		return entity;
 	}
-	
+
 	protected IInsurance saveNewInsurance() {
 		final ICar car = saveNewCar();
 		final IInsurance entity = insuranceService.createEntity();
@@ -177,9 +174,9 @@ public class AbstractTest {
 		entity.setExpiried(getRandomDate());
 		insuranceService.save(entity);
 		return entity;
-		
+
 	}
-	
+
 	protected ICarServiceHistory saveNewCarServiceHistory() {
 		final ICar car = saveNewCar();
 		final ICarServiceHistory entity = carServiceHistoryService.createEntity();
@@ -190,9 +187,9 @@ public class AbstractTest {
 		entity.setServicePrice(getRandomDouble());
 		carServiceHistoryService.save(entity);
 		return entity;
-		
+
 	}
-	
+
 	protected ISparePart saveNewSparePart() {
 		final ISparePart entity = sparePartService.createEntity();
 		entity.setName("spare part - " + getRandomPrefix());
@@ -200,7 +197,7 @@ public class AbstractTest {
 		sparePartService.save(entity);
 		return entity;
 	}
-	
+
 	protected IServiceOperation saveNewOperation() {
 		final ISparePart sparePart = saveNewSparePart();
 		final IServiceOperation entity = operationService.createEntity();
@@ -211,7 +208,6 @@ public class AbstractTest {
 		return entity;
 	}
 
-	
 	protected ICarServiceDetail saveNewCarServiceDetail() {
 		final ICarServiceHistory carServiceHistory = saveNewCarServiceHistory();
 		final IServiceOperation serviceOperation = saveNewOperation();
@@ -221,7 +217,7 @@ public class AbstractTest {
 		carServiceDetailService.save(entity);
 		return entity;
 	}
-	
+
 	protected IUserAccount saveNewUserAccount() {
 		final IUserAccount entity = userAccountService.createEntity();
 		entity.setLogin("login - " + getRandomPrefix());
@@ -230,10 +226,11 @@ public class AbstractTest {
 		userAccountService.save(entity);
 		return entity;
 	}
-	
+
 	protected ICustomer saveNewCustomer() {
-		saveNewUserAccount();
+		final IUserAccount user = saveNewUserAccount();
 		final ICustomer entity = customerService.createEntity();
+		entity.setId(user.getId());
 		entity.setFirstName("first name - " + getRandomPrefix());
 		entity.setLastName("last name - " + getRandomPrefix());
 		entity.setBirthday(getRandomDate());
@@ -253,7 +250,7 @@ public class AbstractTest {
 		blackListService.save(entity);
 		return entity;
 	}
-	
+
 	protected IOrderHistory saveNewOrderHistory() {
 		final ICustomer customer = saveNewCustomer();
 		final ICar car = saveNewCar();
@@ -267,7 +264,7 @@ public class AbstractTest {
 		orderHistoryService.save(entity);
 		return entity;
 	}
-	
+
 	protected String getRandomPrefix() {
 		return RANDOM.nextInt(99999) + "";
 	}
@@ -291,25 +288,25 @@ public class AbstractTest {
 	protected Gearbox getRandomGearbox() {
 		return Gearbox.values()[RANDOM.nextInt(Gearbox.values().length)];
 	}
-	
+
 	protected int getRandomInt() {
 		return RANDOM.nextInt(999) + 1;
 	}
 
 	protected double getRandomDouble() {
-		return RANDOM.nextDouble()*1000;
+		return RANDOM.nextDouble() * 1000;
 	}
-	
+
 	protected Condition getRandomCondition() {
 		return Condition.values()[RANDOM.nextInt(Condition.values().length)];
 	}
-	
+
 	protected double getRandomLatitude() {
-		return RANDOM.nextDouble()*90;
+		return RANDOM.nextDouble() * 90;
 	}
-	
+
 	protected double getRandomLongitude() {
-		return RANDOM.nextDouble()*180;
+		return RANDOM.nextDouble() * 180;
 	}
 
 }

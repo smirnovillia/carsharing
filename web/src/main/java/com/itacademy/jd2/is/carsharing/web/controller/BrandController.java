@@ -2,6 +2,7 @@ package com.itacademy.jd2.is.carsharing.web.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,92 +24,91 @@ import com.itacademy.jd2.is.carsharing.service.IBrandService;
 import com.itacademy.jd2.is.carsharing.web.converter.BrandFromDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.converter.BrandToDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.dto.BrandDTO;
-import com.itacademy.jd2.is.carsharing.web.dto.list.ListDTO;
+import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
 
 @Controller
 @RequestMapping(value = "/brand")
 public class BrandController extends AbstractController<BrandDTO> {
 
-	private IBrandService brandService;
+	  private IBrandService brandService;
 
-	private BrandToDTOConverter toDtoConverter;
-	private BrandFromDTOConverter fromDtoConverter;
+	    private BrandToDTOConverter toDtoConverter;
+	    private BrandFromDTOConverter fromDtoConverter;
 
-	@Autowired
-	private BrandController(IBrandService brandService, BrandToDTOConverter toDtoConverter,
-			BrandFromDTOConverter fromDtoConverter) {
-		super();
-		this.brandService = brandService;
-		this.toDtoConverter = toDtoConverter;
-		this.fromDtoConverter = fromDtoConverter;
-	}
+	    @Autowired
+	    private BrandController(IBrandService brandService, BrandToDTOConverter toDtoConverter,
+	            BrandFromDTOConverter fromDtoConverter) {
+	        super();
+	        this.brandService = brandService;
+	        this.toDtoConverter = toDtoConverter;
+	        this.fromDtoConverter = fromDtoConverter;
+	    }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView index(final HttpServletRequest req,
-			@RequestParam(name = "page", required = false) final Integer pageNumber,
-			@RequestParam(name = "sort", required = false) final String sortColumn) {
+	    @RequestMapping(method = RequestMethod.GET)
+	    public ModelAndView index(final HttpServletRequest req,
+	            @RequestParam(name = "page", required = false) final Integer pageNumber,
+	            @RequestParam(name = "sort", required = false) final String sortColumn) {
+	        final GridStateDTO gridState = getListDTO(req);
+	        gridState.setPage(pageNumber);
+	        gridState.setSort(sortColumn, "id");
 
-		final ListDTO<BrandDTO> listDTO = getListDTO(req);
-		listDTO.setPage(pageNumber);
-		listDTO.setSort(sortColumn, "id");
+	        final BrandFilter filter = new BrandFilter();
+	        prepareFilter(gridState, filter);
 
-		final BrandFilter filter = new BrandFilter();
-		prepareFilter(listDTO, filter);
+	        final List<IBrand> entities = brandService.find(filter);
+	        List<BrandDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+	        gridState.setTotalCount(brandService.getCount(filter));
 
-		final List<IBrand> entities = brandService.find(filter);
-		listDTO.setList(entities.stream().map(toDtoConverter).collect(Collectors.toList()));
-		listDTO.setTotalCount(brandService.getCount(filter));
+	        final Map<String, Object> models = new HashMap<>();
+	        models.put("gridItems", dtos);
+	        return new ModelAndView("brand.list", models);
+	    }
 
-		final HashMap<String, Object> models = new HashMap<>();
-		models.put(ListDTO.LIST_MODEL_ATTRIBUTE, listDTO);
-		return new ModelAndView("brand.list", models);
-	}
+	    @RequestMapping(value = "/add", method = RequestMethod.GET)
+	    public ModelAndView showForm() {
+	        final Map<String, Object> hashMap = new HashMap<>();
+	        final IBrand newEntity = brandService.createEntity();
+	        hashMap.put("formModel", toDtoConverter.apply(newEntity));
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView showForm() {
-		final HashMap<String, Object> hashMap = new HashMap<>();
-		final IBrand newEntity = brandService.createEntity();
-		hashMap.put("formModel", toDtoConverter.apply(newEntity));
+	        return new ModelAndView("brand.edit", hashMap);
+	    }
 
-		return new ModelAndView("brand.edit", hashMap);
-	}
+	    @RequestMapping(method = RequestMethod.POST)
+	    public String save(@Valid @ModelAttribute("formModel") final BrandDTO formModel, final BindingResult result) {
+	        if (result.hasErrors()) {
+	            return "brand.edit";
+	        } else {
+	            final IBrand entity = fromDtoConverter.apply(formModel);
+	            brandService.save(entity);
+	            return "redirect:/brand";
+	        }
+	    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final BrandDTO formModel, final BindingResult result) {
-		if (result.hasErrors()) {
-			return "brand.edit";
-		} else {
-			final IBrand entity = fromDtoConverter.apply(formModel);
-			brandService.save(entity);
-			return "redirect:/brand";
-		}
-	}
+	    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+	    public String delete(@PathVariable(name = "id", required = true) final Integer id) {
+	        brandService.delete(id);
+	        return "redirect:/brand";
+	    }
 
-	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
-		brandService.delete(id);
-		return "redirect:/brand";
-	}
+	    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	    public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
+	        final IBrand dbModel = brandService.get(id);
+	        final BrandDTO dto = toDtoConverter.apply(dbModel);
+	        final Map<String, Object> hashMap = new HashMap<>();
+	        hashMap.put("formModel", dto);
+	        hashMap.put("readonly", true);
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IBrand dbModel = brandService.get(id);
-		final BrandDTO dto = toDtoConverter.apply(dbModel);
-		final HashMap<String, Object> hashMap = new HashMap<>();
-		hashMap.put("formModel", dto);
-		hashMap.put("readonly", true);
+	        return new ModelAndView("brand.edit", hashMap);
+	    }
 
-		return new ModelAndView("brand.edit", hashMap);
-	}
+	    @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
+	    public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
+	        final BrandDTO dto = toDtoConverter.apply(brandService.get(id));
 
-	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final BrandDTO dto = toDtoConverter.apply(brandService.get(id));
+	        final Map<String, Object> hashMap = new HashMap<>();
+	        hashMap.put("formModel", dto);
 
-		final HashMap<String, Object> hashMap = new HashMap<>();
-		hashMap.put("formModel", dto);
-
-		return new ModelAndView("brand.edit", hashMap);
-	}
+	        return new ModelAndView("brand.edit", hashMap);
+	    }
 
 }

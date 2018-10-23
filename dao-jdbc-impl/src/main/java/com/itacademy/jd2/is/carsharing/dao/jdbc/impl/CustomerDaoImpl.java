@@ -49,29 +49,24 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 	@Override
 	public void insert(ICustomer entity) {
 		executeStatement(new PreparedStatementAction<ICustomer>(String.format(
-				"insert into %s (first_name, last_name, birthday, driver_license, driver_license_status, "
-						+ "customer_passport, customer_image, created, updated) values (?,?,?,?,?,?,?,?,?)",
-				getTableName())) {
+				"insert into %s (id, first_name, last_name, birthday, driver_license, driver_license_status, "
+						+ "customer_passport, customer_image, created, updated) values (?,?,?,?,?,?,?,?,?,?)",
+				getTableName()), true) {
 
 			@Override
 			public ICustomer doWithPreparedStatement(PreparedStatement pStmt) throws SQLException {
-				pStmt.setString(1, entity.getFirstName());
-				pStmt.setString(2, entity.getLastName());
-				pStmt.setObject(3, entity.getBirthday(), Types.DATE);
-				pStmt.setString(4, entity.getDriverLicense());
-				pStmt.setBoolean(5, entity.isDriverLicenseStatus());
-				pStmt.setString(6, entity.getCustomerPassport());
-				pStmt.setString(7, entity.getCustomerImage());
-				pStmt.setObject(8, entity.getCreated(), Types.TIMESTAMP);
-				pStmt.setObject(9, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(1, entity.getId());
+				pStmt.setString(2, entity.getFirstName());
+				pStmt.setString(3, entity.getLastName());
+				pStmt.setObject(4, entity.getBirthday(), Types.DATE);
+				pStmt.setString(5, entity.getDriverLicense());
+				pStmt.setBoolean(6, entity.isDriverLicenseStatus());
+				pStmt.setString(7, entity.getCustomerPassport());
+				pStmt.setString(8, entity.getCustomerImage());
+				pStmt.setObject(9, entity.getCreated(), Types.TIMESTAMP);
+				pStmt.setObject(10, entity.getUpdated(), Types.TIMESTAMP);
 				
-				final ResultSet rs = pStmt.getGeneratedKeys();
-				rs.next();
-				final int id = rs.getInt("id");
-
-				rs.close();
-
-				entity.setId(id);
+				pStmt.executeUpdate();
 
 				return entity;
 			}

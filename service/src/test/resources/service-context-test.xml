@@ -16,7 +16,7 @@
 	<context:property-placeholder
 		location="com.itacademy.jd2.is.carsharing.service.impl.*" />
 
-	<bean id="dataSource"
+<!-- 	<bean id="dataSource"
 		class="org.springframework.jdbc.dataSource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="$(jdbc.driverClassName)" />
@@ -24,6 +24,6 @@
 		<property name="username" value="$(jdbc.user)" />
 		<property name="password" value="$(jdbc.password)" />
 
-	</bean>
+	</bean> -->
 
 </beans>
