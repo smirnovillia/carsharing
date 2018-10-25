@@ -46,7 +46,7 @@ public class ServiceOperationDaoImpl extends AbstractDaoImpl<IServiceOperation, 
 	@Override
 	public void insert(IServiceOperation entity) {
 		executeStatement(new PreparedStatementAction<IServiceOperation>(
-				String.format("insert into %s (name, price, spare_part_id, created, updated, args) values (?,?,?,?,?)",
+				String.format("insert into %s (name, price, spare_part_id, created, updated) values (?,?,?,?,?)",
 						getTableName()),true) {
 			
 			@Override

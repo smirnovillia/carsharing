@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
@@ -46,7 +47,6 @@ import com.itacademy.jd2.is.carsharing.service.ITrackingService;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 
 @SpringJUnitConfig(locations = "classpath:service-context-test.xml")
-// @Sql("classpath:sql/clean-db.sql")
 public class AbstractTest {
 	@Autowired
 	protected IBrandService brandService;
@@ -79,8 +79,23 @@ public class AbstractTest {
 	@Autowired
 	protected IUserAccountService userAccountService;
 
-	public AbstractTest() {
-		super();
+	@BeforeEach
+	public void setUpMethod() {
+		blackListService.deleteAll();
+		orderHistoryService.deleteAll();
+		customerService.deleteAll();
+		userAccountService.deleteAll();
+		carServiceDetailService.deleteAll();
+		operationService.deleteAll();
+		sparePartService.deleteAll();
+		carServiceHistoryService.deleteAll();
+		insuranceService.deleteAll();
+		trackingService.deleteAll();
+		carService.deleteAll();
+		modelService.deleteAll();
+		brandService.deleteAll();
+		modificationService.deleteAll();
+		colorService.deleteAll();
 	}
 
 	private static final Random RANDOM = new Random();
@@ -99,7 +114,7 @@ public class AbstractTest {
 		return RANDOM.nextBoolean();
 	}
 
-	public Random getRANDOM() {
+	protected Random getRANDOM() {
 		return RANDOM;
 	}
 
