@@ -59,8 +59,8 @@ public class BlackListDaoImpl extends AbstractDaoImpl<IBlackList, Integer> imple
 			public IBlackList doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setInt(1, entity.getCustomer().getId());
 				pStmt.setString(2, entity.getReason());
-				pStmt.setObject(2, entity.getUpdated(), Types.TIMESTAMP);
-				pStmt.setInt(3, entity.getId());
+				pStmt.setObject(3, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(4, entity.getId());
 
 				pStmt.executeUpdate();
 				return entity;

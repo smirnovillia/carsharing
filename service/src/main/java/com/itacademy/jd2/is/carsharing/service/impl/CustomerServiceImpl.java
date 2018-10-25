@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	public void save(ICustomer entity) {
 		final Date modifedOn = new Date();
 		entity.setUpdated(modifedOn);
-		if (entity.getId() == null) {
+		if (entity.getCreated() == null) {
 			LOGGER.info("new customer created" + entity);
 			entity.setCreated(modifedOn);
 			dao.insert(entity);
