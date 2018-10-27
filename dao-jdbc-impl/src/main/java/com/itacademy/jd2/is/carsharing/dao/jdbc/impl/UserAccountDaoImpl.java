@@ -70,6 +70,7 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 	@Override
 	protected IUserAccount parseRow(ResultSet resultSet) throws SQLException {
 		final IUserAccount entity = new UserAccount();
+		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setLogin(resultSet.getString("login"));
 		entity.setPassword(resultSet.getString("password"));
 		entity.setUserRole(Role.values()[resultSet.getInt("role_id")]);

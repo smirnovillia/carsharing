@@ -31,7 +31,7 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 	public void insert(final ICar entity) {
 		executeStatement(new PreparedStatementAction<ICar>(
 				String.format("insert into %s (model_id, modification_id, release_date, vin, color_id,"
-						+ " mileage, condition, created, updated) values(?,?,?,?,?,?,?,?)", getTableName()),
+						+ " mileage, condition, created, updated) values(?,?,?,?,?,?,?,?,?)", getTableName()),
 				true) {
 			
 			@Override

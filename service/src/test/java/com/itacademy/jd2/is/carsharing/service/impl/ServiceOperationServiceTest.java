@@ -17,15 +17,14 @@ public class ServiceOperationServiceTest extends AbstractTest{
 	@Test
 	public void testCreate() {
 		final IServiceOperation entity = saveNewOperation();
-
 		final IServiceOperation entityFromDb = operationService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity, entityFromDb);
-		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getName());
-		assertNotNull(entityFromDb.getPrice());
+		assertEquals(entity.getName(), entityFromDb.getName());
 		assertNotNull(entityFromDb.getSparePart());
+		assertEquals(entity.getSparePart().getId(),entityFromDb.getSparePart().getId());
+		assertNotNull(entityFromDb.getPrice());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
 		assertTrue(entityFromDb.getCreated().equals(entityFromDb.getUpdated()));
@@ -34,23 +33,21 @@ public class ServiceOperationServiceTest extends AbstractTest{
 	@Test
 	public void testUpdateSparePart() throws InterruptedException {
 		final IServiceOperation entity = saveNewOperation();
-
+		
 		final ISparePart newSparePart = saveNewSparePart();
 		entity.setSparePart(newSparePart);
 		Thread.sleep(2000);
 		operationService.save(entity);
 		
 		final IServiceOperation entityFromDb = operationService.get(entity.getId());
-
+		
 		assertNotNull(entityFromDb);
-		assertEquals(newSparePart, entityFromDb.getSparePart());
-		assertNotNull(entityFromDb.getId());
+		assertEquals(entity.getId(), entityFromDb.getId());
 		assertNotNull(entityFromDb.getName());
-		assertNotNull(entityFromDb.getPrice());
+		assertEquals(newSparePart.getId(), entityFromDb.getSparePart().getId());
 		assertNotNull(entityFromDb.getPrice());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
-		assertEquals(entity.getCreated(), entityFromDb.getCreated());
 		assertTrue(entityFromDb.getUpdated().after(entity.getCreated()));
 	}
 

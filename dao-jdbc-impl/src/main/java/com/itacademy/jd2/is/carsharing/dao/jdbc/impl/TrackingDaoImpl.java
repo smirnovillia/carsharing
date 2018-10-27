@@ -70,13 +70,14 @@ public class TrackingDaoImpl extends AbstractDaoImpl<ITracking, Integer> impleme
 	@Override
 	protected ITracking parseRow(ResultSet resultSet) throws SQLException {
 		final ITracking entity = new Tracking();
+		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setLatitude(resultSet.getDouble("latitude"));
 		entity.setLongitude(resultSet.getDouble("longitude"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 
 		final ICar car = new Car();
-		car.setId((Integer) resultSet.getObject("id"));
+		car.setId((Integer) resultSet.getObject("car_id"));
 		entity.setCar(car);
 		return entity;
 	}

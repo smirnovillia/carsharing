@@ -86,6 +86,8 @@ public class OrderHistoryDaoImpl extends AbstractDaoImpl<IOrderHistory, Integer>
 		entity.setOrderMileage(resultSet.getDouble("order_mileage"));
 		entity.setRate(resultSet.getDouble("rate"));
 		entity.setPrice(resultSet.getDouble("price"));
+		entity.setCreated(resultSet.getTimestamp("created"));
+		entity.setUpdated(resultSet.getTimestamp("updated"));
 
 		final ICustomer customer = new Customer();
 		customer.setId((Integer) resultSet.getObject("customer_id"));

@@ -20,9 +20,10 @@ public class TrackingServiceTest extends AbstractTest {
 		final ITracking entityFromDb = trackingService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity, entityFromDb);
 		assertNotNull(entityFromDb.getId());
+		assertEquals(entity.getId(), entityFromDb.getId());
 		assertNotNull(entityFromDb.getCar());
+		assertEquals(entity.getCar().getId(), entityFromDb.getCar().getId());
 		assertNotNull(entityFromDb.getLatitude());
 		assertNotNull(entityFromDb.getLongitude());
 		assertNotNull(entityFromDb.getCreated());
@@ -42,8 +43,7 @@ public class TrackingServiceTest extends AbstractTest {
 		final ITracking entityFromDb = trackingService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(newCar, entityFromDb.getCar());
-		assertNotNull(entityFromDb.getId());
+		assertEquals(newCar.getId(), entityFromDb.getCar().getId());
 		assertNotNull(entityFromDb.getLatitude());
 		assertNotNull(entityFromDb.getLongitude());
 		assertNotNull(entityFromDb.getCreated());

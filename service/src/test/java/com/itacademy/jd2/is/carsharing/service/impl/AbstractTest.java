@@ -78,7 +78,9 @@ public class AbstractTest {
 	protected ITrackingService trackingService;
 	@Autowired
 	protected IUserAccountService userAccountService;
-
+	
+	private static final Random RANDOM = new Random();
+	
 	@BeforeEach
 	public void setUpMethod() {
 		blackListService.deleteAll();
@@ -97,8 +99,6 @@ public class AbstractTest {
 		modificationService.deleteAll();
 		colorService.deleteAll();
 	}
-
-	private static final Random RANDOM = new Random();
 
 	protected Date getRandomDate() {
 		Calendar calendar = Calendar.getInstance();

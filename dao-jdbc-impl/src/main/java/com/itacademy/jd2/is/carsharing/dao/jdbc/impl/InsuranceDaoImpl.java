@@ -48,7 +48,7 @@ public class InsuranceDaoImpl extends AbstractDaoImpl<IInsurance, Integer> imple
 	@Override
 	public void insert(IInsurance entity) {
 		executeStatement(new PreparedStatementAction<IInsurance>(String.format(
-				"insert into %s (car_id, insurance_company, insurance_number, issued, expired, created, updated) values (?,?,?,?,?,?,?)",
+				"insert into %s (car_id, insurance_company, insurance_number, issued, expiried, created, updated) values (?,?,?,?,?,?,?)",
 				getTableName()), true) {
 
 			@Override
@@ -87,7 +87,7 @@ public class InsuranceDaoImpl extends AbstractDaoImpl<IInsurance, Integer> imple
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		
 		final ICar car = new Car();
-		car.setId((Integer) resultSet.getObject("id"));
+		car.setId((Integer) resultSet.getObject("car_id"));
 		entity.setCar(car);
 		return entity;
 	}

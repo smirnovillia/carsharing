@@ -23,8 +23,7 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 	@Override
 	public void update(ICustomer entity) {
 		executeStatement(new PreparedStatementAction<ICustomer>(String.format(
-				"update %s set first_name=?, last_name=?, birthday=?, driver_license=?,"
-						+ " driver_license_status=?, customer_passport=?, customer_image=?, updated=? where id=?",
+				"update %s set first_name=?, last_name=?, birthday=?, driver_license=?, driver_license_status=?, customer_passport=?, customer_image=?, updated=? where id=?",
 				getTableName())) {
 
 			@Override
@@ -49,8 +48,7 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 	@Override
 	public void insert(ICustomer entity) {
 		executeStatement(new PreparedStatementAction<ICustomer>(String.format(
-				"insert into %s (id, first_name, last_name, birthday, driver_license, driver_license_status, "
-						+ "customer_passport, customer_image, created, updated) values (?,?,?,?,?,?,?,?,?,?)",
+				"insert into %s (id, first_name, last_name, birthday, driver_license, driver_license_status, customer_passport, customer_image, created, updated) values (?,?,?,?,?,?,?,?,?,?)",
 				getTableName()), true) {
 
 			@Override
@@ -84,6 +82,8 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 		entity.setDriverLicenseStatus(resultSet.getBoolean("driver_license_status"));
 		entity.setCustomerPassport(resultSet.getString("customer_passport"));
 		entity.setCustomerImage(resultSet.getString("customer_image"));
+		entity.setCreated(resultSet.getTimestamp("created"));
+		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;
 	}
 

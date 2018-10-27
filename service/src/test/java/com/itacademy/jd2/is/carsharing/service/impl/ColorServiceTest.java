@@ -53,7 +53,7 @@ public class ColorServiceTest extends AbstractTest{
 
 		final int randomObjectsCount = getRandomObjectsCount();
 		for (int i = 0; i < randomObjectsCount; i++) {
-			saveNewCarServiceHistory();
+			saveNewColor();
 		}
 
 		final List<IColor> allEntities = colorService.getAll();

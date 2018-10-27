@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itacademy.jd2.is.carsharing.dao.api.IBrandDao;
 import com.itacademy.jd2.is.carsharing.dao.api.IModelDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.service.IModelService;

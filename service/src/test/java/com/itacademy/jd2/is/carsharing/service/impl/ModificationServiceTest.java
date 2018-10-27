@@ -20,14 +20,16 @@ public class ModificationServiceTest extends AbstractTest {
 		final IModification entityFromDb = modificationService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity, entityFromDb);
-		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getBody());
+		assertEquals(entity.getBody(), entityFromDb.getBody());
 		assertNotNull(entityFromDb.getFuel());
-		assertNotNull(entityFromDb.getEngineCapacity());
+		assertEquals(entity.getFuel(), entityFromDb.getFuel());
 		assertNotNull(entityFromDb.getDrive());
+		assertEquals(entity.getDrive(), entityFromDb.getDrive());
 		assertNotNull(entityFromDb.getGearbox());
-		assertNotNull(entityFromDb.getTankCapacity());
+		assertEquals(entity.getGearbox(), entityFromDb.getGearbox());
+		assertEquals(entity.getEngineCapacity(), entityFromDb.getEngineCapacity());
+		assertEquals(entity.getTankCapacity(), entityFromDb.getTankCapacity());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
 		assertTrue(entityFromDb.getCreated().equals(entityFromDb.getUpdated()));

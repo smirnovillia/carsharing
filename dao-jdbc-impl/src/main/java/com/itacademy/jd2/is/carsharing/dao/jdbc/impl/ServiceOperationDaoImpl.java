@@ -75,8 +75,11 @@ public class ServiceOperationDaoImpl extends AbstractDaoImpl<IServiceOperation, 
 	@Override
 	protected IServiceOperation parseRow(ResultSet resultSet) throws SQLException {
 		final IServiceOperation entity = new ServiceOperation();
+		entity.setId((Integer) resultSet.getObject("id"));
 		entity.setName(resultSet.getString("name"));
 		entity.setPrice(resultSet.getDouble("price"));
+		entity.setCreated(resultSet.getTimestamp("created"));
+		entity.setUpdated(resultSet.getTimestamp("updated"));
 		
 		final ISparePart sparePart = new SparePart();
 		sparePart.setId((Integer) resultSet.getObject("spare_part_id"));

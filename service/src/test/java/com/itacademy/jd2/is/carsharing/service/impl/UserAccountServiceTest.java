@@ -21,7 +21,7 @@ public class UserAccountServiceTest extends AbstractTest {
 
 		assertNotNull(entityFromDb);
 		assertEquals(entity.getLogin(), entityFromDb.getLogin());
-		assertNotNull(entityFromDb.getId());
+		assertEquals(entity.getId(), entityFromDb.getId());
 		assertNotNull(entityFromDb.getLogin());
 		assertNotNull(entityFromDb.getPassword());
 		assertNotNull(entityFromDb.getCreated());

@@ -21,10 +21,11 @@ public class OrderHistoryServiceTest extends AbstractTest{
 		final IOrderHistory entityFromDb = orderHistoryService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity, entityFromDb);
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCustomer());
+		assertEquals(entity.getCustomer().getId(), entityFromDb.getCustomer().getId());
 		assertNotNull(entityFromDb.getCar());
+		assertEquals(entity.getCar().getId(), entityFromDb.getCar().getId());
 		assertNotNull(entityFromDb.getOrderDate());
 		assertNotNull(entityFromDb.getOrderMileage());
 		assertNotNull(entityFromDb.getRate());
@@ -46,7 +47,7 @@ public class OrderHistoryServiceTest extends AbstractTest{
 		final IOrderHistory entityFromDb = orderHistoryService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(newCustomer, entityFromDb.getCustomer());
+		assertEquals(newCustomer.getId(), entityFromDb.getCustomer().getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCar());
 		assertNotNull(entityFromDb.getOrderDate());

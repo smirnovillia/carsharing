@@ -26,8 +26,8 @@ public class ModificationDaoImpl extends AbstractDaoImpl<IModification, Integer>
 
 	@Override
 	public void update(IModification entity) {
-		executeStatement(new PreparedStatementAction<IModification>(String.format(
-				"update %s set body=?, fuel=?, engine_capacity=?, drive=?, gearbox=?, tank_capacity=?, updated=? where id=?",
+		executeStatement(new PreparedStatementAction<IModification>(
+				String.format("update %s set body=?, fuel=?, engine_capacity=?, drive=?, gearbox=?, tank_capacity=?, updated=? where id=?",
 				getTableName())) {
 
 			@Override
@@ -39,6 +39,7 @@ public class ModificationDaoImpl extends AbstractDaoImpl<IModification, Integer>
 				pStmt.setString(5, entity.getGearbox().toString());
 				pStmt.setInt(6, entity.getTankCapacity());
 				pStmt.setObject(7, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(8, entity.getId());
 
 				pStmt.executeUpdate();
 				return entity;
@@ -49,9 +50,9 @@ public class ModificationDaoImpl extends AbstractDaoImpl<IModification, Integer>
 
 	@Override
 	public void insert(IModification entity) {
-		executeStatement(new PreparedStatementAction<IModification>(String.format(
-				"insert into %s (body, fuel, engine_capacity, drive, gearbox, tank_capacity, created, updated) values (?,?,?,?,?,?,?,?)",
-				getTableName(), true)) {
+		executeStatement(new PreparedStatementAction<IModification>(
+				String.format("insert into %s (body, fuel, engine_capacity, drive, gearbox, tank_capacity, created, updated) values (?,?,?,?,?,?,?,?)",
+				getTableName()), true) {
 
 			@Override
 			public IModification doWithPreparedStatement(PreparedStatement pStmt) throws SQLException {

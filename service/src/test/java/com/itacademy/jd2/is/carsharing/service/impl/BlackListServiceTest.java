@@ -21,7 +21,7 @@ public class BlackListServiceTest extends AbstractTest{
 		final IBlackList entityFromDb = blackListService.get(entity.getId());
 		
 		assertNotNull(entityFromDb);
-		assertEquals(entity.getCustomer(), entityFromDb.getCustomer());
+		assertEquals(entity.getCustomer().getId(), entityFromDb.getCustomer().getId());
 		assertEquals(entity.getReason(), entityFromDb.getReason());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCreated());

@@ -21,12 +21,12 @@ public class CarServiceHistoryServiceTest extends AbstractTest {
 		final ICarServiceHistory entityFromDb = carServiceHistoryService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity, entityFromDb);
-		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCar());
+		assertEquals(entity.getCar().getId(), entityFromDb.getCar().getId());
 		assertNotNull(entityFromDb.getServiceDate());
 		assertNotNull(entityFromDb.getCarMileage());
 		assertNotNull(entityFromDb.getServiceCompany());
+		assertEquals(entity.getServiceCompany(), entityFromDb.getServiceCompany());
 		assertNotNull(entityFromDb.getServicePrice());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -45,7 +45,7 @@ public class CarServiceHistoryServiceTest extends AbstractTest {
 		final ICarServiceHistory entityFromDb = carServiceHistoryService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(newCar, entityFromDb.getCar());
+		assertEquals(newCar.getId(), entityFromDb.getCar().getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getServiceDate());
 		assertNotNull(entityFromDb.getCarMileage());

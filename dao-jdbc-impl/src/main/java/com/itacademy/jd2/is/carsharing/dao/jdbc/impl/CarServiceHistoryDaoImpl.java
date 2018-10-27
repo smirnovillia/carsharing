@@ -26,8 +26,8 @@ public class CarServiceHistoryDaoImpl extends AbstractDaoImpl<ICarServiceHistory
 	@Override
 	public void update(ICarServiceHistory entity) {
 		executeStatement(new PreparedStatementAction<ICarServiceHistory>(
-				String.format("update %s set car_id=?, service_date=?, car_mileage=?, "
-						+ "service_company=?, service_price=?, updated=? where id=?", getTableName()), true) {
+				String.format("update %s set car_id=?, service_date=?, car_mileage=?, service_company=?, service_price=?, updated=? where id=?",
+						getTableName())) {
 
 			@Override
 			public ICarServiceHistory doWithPreparedStatement(PreparedStatement pStmt) throws SQLException {
@@ -50,7 +50,7 @@ public class CarServiceHistoryDaoImpl extends AbstractDaoImpl<ICarServiceHistory
 	@Override
 	public void insert(ICarServiceHistory entity) {
 		executeStatement(new PreparedStatementAction<ICarServiceHistory>(String.format(
-				"insert into %s (car_id=?, service_date=?, car_mileage=?, service_company=?, service_price=?, created, updated) values(?,?,?,?,?,?,?)",
+				"insert into %s (car_id, service_date, car_mileage, service_company, service_price, created, updated) values (?,?,?,?,?,?,?)",
 				getTableName()), true) {
 
 			@Override

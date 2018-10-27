@@ -23,6 +23,11 @@ public class UserAccountServiceImpl implements IUserAccountService {
 		super();
 		this.dao = dao;
 	}
+	
+	@Override
+	public IUserAccount createEntity() {
+		return dao.createEntity();
+	}
 
 	@Override
 	public IUserAccount get(Integer id) {
@@ -58,11 +63,6 @@ public class UserAccountServiceImpl implements IUserAccountService {
 	@Override
 	public void deleteAll() {
 		dao.deleteAll();
-	}
-
-	@Override
-	public IUserAccount createEntity() {
-		return dao.createEntity();
 	}
 
 }

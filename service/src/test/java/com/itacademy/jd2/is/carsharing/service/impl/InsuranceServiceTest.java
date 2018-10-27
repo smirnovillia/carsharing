@@ -20,11 +20,13 @@ public class InsuranceServiceTest extends AbstractTest {
 		final IInsurance entityFromDb = insuranceService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity, entityFromDb);
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getCar());
+		assertEquals(entity.getCar().getId(), entityFromDb.getCar().getId());
 		assertNotNull(entityFromDb.getInsuranceCompany());
+		assertEquals(entity.getInsuranceCompany(), entityFromDb.getInsuranceCompany());
 		assertNotNull(entityFromDb.getInsuranceNumber());
+		assertEquals(entity.getInsuranceNumber(), entityFromDb.getInsuranceNumber());
 		assertNotNull(entityFromDb.getIssued());
 		assertNotNull(entityFromDb.getExpiried());
 		assertNotNull(entityFromDb.getCreated());
@@ -44,7 +46,7 @@ public class InsuranceServiceTest extends AbstractTest {
 		final IInsurance entityFromDb = insuranceService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(newCar, entityFromDb.getCar());
+		assertEquals(newCar.getId(), entityFromDb.getCar().getId());
 		assertNotNull(entityFromDb.getId());
 		assertNotNull(entityFromDb.getInsuranceCompany());
 		assertNotNull(entityFromDb.getInsuranceNumber());

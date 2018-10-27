@@ -21,10 +21,11 @@ public class ModelServiceTest extends AbstractTest {
 		final IModel entityFromDb = modelService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(entity, entityFromDb);
 		assertNotNull(entityFromDb.getId());
+		assertEquals(entity.getId(), entityFromDb.getId());
 		assertNotNull(entityFromDb.getName());
-		assertNotNull(entityFromDb.getBrand());
+		assertEquals(entity.getName(), entityFromDb.getName());
+		assertEquals(entity.getBrand().getId(), entityFromDb.getBrand().getId());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
 		assertTrue(entityFromDb.getCreated().equals(entityFromDb.getUpdated()));
@@ -42,10 +43,8 @@ public class ModelServiceTest extends AbstractTest {
 		final IModel entityFromDb = modelService.get(entity.getId());
 
 		assertNotNull(entityFromDb);
-		assertEquals(newBrand, entityFromDb.getBrand());
-		assertNotNull(entityFromDb.getId());
+		assertEquals(newBrand.getId(), entityFromDb.getBrand().getId());
 		assertNotNull(entityFromDb.getName());
-		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
 		assertEquals(entity.getCreated(), entityFromDb.getCreated());
 		assertTrue(entityFromDb.getUpdated().after(entity.getCreated()));

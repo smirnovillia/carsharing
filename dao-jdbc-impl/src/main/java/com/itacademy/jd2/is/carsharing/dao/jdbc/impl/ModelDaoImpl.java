@@ -49,7 +49,8 @@ public class ModelDaoImpl extends AbstractDaoImpl<IModel, Integer> implements IM
 
 	public void update(final IModel entity) {
 		executeStatement(new PreparedStatementAction<IModel>(
-				String.format("update %s set name=?, brand_id =? updated=? where id=?", getTableName())) {
+				String.format("update %s set name=?, brand_id=?, updated=? where id=?", getTableName())) {
+			
 			public IModel doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
 				pStmt.setString(1, entity.getName());
 				pStmt.setInt(2, entity.getBrand().getId());

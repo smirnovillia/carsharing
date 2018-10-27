@@ -23,6 +23,11 @@ public class ServiceOperationServiceImpl implements IServiceOperationService {
 		super();
 		this.dao = dao;
 	}
+	
+	@Override
+	public IServiceOperation createEntity() {
+		return dao.createEntity();
+	}
 
 	@Override
 	public IServiceOperation get(Integer id) {
@@ -47,7 +52,7 @@ public class ServiceOperationServiceImpl implements IServiceOperationService {
 		} else {
 			LOGGER.info("service operation updated" + entity);
 			dao.update(entity);
-		}	
+		}
 	}
 
 	@Override
@@ -58,11 +63,6 @@ public class ServiceOperationServiceImpl implements IServiceOperationService {
 	@Override
 	public void deleteAll() {
 		dao.deleteAll();
-	}
-
-	@Override
-	public IServiceOperation createEntity() {
-		return dao.createEntity();
 	}
 
 }
