@@ -1,5 +1,7 @@
 package com.itacademy.jd2.is.carsharing.web.controller;
 
-public class CustomerController {
+import com.itacademy.jd2.is.carsharing.web.dto.CustomerDTO;
 
+public class CustomerController extends AbstractController<CustomerDTO>{
+	
 }
