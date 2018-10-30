@@ -237,7 +237,7 @@ public class AbstractTest {
 		final IUserAccount entity = userAccountService.createEntity();
 		entity.setLogin("login - " + getRandomPrefix());
 		entity.setPassword("password - " + getRandomPrefix());
-		entity.setUserRole(Role.CUSTOMER);
+		entity.setUserRole(Role.ROLE_CUSTOMER);
 		userAccountService.save(entity);
 		return entity;
 	}

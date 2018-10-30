@@ -2,6 +2,8 @@ package com.itacademy.jd2.is.carsharing.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 
 public interface IUserAccountService {
@@ -9,11 +11,15 @@ public interface IUserAccountService {
 
 	List<IUserAccount> getAll();
 
+	@Transactional
 	void save(IUserAccount entity);
 
+	@Transactional
 	void delete(Integer id);
 
+	@Transactional
 	void deleteAll();
 
+	@Transactional
 	IUserAccount createEntity();
 }
