@@ -1,9 +1,11 @@
 package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICarServiceHistory;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IServiceOperation;
 
 public class CarServiceHistory extends BaseEntity implements ICarServiceHistory {
 
@@ -11,6 +13,7 @@ public class CarServiceHistory extends BaseEntity implements ICarServiceHistory 
 	private Date serviceDate;
 	private double carMileage;
 	private String serviceCompany;
+	private List<IServiceOperation> serviceOperationList;
 	private double servicePrice;
 
 	public ICar getCar() {
@@ -45,6 +48,14 @@ public class CarServiceHistory extends BaseEntity implements ICarServiceHistory 
 		this.serviceCompany = serviceCompany;
 	}
 
+	public List<IServiceOperation> getServiceOperationList() {
+		return serviceOperationList;
+	}
+
+	public void setServiceOperationList(List<IServiceOperation> serviceOperationList) {
+		this.serviceOperationList = serviceOperationList;
+	}
+
 	public double getServicePrice() {
 		return servicePrice;
 	}
@@ -58,5 +69,5 @@ public class CarServiceHistory extends BaseEntity implements ICarServiceHistory 
 		return "CarServiceHistory [car=" + car + ", serviceDate=" + serviceDate + ", carMileage=" + carMileage
 				+ ", serviceCompany=" + serviceCompany + ", servicePrice=" + servicePrice + "]";
 	}
-	
+
 }

@@ -1,28 +1,33 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
 
 public interface ICarServiceHistory extends IBaseEntity {
 
-	 ICar getCar();
+	ICar getCar();
 
-	 void setCar(ICar car);
+	void setCar(ICar car);
 
-	 Date getServiceDate();
+	Date getServiceDate();
 
-	 void setServiceDate(Date serviceDate);
+	void setServiceDate(Date serviceDate);
 
-	 double getCarMileage();
+	double getCarMileage();
 
-	 void setCarMileage(double carMileage);
+	void setCarMileage(double carMileage);
 
-	 String getServiceCompany();
+	String getServiceCompany();
 
-	 void setServiceCompany(String serviceCompany);
+	void setServiceCompany(String serviceCompany);
 
-	 double getServicePrice();
+	List<IServiceOperation> getServiceOperationList();
 
-	 void setServicePrice(double servicePrice);
+	void setServiceOperationList(List<IServiceOperation> serviceOperationList);
+
+	double getServicePrice();
+
+	void setServicePrice(double servicePrice);
 }

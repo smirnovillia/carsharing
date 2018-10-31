@@ -8,7 +8,9 @@ import java.sql.Types;
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.is.carsharing.dao.api.ISparePartDao;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IServiceOperation;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ISparePart;
+import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.ServiceOperation;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.SparePart;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
@@ -23,14 +25,15 @@ public class SparePartDaoImpl extends AbstractDaoImpl<ISparePart, Integer> imple
 	@Override
 	public void update(ISparePart entity) {
 		executeStatement(new PreparedStatementAction<ISparePart>(
-				String.format("update %s set name=?, price=?, updated=? where id=?", getTableName())) {
+				String.format("update %s set service_operation_id, name=?, price=?, updated=? where id=?", getTableName())) {
 
 			@Override
 			public ISparePart doWithPreparedStatement(PreparedStatement pStmt) throws SQLException {
-				pStmt.setString(1, entity.getName());
-				pStmt.setDouble(2, entity.getPrice());
-				pStmt.setObject(3, entity.getUpdated(), Types.TIMESTAMP);
-				pStmt.setInt(4, entity.getId());
+				pStmt.setInt(1, entity.getServiceOperation().getId());
+				pStmt.setString(2, entity.getName());
+				pStmt.setDouble(3, entity.getPrice());
+				pStmt.setObject(4, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(5, entity.getId());
 				pStmt.executeUpdate();
 				return entity;
 			}
@@ -40,14 +43,15 @@ public class SparePartDaoImpl extends AbstractDaoImpl<ISparePart, Integer> imple
 	@Override
 	public void insert(ISparePart entity) {
 		executeStatement(new PreparedStatementAction<ISparePart>(
-				String.format("insert into %s (name, price, created, updated) values (?,?,?,?)", getTableName()), true) {
+				String.format("insert into %s (service_operation_id, name, price, created, updated) values (?,?,?,?,?)", getTableName()), true) {
 				
 			@Override
 				public ISparePart doWithPreparedStatement(PreparedStatement pStmt) throws SQLException {
-				pStmt.setString(1, entity.getName());
-				pStmt.setDouble(2, entity.getPrice());
-				pStmt.setObject(3, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(1, entity.getServiceOperation().getId());
+				pStmt.setString(2, entity.getName());
+				pStmt.setDouble(3, entity.getPrice());
 				pStmt.setObject(4, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setObject(5, entity.getUpdated(), Types.TIMESTAMP);
 				pStmt.executeUpdate();
 				
 				final ResultSet rs = pStmt.getGeneratedKeys();
@@ -71,6 +75,10 @@ public class SparePartDaoImpl extends AbstractDaoImpl<ISparePart, Integer> imple
 		entity.setPrice(resultSet.getDouble("price"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
+		
+		final IServiceOperation serviceOperation = new ServiceOperation();
+		serviceOperation.setId((Integer)resultSet.getObject("service_operation_id"));
+		entity.setServiceOperation(serviceOperation);
 		return entity;
 	}
 

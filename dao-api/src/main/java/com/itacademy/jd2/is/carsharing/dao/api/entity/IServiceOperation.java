@@ -1,9 +1,16 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
+import java.util.List;
+
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
 
 public interface IServiceOperation extends IBaseEntity {
 	
+
+	 ICarServiceHistory getCarServiceHistory();
+
+	 void setCarServiceHistory(ICarServiceHistory carServiceHistory);
+
 	 String getName();
 
 	 void setName(String name);
@@ -12,7 +19,7 @@ public interface IServiceOperation extends IBaseEntity {
 
 	 void setPrice(double price);
 
-	 ISparePart getSparePart();
+	 List<ISparePart> getSparePart();
 
-	 void setSparePart(ISparePart sparePart);
+	 void setSparePart(List<ISparePart> sparePart);
 }
