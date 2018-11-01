@@ -6,13 +6,11 @@ import java.util.Random;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBlackList;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
-import com.itacademy.jd2.is.carsharing.dao.api.entity.ICarServiceDetail;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICarServiceHistory;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
@@ -33,7 +31,6 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
 import com.itacademy.jd2.is.carsharing.service.IBlackListService;
 import com.itacademy.jd2.is.carsharing.service.IBrandService;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
-import com.itacademy.jd2.is.carsharing.service.ICarServiceDetailService;
 import com.itacademy.jd2.is.carsharing.service.ICarServiceHistoryService;
 import com.itacademy.jd2.is.carsharing.service.IColorService;
 import com.itacademy.jd2.is.carsharing.service.ICustomerService;
@@ -54,8 +51,6 @@ public class AbstractTest {
 	protected IBlackListService blackListService;
 	@Autowired
 	protected ICarService carService;
-	@Autowired
-	protected ICarServiceDetailService carServiceDetailService;
 	@Autowired
 	protected ICarServiceHistoryService carServiceHistoryService;
 	@Autowired
@@ -87,7 +82,6 @@ public class AbstractTest {
 		orderHistoryService.deleteAll();
 		customerService.deleteAll();
 		userAccountService.deleteAll();
-		carServiceDetailService.deleteAll();
 		operationService.deleteAll();
 		sparePartService.deleteAll();
 		carServiceHistoryService.deleteAll();
@@ -214,22 +208,10 @@ public class AbstractTest {
 	}
 
 	protected IServiceOperation saveNewOperation() {
-		final ISparePart sparePart = saveNewSparePart();
 		final IServiceOperation entity = operationService.createEntity();
 		entity.setName("service operation - " + getRandomPrefix());
 		entity.setPrice(getRandomDouble());
-		entity.setSparePart(sparePart);
 		operationService.save(entity);
-		return entity;
-	}
-
-	protected ICarServiceDetail saveNewCarServiceDetail() {
-		final ICarServiceHistory carServiceHistory = saveNewCarServiceHistory();
-		final IServiceOperation serviceOperation = saveNewOperation();
-		final ICarServiceDetail entity = carServiceDetailService.createEntity();
-		entity.setCarServiceHistory(carServiceHistory);
-		entity.setServiceOperation(serviceOperation);
-		carServiceDetailService.save(entity);
 		return entity;
 	}
 
