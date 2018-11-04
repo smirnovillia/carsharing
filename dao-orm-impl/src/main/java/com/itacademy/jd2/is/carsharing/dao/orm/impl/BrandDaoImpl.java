@@ -35,14 +35,14 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 	public List<IBrand> find(BrandFilter filter) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
-		final CriteriaQuery<IBrand> cq = cb.createQuery(IBrand.class); // define type of result
-		final Root<Brand> from = cq.from(Brand.class);// select from brand
-		cq.select(from); // select what? select *
+		final CriteriaQuery<IBrand> cq = cb.createQuery(IBrand.class); 
+		final Root<Brand> from = cq.from(Brand.class);
+		cq.select(from);
 
 		if (filter.getSortColumn() != null) {
 			final SingularAttribute<? super Brand, ?> sortProperty = toMetamodelFormat(filter.getSortColumn());
-			final Path<?> expression = from.get(sortProperty); // build path to sort property
-			cq.orderBy(new OrderImpl(expression, filter.getSortOrder())); // order by column_name order
+			final Path<?> expression = from.get(sortProperty); 
+			cq.orderBy(new OrderImpl(expression, filter.getSortOrder())); 
 		}
 
 		final TypedQuery<IBrand> q = em.createQuery(cq);
@@ -54,11 +54,11 @@ public class BrandDaoImpl extends AbstractDaoImpl<IBrand, Integer> implements IB
 	public long getCount(BrandFilter filter) {
 		final EntityManager em = getEntityManager();
 		final CriteriaBuilder cb = em.getCriteriaBuilder();
-		final CriteriaQuery<Long> cq = cb.createQuery(Long.class); // define type of result
-		final Root<Brand> from = cq.from(Brand.class); // select from brand
-		cq.select(cb.count(from)); // select what? select count(*)
+		final CriteriaQuery<Long> cq = cb.createQuery(Long.class); 
+		final Root<Brand> from = cq.from(Brand.class); 
+		cq.select(cb.count(from)); 
 		final TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult(); // execute query
+		return q.getSingleResult(); 
 	}
 
 	private SingularAttribute<? super Brand, ?> toMetamodelFormat(final String sortColumn) {
