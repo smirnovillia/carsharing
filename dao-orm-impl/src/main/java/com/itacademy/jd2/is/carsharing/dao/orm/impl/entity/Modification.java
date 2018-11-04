@@ -2,6 +2,8 @@ package com.itacademy.jd2.is.carsharing.dao.orm.impl.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
@@ -13,18 +15,22 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
 public class Modification extends BaseEntity implements IModification {
 
 	@Column
+	@Enumerated(EnumType.STRING)
 	private Body body;
 	
 	@Column
+	@Enumerated(EnumType.STRING)
 	private Fuel fuel;
 	
 	@Column
 	private int engineCapacity;
 	
 	@Column
+	@Enumerated(EnumType.STRING)
 	private Drive drive;
 	
 	@Column
+	@Enumerated(EnumType.STRING)
 	private Gearbox gearbox;
 	
 	@Column

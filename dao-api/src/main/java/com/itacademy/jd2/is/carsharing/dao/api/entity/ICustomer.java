@@ -33,4 +33,8 @@ public interface ICustomer extends IBaseEntity {
 	String getCustomerImage();
 
 	void setCustomerImage(String customerImage);
+
+	IUserAccount getUserAccount();
+
+	void setUserAccount(IUserAccount userAccount);
 }

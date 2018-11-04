@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IServiceOperation;
-import com.itacademy.jd2.is.carsharing.dao.api.entity.ISparePart;
 
 public class ServiceOperationServiceTest extends AbstractTest{
 
@@ -22,7 +21,6 @@ public class ServiceOperationServiceTest extends AbstractTest{
 		assertNotNull(entityFromDb);
 		assertNotNull(entityFromDb.getName());
 		assertEquals(entity.getName(), entityFromDb.getName());
-		assertNotNull(entityFromDb.getSparePart());
 		assertNotNull(entityFromDb.getPrice());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
@@ -62,7 +60,6 @@ public class ServiceOperationServiceTest extends AbstractTest{
 			assertNotNull(entityFromDb.getId());
 			assertNotNull(entityFromDb.getName());
 			assertNotNull(entityFromDb.getPrice());
-			assertNotNull(entityFromDb.getSparePart());
 			assertNotNull(entityFromDb.getCreated());
 			assertNotNull(entityFromDb.getUpdated());
 		}

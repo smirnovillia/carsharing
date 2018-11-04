@@ -4,12 +4,26 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 
 @Entity
-public class Customer extends BaseEntity implements ICustomer {
+public class Customer implements ICustomer {
 
+	@Id
+	private Integer id;
+
+	@Column(updatable = false)
+	private Date created;
+
+	@Column
+	private Date updated;
+	
 	@Column
 	private String firstName;
 	
@@ -30,6 +44,10 @@ public class Customer extends BaseEntity implements ICustomer {
 	
 	@Column
 	private String customerImage;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = false, targetEntity = UserAccount.class)
+	@PrimaryKeyJoinColumn
+	private IUserAccount userAccount;
 
 	@Override
 	public String getFirstName() {
@@ -100,6 +118,17 @@ public class Customer extends BaseEntity implements ICustomer {
 	public void setCustomerImage(String customerImage) {
 		this.customerImage = customerImage;
 	}
+	
+	
+	@Override
+	public IUserAccount getUserAccount() {
+		return userAccount;
+	}
+
+	@Override
+	public void setUserAccount(IUserAccount userAccount) {
+		this.userAccount = userAccount;
+	}
 
 	@Override
 	public String toString() {
@@ -107,5 +136,30 @@ public class Customer extends BaseEntity implements ICustomer {
 				+ ", driverLicense=" + driverLicense + ", driverLicenseStatus=" + driverLicenseStatus
 				+ ", customerPassport=" + customerPassport + ", customerImage=" + customerImage + "]";
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+	
 
 }

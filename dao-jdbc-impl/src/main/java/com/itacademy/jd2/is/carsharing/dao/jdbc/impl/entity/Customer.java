@@ -3,6 +3,7 @@ package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
 import java.util.Date;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 
 public class Customer extends BaseEntity implements ICustomer {
 
@@ -13,6 +14,7 @@ public class Customer extends BaseEntity implements ICustomer {
 	private boolean driverLicenseStatus;
 	private String customerPassport;
 	private String customerImage;
+	private IUserAccount userAccount;
 
 	public String getFirstName() {
 		return firstName;
@@ -68,6 +70,14 @@ public class Customer extends BaseEntity implements ICustomer {
 
 	public void setCustomerImage(String customerImage) {
 		this.customerImage = customerImage;
+	}
+	
+	public IUserAccount getUserAccount() {
+		return userAccount;
+	}
+
+	public void setUserAccount(IUserAccount userAccount) {
+		this.userAccount = userAccount;
 	}
 
 	@Override

@@ -82,8 +82,8 @@ public class AbstractTest {
 		orderHistoryService.deleteAll();
 		customerService.deleteAll();
 		userAccountService.deleteAll();
-		operationService.deleteAll();
 		sparePartService.deleteAll();
+		operationService.deleteAll();
 		carServiceHistoryService.deleteAll();
 		insuranceService.deleteAll();
 		trackingService.deleteAll();
@@ -201,6 +201,7 @@ public class AbstractTest {
 
 	protected ISparePart saveNewSparePart() {
 		final ISparePart entity = sparePartService.createEntity();
+		entity.setServiceOperation(saveNewOperation());
 		entity.setName("spare part - " + getRandomPrefix());
 		entity.setPrice(getRandomDouble());
 		sparePartService.save(entity);
@@ -209,6 +210,7 @@ public class AbstractTest {
 
 	protected IServiceOperation saveNewOperation() {
 		final IServiceOperation entity = operationService.createEntity();
+		entity.setCarServiceHistory(saveNewCarServiceHistory());
 		entity.setName("service operation - " + getRandomPrefix());
 		entity.setPrice(getRandomDouble());
 		operationService.save(entity);
@@ -219,15 +221,15 @@ public class AbstractTest {
 		final IUserAccount entity = userAccountService.createEntity();
 		entity.setLogin("login - " + getRandomPrefix());
 		entity.setPassword("password - " + getRandomPrefix());
-		entity.setUserRole(Role.ROLE_CUSTOMER);
+		entity.setUserRole(getRandomUserRole());
 		userAccountService.save(entity);
 		return entity;
 	}
 
 	protected ICustomer saveNewCustomer() {
-		final IUserAccount user = saveNewUserAccount();
 		final ICustomer entity = customerService.createEntity();
-		entity.setId(user.getId());
+		final IUserAccount userAccount = saveNewUserAccount();
+		entity.setId(userAccount.getId());
 		entity.setFirstName("first name - " + getRandomPrefix());
 		entity.setLastName("last name - " + getRandomPrefix());
 		entity.setBirthday(getRandomDate());
@@ -235,6 +237,7 @@ public class AbstractTest {
 		entity.setDriverLicenseStatus(getRandomBoolean());
 		entity.setCustomerPassport("passport - " + getRandomPrefix());
 		entity.setCustomerImage("customer image - " + getRandomPrefix());
+		entity.setUserAccount(userAccount);
 		customerService.save(entity);
 		return entity;
 	}
@@ -284,6 +287,10 @@ public class AbstractTest {
 
 	protected Gearbox getRandomGearbox() {
 		return Gearbox.values()[RANDOM.nextInt(Gearbox.values().length)];
+	}
+	
+	protected Role getRandomUserRole() {
+		return Role.values()[RANDOM.nextInt(Role.values().length)];
 	}
 
 	protected int getRandomInt() {

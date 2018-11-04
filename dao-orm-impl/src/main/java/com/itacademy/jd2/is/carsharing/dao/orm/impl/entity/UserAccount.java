@@ -2,7 +2,12 @@ package com.itacademy.jd2.is.carsharing.dao.orm.impl.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 
+import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
 
@@ -16,7 +21,11 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 	private String password;
 	
 	@Column
+	@Enumerated(EnumType.ORDINAL)
 	private Role userRole;
+	
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "userAccount", targetEntity = Customer.class)
+	private ICustomer customer;
 
 	@Override
 	public String getLogin() {
@@ -46,6 +55,16 @@ public class UserAccount extends BaseEntity implements IUserAccount {
 	@Override
 	public void setUserRole(Role userRole) {
 		this.userRole = userRole;
+	}
+	
+	@Override
+	public ICustomer getCustomer() {
+		return customer;
+	}
+
+	@Override
+	public void setCustomer(ICustomer customer) {
+		this.customer = customer;
 	}
 
 	@Override

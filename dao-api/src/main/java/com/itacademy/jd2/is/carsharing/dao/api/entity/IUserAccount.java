@@ -17,4 +17,8 @@ public interface IUserAccount extends IBaseEntity {
 
 	void setUserRole(Role userRole);
 
+	ICustomer getCustomer();
+
+	void setCustomer(ICustomer customer);
+
 }

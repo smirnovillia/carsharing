@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
@@ -14,10 +14,10 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.IOrderHistory;
 @Entity
 public class OrderHistory extends BaseEntity implements IOrderHistory {
 
-	@OneToOne(fetch = FetchType.LAZY, targetEntity = Customer.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Customer.class)
 	private ICustomer customer;
 	
-	@OneToOne(fetch = FetchType.LAZY, targetEntity = Car.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Car.class)
 	private ICar car;
 	
 	@Column

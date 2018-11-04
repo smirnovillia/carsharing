@@ -1,14 +1,11 @@
 package com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity;
 
-import java.util.Date;
-
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
 
 public class Tracking extends BaseEntity implements ITracking {
 
 	private ICar car;
-	private Date trackingDate;
 	private double latitude;
 	private double longitude;
 
@@ -18,14 +15,6 @@ public class Tracking extends BaseEntity implements ITracking {
 
 	public void setCar(ICar car) {
 		this.car = car;
-	}
-
-	public Date getTrackingDate() {
-		return trackingDate;
-	}
-
-	public void setTrackingDate(Date trackingDate) {
-		this.trackingDate = trackingDate;
 	}
 
 	public double getLatitude() {
@@ -46,7 +35,7 @@ public class Tracking extends BaseEntity implements ITracking {
 
 	@Override
 	public String toString() {
-		return "Tracking [car=" + car + ", trackingDate=" + trackingDate + ", latitude=" + latitude + ", longitude="
+		return "Tracking [car=" + car + ", latitude=" + latitude + ", longitude="
 				+ longitude + "]";
 	}
 

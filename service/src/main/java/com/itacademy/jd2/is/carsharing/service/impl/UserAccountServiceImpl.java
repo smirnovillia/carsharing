@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itacademy.jd2.is.carsharing.dao.api.ICustomerDao;
 import com.itacademy.jd2.is.carsharing.dao.api.IUserAccountDao;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 
@@ -17,11 +19,13 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountServiceImpl.class);
 	private IUserAccountDao dao;
+	private ICustomerDao customerDao;
 
 	@Autowired
-	public UserAccountServiceImpl(IUserAccountDao dao) {
+	public UserAccountServiceImpl(IUserAccountDao dao, ICustomerDao customerDao) {
 		super();
 		this.dao = dao;
+		this.customerDao = customerDao;
 	}
 	
 	@Override
@@ -52,6 +56,29 @@ public class UserAccountServiceImpl implements IUserAccountService {
 		} else {
 			LOGGER.info("user account updated" + entity);
 			dao.update(entity);
+		}
+	}
+	
+	@Override
+	public void save(IUserAccount user, ICustomer customer) {
+		final Date modifedOn = new Date();
+		user.setUpdated(modifedOn);
+		customer.setUpdated(modifedOn);
+		if (user.getId() == null) {
+			LOGGER.info("new user account, new customer created" + user);
+			user.setCreated(modifedOn);
+			dao.insert(user);
+			
+			customer.setId(user.getId());
+			customer.setCreated(modifedOn);
+			customer.setUserAccount(user);
+			customerDao.insert(customer);
+			
+			user.setCustomer(customer);
+		} else {
+			LOGGER.info("user account, customer updated" + user);
+			dao.update(user);
+			customerDao.update(customer);
 		}
 	}
 

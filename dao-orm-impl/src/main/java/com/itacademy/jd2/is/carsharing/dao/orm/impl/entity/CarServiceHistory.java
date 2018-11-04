@@ -1,17 +1,14 @@
 package com.itacademy.jd2.is.carsharing.dao.orm.impl.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICarServiceHistory;
-import com.itacademy.jd2.is.carsharing.dao.api.entity.IServiceOperation;
 
 @Entity
 public class CarServiceHistory extends BaseEntity implements ICarServiceHistory {
@@ -27,9 +24,6 @@ public class CarServiceHistory extends BaseEntity implements ICarServiceHistory 
 	
 	@Column
 	private String serviceCompany;
-	
-	@Column
-	private List<IServiceOperation> serviceOperationList;
 	
 	@Column
 	private double servicePrice;
@@ -72,16 +66,6 @@ public class CarServiceHistory extends BaseEntity implements ICarServiceHistory 
 	@Override
 	public void setServiceCompany(String serviceCompany) {
 		this.serviceCompany = serviceCompany;
-	}
-
-	@Override
-	public List<IServiceOperation> getServiceOperationList() {
-		return serviceOperationList;
-	}
-
-	@Override
-	public void setServiceOperationList(List<IServiceOperation> serviceOperationList) {
-		this.serviceOperationList = serviceOperationList;
 	}
 
 	@Override

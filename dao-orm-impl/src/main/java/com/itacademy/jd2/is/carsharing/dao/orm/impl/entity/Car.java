@@ -2,6 +2,8 @@ package com.itacademy.jd2.is.carsharing.dao.orm.impl.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
@@ -33,6 +35,7 @@ public class Car extends BaseEntity implements ICar {
 	private double mileage;
 	
 	@Column
+	@Enumerated(EnumType.STRING)
 	private Condition condition;
 
 	@Override
