@@ -2,11 +2,13 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class BrandDTO {
 	private Integer id;
 
+	@NotNull(message = "is requered")
 	@Size(min = 1, max = 50)
 	private String name;
 

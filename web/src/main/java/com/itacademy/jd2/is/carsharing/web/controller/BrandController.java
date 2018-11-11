@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +33,10 @@ import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
 @RequestMapping(value = "/brand")
 public class BrandController extends AbstractController<BrandDTO> {
 
-	  private IBrandService brandService;
+	  private final IBrandService brandService;
 
-	    private BrandToDTOConverter toDtoConverter;
-	    private BrandFromDTOConverter fromDtoConverter;
+	    private final BrandToDTOConverter toDtoConverter;
+	    private final BrandFromDTOConverter fromDtoConverter;
 
 	    @Autowired
 	    private BrandController(IBrandService brandService, BrandToDTOConverter toDtoConverter,
@@ -43,6 +46,14 @@ public class BrandController extends AbstractController<BrandDTO> {
 	        this.toDtoConverter = toDtoConverter;
 	        this.fromDtoConverter = fromDtoConverter;
 	    }
+	    
+	    @InitBinder
+		public void initBinder(WebDataBinder dataBinder) {
+			
+			final StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+			
+			dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+		}
 
 	    @RequestMapping(method = RequestMethod.GET)
 	    public ModelAndView index(final HttpServletRequest req,
@@ -56,7 +67,7 @@ public class BrandController extends AbstractController<BrandDTO> {
 	        prepareFilter(gridState, filter);
 
 	        final List<IBrand> entities = brandService.find(filter);
-	        List<BrandDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+	        final List<BrandDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 	        gridState.setTotalCount(brandService.getCount(filter));
 
 	        final Map<String, Object> models = new HashMap<>();

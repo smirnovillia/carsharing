@@ -22,4 +22,5 @@ public interface ICarService {
 
 	@Transactional
 	ICar createEntity();
+	
 }
