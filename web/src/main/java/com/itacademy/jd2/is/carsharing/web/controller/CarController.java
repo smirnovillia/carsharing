@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.CarFilter;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
 import com.itacademy.jd2.is.carsharing.service.IColorService;
 import com.itacademy.jd2.is.carsharing.service.IModelService;
@@ -32,23 +33,18 @@ import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
 @RequestMapping(value = "/car")
 public class CarController extends AbstractController<CarDTO> {
 
-	@Autowired
 	private ICarService carService;
-
-	@Autowired
-	private IModelService modelService;
-
-	@Autowired
-	private IModificationService modificationService;
-
-	@Autowired
-	private IColorService colorService;
-
-	@Autowired
 	private CarFromDTOConverter fromDtoConverter;
-
-	@Autowired
 	private CarToDTOConverter toDtoConverter;
+	
+	@Autowired
+	public CarController(ICarService carService, CarFromDTOConverter fromDtoConverter,
+			CarToDTOConverter toDtoConverter) {
+		super();
+		this.carService = carService;
+		this.fromDtoConverter = fromDtoConverter;
+		this.toDtoConverter = toDtoConverter;
+	}
 
 	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView index(final HttpServletRequest req,
@@ -58,8 +54,11 @@ public class CarController extends AbstractController<CarDTO> {
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
-		final List<ICar> entities = carService.getAll();
-		final List<CarDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+		final CarFilter filter = new CarFilter();
+        prepareFilter(gridState, filter);
+
+        final List<ICar> entities = carService.find(filter);
+        final List<CarDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);

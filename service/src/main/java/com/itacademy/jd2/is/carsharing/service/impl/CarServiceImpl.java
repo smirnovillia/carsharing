@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.ICarDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.CarFilter;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
 
 @Service
@@ -64,5 +65,10 @@ public class CarServiceImpl implements ICarService{
 	public List<ICar> getAll() {
 		final List<ICar> all = dao.selectAll();
 		return all;
+	}
+	
+	@Override
+	public List<ICar> find(CarFilter filter) {
+		return dao.find(filter);
 	}
 }

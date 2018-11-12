@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.CarFilter;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Car;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Color;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Model;
@@ -114,6 +116,14 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 		entity.setColor(color);
 
 		return entity;
+	}
+
+	@Override
+	public List<ICar> find(CarFilter filter) {
+		final StringBuilder sqlTile = new StringBuilder("");
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQuery(sqlTile.toString());
 	}
 
 }

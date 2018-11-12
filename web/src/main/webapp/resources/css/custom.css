@@ -33,3 +33,7 @@ main {
     ~.lever:after {
     left: 18px;
 }
+
+nav, .page-footer{
+	background-color: #424242;
+}

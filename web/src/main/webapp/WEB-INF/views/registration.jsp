@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h3>Registration From</h3>
+<h3>Registration Form</h3>
 <div class="row">
 	<div class="col s3"></div>
 	<div class="col s6">
