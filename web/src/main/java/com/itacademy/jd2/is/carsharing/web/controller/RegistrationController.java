@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itacademy.jd2.is.carsharing.web.dto.RegistrationDTO;
+import com.itacademy.jd2.is.carsharing.web.dto.CustomerDTO;
 
 @Controller
 public class RegistrationController {
-	
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public ModelAndView showForm(@RequestParam(value = "registrationForm") String registration) {
 
 		final ModelAndView model = new ModelAndView();
@@ -24,16 +24,16 @@ public class RegistrationController {
 		return model;
 
 	}
-	
-	  public String save(@Valid @ModelAttribute("formModel") final RegistrationDTO formModel, final BindingResult result) {
-	        if (result.hasErrors()) {
-	            return "registration";
-	        } else {
+
+	public String save(@Valid @ModelAttribute("formModel") final CustomerDTO formModel, final BindingResult result) {
+		if (result.hasErrors()) {
+			return "registration";
+		} else {
 //	            final IUserAccount user = fromDtoConverter.apply(formModel);
 //	            final ICustomer customer 
 //	            brandService.save(entity);
-	            return "redirect:/index";
-	        }
-	    }
+			return "redirect:/index";
+		}
+	}
 
 }
