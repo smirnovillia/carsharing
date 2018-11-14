@@ -24,7 +24,7 @@
 	</definition>
 
 	<definition name="login" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/filling/login.jsp" />
 	</definition>
 	
 	<definition name="car.list" extends="DefaultTemplate">
@@ -36,7 +36,7 @@
 	</definition>
 	
 	<definition name="registration" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/registration.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/filling/registration.jsp" />
 	</definition>
 
 </tiles-definitions>

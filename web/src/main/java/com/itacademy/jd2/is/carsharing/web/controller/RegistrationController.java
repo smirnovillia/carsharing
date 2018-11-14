@@ -6,13 +6,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/registration")
 public class RegistrationController {
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "registration", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 
-		return new ModelAndView("registration");
+		final ModelAndView model = new ModelAndView();
+		model.setViewName("registration");
+		
+		return model;
 
 	}
 
