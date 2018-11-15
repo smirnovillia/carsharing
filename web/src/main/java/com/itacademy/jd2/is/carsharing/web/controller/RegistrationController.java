@@ -13,7 +13,17 @@ public class RegistrationController {
 
 		final ModelAndView model = new ModelAndView();
 		model.setViewName("registration");
-		
+
+		return model;
+
+	}
+
+	@RequestMapping(value = "registration", method = RequestMethod.POST)
+	public ModelAndView registrate() {
+
+		final ModelAndView model = new ModelAndView();
+		model.setViewName("registration");
+
 		return model;
 
 	}
