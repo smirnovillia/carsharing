@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value = "filling/")
 public class RegistrationController {
 
 	@RequestMapping(value = "registration", method = RequestMethod.GET)

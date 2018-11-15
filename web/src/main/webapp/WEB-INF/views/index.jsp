@@ -44,8 +44,8 @@
 			</div>
 		</form>
 		<div class="row">
-			<div class="col s12 center">
-				<div id="map" style="width: 800px; height: 400px"></div>
+			<div class="col s8 offset-s2 center">
+				<div id="map" style="width: 100%; height: 50%"></div>
 			</div>
 		</div>
 	</div>
