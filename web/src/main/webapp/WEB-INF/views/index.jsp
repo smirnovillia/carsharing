@@ -26,7 +26,7 @@
 <body>
 	<h3>Welcome to carsharing service</h3>
 	<div class="row">
-		<form name='signIn' action="<c:url value='filling/login' />" method='GET'>
+		<form name='signIn' action="<c:url value='login' />" method='GET'>
 			<div class="row">
 				<div class="col s12 center">
 					<button class="btn waves-effect waves-light btn-large"
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 		</form>
-		<form name='registration' action="<c:url value='filling/registration' />"
+		<form name='registration' action="<c:url value='registration' />"
 			method='GET'>
 			<div class="row">
 				<div class="col s12 center">
