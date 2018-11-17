@@ -1,7 +1,10 @@
 package com.itacademy.jd2.is.carsharing.web.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -11,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
@@ -56,11 +61,13 @@ public class RegistrationController {
 		hashMap.put("formUser", userToDtoConverter.apply(newUser));
 		hashMap.put("formCustomer", customerToDtoConverter.apply(newCustomer));
 
-		return new ModelAndView("registration.form", hashMap);
+		return new ModelAndView("registration", hashMap);
 	}
 
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String registrate(@Valid @ModelAttribute("formUser") UserAccountDTO formUser,
+	@RequestMapping(method = RequestMethod.POST)
+	public String registrate(@RequestParam("driverLicense") final MultipartFile dLicense,
+			@RequestParam("passport") final MultipartFile passport, @RequestParam("image") final MultipartFile image,
+			@Valid @ModelAttribute("formUser") UserAccountDTO formUser,
 			@Valid @ModelAttribute("formCustomer") CustomerDTO formCustomer, final BindingResult result) {
 
 		if (result.hasErrors()) {
@@ -68,6 +75,8 @@ public class RegistrationController {
 		} else {
 			final IUserAccount user = userFromDtoConverter.apply(formUser);
 			final ICustomer customer = customerFromDtoConverter.apply(formCustomer);
+			final String dLicenseString = new BufferedReader(new InputStreamReader(dLicense.getInputStream())).lines()
+					.collect(Collectors.joining("\n"));
 			userAccountService.save(user);
 			customerService.save(customer);
 			return "redirect:/index";

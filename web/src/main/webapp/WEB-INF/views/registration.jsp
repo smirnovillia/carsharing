@@ -5,98 +5,96 @@
 	<form:form class="col s12" method="POST" modelAttribute="formUser">
 		<form:input path="id" type="hidden" />
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s12 center">
 				<form:input path="login" type="text" disabled="${readonly}" />
 				<form:errors path="login" cssClass="red-text" />
-				<label for="login">login</label>
+				<label for="login">Login</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s12 center">
 				<form:input path="password" type="password" disabled="${readonly}" />
 				<form:errors path="password" cssClass="red-text" />
-				<label for="name">password</label>
+				<label for="name">Password</label>
 			</div>
 		</div>
 	</form:form>
 	<form:form class="col s12" method="POST" modelAttribute="formCustomer">
 		<form:input path="id" type="hidden" />
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s12 center">
 				<form:input path="firstName" type="text" disabled="${readonly}" />
 				<form:errors path="firstName" cssClass="red-text" />
 				<label for="firstName">First Name</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s12 center">
 				<form:input path="lastName" type="text" disabled="${readonly}" />
 				<form:errors path="lastName" cssClass="red-text" />
 				<label for="lastName">Last Name</label>
 			</div>
 		</div>
 		<div class="row">
-			<div class="input-field col s6">
+			<div class="input-field col s12 center">
 				<form:input path="birthday" type="text" disabled="${readonly}"
 					cssClass="datepicker" />
 				<form:errors path="birthday" cssClass="red-text" />
 				<label for="birthday">Birthday</label>
 			</div>
 		</div>
-		<div>
+		<div class="row">
 			<form method="POST" enctype="multipart/form-data">
-				<table>
-					<tr>
-						<td>Driver license:</td>
-						<td><input type="file" name="driverLicense" /></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="submit" value="Upload" /></td>
-					</tr>
-				</table>
+				<div class="file-field input-field col s12 center">
+					<div class="btn">
+						<span>File</span> <input type="file">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text" name="driverLicense"
+							placeholder="Driver license">
+					</div>
+				</div>
 			</form>
 		</div>
-		<div>
+		<div class="row">
 			<form method="POST" enctype="multipart/form-data">
-				<table>
-					<tr>
-						<td>Passport:</td>
-						<td><input type="file" name="passport" /></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="submit" value="Upload" /></td>
-					</tr>
-				</table>
+				<div class="file-field input-field col s12 center">
+					<div class="btn">
+						<span>File</span> <input type="file">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text" name="passport"
+							placeholder="Passport">
+					</div>
+				</div>
 			</form>
 		</div>
-		<div>
+		<div class="row">
 			<form method="POST" enctype="multipart/form-data">
-				<table>
-					<tr>
-						<td>Image:</td>
-						<td><input type="file" name="image" /></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="submit" value="Upload" /></td>
-					</tr>
-				</table>
+				<div class="file-field input-field col s12 center">
+					<div class="btn">
+						<span>File</span> <input type="file">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text" name="image"
+							placeholder="Image">
+					</div>
+				</div>
 			</form>
 		</div>
 	</form:form>
 	<div class="row">
-		<div class="col s6"></div>
-		<div class="col s3">
-			<c:if test="${!readonly}">
-				<button class="btn waves-effect waves-light right" type="submit">save</button>
-			</c:if>
-		</div>
-		<div class="col s3">
+		<div class="col s10">
 			<a class="btn waves-effect waves-light right" href="${contextPath}">back<i
 				class="material-icons right"></i>
 			</a>
+		</div>
+		<div class="col s2">
+			<c:if test="${!readonly}">
+				<button class="btn waves-effect waves-light right" type="submit">
+					<i class="material-icons right">save</i>save
+				</button>
+			</c:if>
 		</div>
 	</div>
 </div>
