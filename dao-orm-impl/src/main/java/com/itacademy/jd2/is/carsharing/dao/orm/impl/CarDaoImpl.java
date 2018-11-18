@@ -14,7 +14,6 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
 import com.itacademy.jd2.is.carsharing.dao.api.ICarDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
@@ -82,5 +81,16 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
                     "sorting is not supported by column:" + sortColumn);
         }
     }
+	
+	@Override
+	public long getCount(CarFilter filter) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+		final CriteriaQuery<Long> cq = cb.createQuery(Long.class); 
+		final Root<Car> from = cq.from(Car.class); 
+		cq.select(cb.count(from)); 
+		final TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult(); 
+	}
 
 }

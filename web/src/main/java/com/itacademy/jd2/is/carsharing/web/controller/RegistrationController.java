@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
 import com.itacademy.jd2.is.carsharing.service.ICustomerService;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 import com.itacademy.jd2.is.carsharing.web.converter.CustomerFromDTOConverter;
@@ -86,6 +87,7 @@ public class RegistrationController {
 			customer.setDriverLicense(driverLicenseString);
 			customer.setCustomerPassport(customerPassportString);
 			customer.setCustomerImage(customerImageString);
+			user.setUserRole(Role.ROLE_CUSTOMER);
 			userAccountService.save(user);
 			customerService.save(customer);
 			return "redirect:/index";

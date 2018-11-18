@@ -7,6 +7,7 @@ public class UserAccountDTO {
 	private Integer id;
 	private String login;
 	private String password;
+	private Integer userRole;
 	private Date created;
 	private Date updated;
 
@@ -32,6 +33,14 @@ public class UserAccountDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Integer getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(Integer userRole) {
+		this.userRole = userRole;
 	}
 
 	public Date getCreated() {

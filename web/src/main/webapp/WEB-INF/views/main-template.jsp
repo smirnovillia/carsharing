@@ -4,6 +4,7 @@
 <c:set var="pagesBrand" value="${pageContext.request.contextPath}/brand" scope="request" />
 <c:set var="pagesModel" value="${pageContext.request.contextPath}/model" scope="request" />
 <c:set var="pagesCar" value="${pageContext.request.contextPath}/car" scope="request" />
+<c:set var="pagesCustomer" value="${pageContext.request.contextPath}/customer" scope="request" />
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

@@ -14,8 +14,7 @@
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_USER')">
 					<li><a href="${baseUrl}/">Home</a></li>
-					<li><a href="${baseUrl}/car">Cars</a></li>
-					<li><a href="${baseUrl}/orders">Orders</a></li>
+					<li><a href="${baseUrl}/search">Search</a></li>
 					<a class="right" href="${baseUrl}/execute_logout" title="logout"><i
 						class="material-icons">arrow_forward</i></a>
 				</sec:authorize>

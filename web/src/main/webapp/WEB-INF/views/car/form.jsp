@@ -32,6 +32,11 @@
 					<button class="btn waves-effect waves-light right" type="submit">saveŒ</button>
 				</c:if>
 			</div>
+			<div class="col s3">
+				<a class="btn waves-effect waves-light right" href="${pagesCar}">back<i
+					class="material-icons right"></i>
+				</a>
+			</div>
 		</div>
 	</form:form>
 </div>

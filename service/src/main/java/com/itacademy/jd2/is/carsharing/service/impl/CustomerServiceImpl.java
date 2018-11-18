@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.ICustomerDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.CustomerFilter;
 import com.itacademy.jd2.is.carsharing.service.ICustomerService;
 
 @Service
@@ -64,5 +65,17 @@ public class CustomerServiceImpl implements ICustomerService {
 	public ICustomer createEntity() {
 		return dao.createEntity();
 	}
+
+	@Override
+	public List<ICustomer> find(CustomerFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(CustomerFilter filter) {
+		return dao.getCount(filter);
+	}
+	
+	
 
 }

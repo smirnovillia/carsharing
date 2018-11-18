@@ -9,4 +9,6 @@ public interface ICarDao extends IBaseDao<ICar, Integer> {
 	
 	List<ICar> find(CarFilter filter);
 
+	long getCount(CarFilter filter);
+
 }

@@ -38,5 +38,13 @@
 	<definition name="registration" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/registration.jsp" />
 	</definition>
+	
+		<definition name="customer.list" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/customer/list.jsp" />
+	</definition>
+
+	<definition name="customer.edit" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/customer/form.jsp" />
+	</definition>
 
 </tiles-definitions>

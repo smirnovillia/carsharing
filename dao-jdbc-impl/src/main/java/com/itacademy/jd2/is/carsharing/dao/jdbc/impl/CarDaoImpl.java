@@ -126,4 +126,9 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 		return executeFindQuery(sqlTile.toString());
 	}
 
+	@Override
+	public long getCount(CarFilter filter) {
+		return executeCountQuery("");
+	}
+
 }
