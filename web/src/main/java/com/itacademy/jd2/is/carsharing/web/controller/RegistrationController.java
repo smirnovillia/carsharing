@@ -1,6 +1,7 @@
 package com.itacademy.jd2.is.carsharing.web.controller;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,18 +66,26 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String registrate(@RequestParam("driverLicense") final MultipartFile dLicense,
+	public String registrate(@RequestParam("driverLicense") final MultipartFile driverLicense,
 			@RequestParam("passport") final MultipartFile passport, @RequestParam("image") final MultipartFile image,
 			@Valid @ModelAttribute("formUser") UserAccountDTO formUser,
-			@Valid @ModelAttribute("formCustomer") CustomerDTO formCustomer, final BindingResult result) {
+			@Valid @ModelAttribute("formCustomer") CustomerDTO formCustomer, final BindingResult result)
+			throws IOException {
 
 		if (result.hasErrors()) {
 			return "registration";
 		} else {
 			final IUserAccount user = userFromDtoConverter.apply(formUser);
 			final ICustomer customer = customerFromDtoConverter.apply(formCustomer);
-			final String dLicenseString = new BufferedReader(new InputStreamReader(dLicense.getInputStream())).lines()
+			final String driverLicenseString = new BufferedReader(new InputStreamReader(driverLicense.getInputStream()))
+					.lines().collect(Collectors.joining("\n"));
+			final String customerPassportString = new BufferedReader(new InputStreamReader(passport.getInputStream()))
+					.lines().collect(Collectors.joining("\n"));
+			final String customerImageString = new BufferedReader(new InputStreamReader(image.getInputStream())).lines()
 					.collect(Collectors.joining("\n"));
+			customer.setDriverLicense(driverLicenseString);
+			customer.setCustomerPassport(customerPassportString);
+			customer.setCustomerImage(customerImageString);
 			userAccountService.save(user);
 			customerService.save(customer);
 			return "redirect:/index";
