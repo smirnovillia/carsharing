@@ -13,6 +13,13 @@
 	<artifactId>web</artifactId>
 
 	<dependencies>
+
+		<!-- GSON -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.itacademy.jd2.is.carsharing</groupId>
 			<artifactId>service</artifactId>

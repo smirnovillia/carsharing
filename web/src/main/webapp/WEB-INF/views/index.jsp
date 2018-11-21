@@ -16,7 +16,7 @@
 			zoom : 11
 		});
 
-		myPlacemark = new ymaps.Placemark([ 53.90, 27.56 ], {
+		myPlacemark = new ymaps.Placemark(${coord}, {
 			hintContent : 'Minsk',
 			balloonContent : 'Capital of BLR'
 		});

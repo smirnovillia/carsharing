@@ -60,7 +60,7 @@
 			<form method="POST" enctype="multipart/form-data">
 				<div class="file-field input-field col s12 center">
 					<div class="btn">
-						<span>File</span> <input type="file">
+						<span>File</span> <input type="file" name="f1">
 					</div>
 					<div class="file-path-wrapper">
 						<input class="file-path validate" type="text" name="passport"
@@ -73,7 +73,7 @@
 			<form method="POST" enctype="multipart/form-data">
 				<div class="file-field input-field col s12 center">
 					<div class="btn">
-						<span>File</span> <input type="file">
+						<span>File</span> <input type="file" name="f2">
 					</div>
 					<div class="file-path-wrapper">
 						<input class="file-path validate" type="text" name="image"

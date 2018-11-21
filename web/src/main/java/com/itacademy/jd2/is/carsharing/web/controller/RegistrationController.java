@@ -67,8 +67,8 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String registrate(@RequestParam("driverLicense") final MultipartFile driverLicense,
-			@RequestParam("passport") final MultipartFile passport, @RequestParam("image") final MultipartFile image,
+	public String registrate(@RequestParam("f1") final MultipartFile driverLicense,
+			@RequestParam("f2") final MultipartFile passport, 
 			@Valid @ModelAttribute("formUser") UserAccountDTO formUser,
 			@Valid @ModelAttribute("formCustomer") CustomerDTO formCustomer, final BindingResult result)
 			throws IOException {

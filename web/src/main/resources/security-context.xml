@@ -12,8 +12,8 @@
     <context:component-scan base-package="com.itacademy.jd2.is.carsharing.web.security" />
 
     <http>
-        <intercept-url pattern="/brand**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/car**" access="!isAnonymous()" /> 
+       <!--  <intercept-url pattern="/brand**" access="hasRole('ROLE_ADMIN')" /> -->
+        <intercept-url pattern="/car**" access="hasRole('ROLE_ADMIN')" /> 
 
         <form-login login-page="/login" default-target-url="/"
             authentication-failure-url="/login?error"

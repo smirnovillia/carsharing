@@ -15,6 +15,8 @@ public class CustomerDTO {
 
 	private Date created;
 	private Date updated;
+	
+	//UserAccountDTO
 
 	public Integer getId() {
 		return id;
