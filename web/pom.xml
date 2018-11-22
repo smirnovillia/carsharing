@@ -14,15 +14,21 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>com.itacademy.jd2.is.carsharing</groupId>
+			<artifactId>service</artifactId>
+		</dependency>
+
 		<!-- GSON -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
-		
+
+		<!-- Apache Commons Codec -->
 		<dependency>
-			<groupId>com.itacademy.jd2.is.carsharing</groupId>
-			<artifactId>service</artifactId>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
 		</dependency>
 
 		<!-- Spring MVC -->

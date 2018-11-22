@@ -26,4 +26,6 @@ public interface IUserAccountService {
 
 	@Transactional
 	IUserAccount createEntity();
+	
+	IUserAccount getByLogin(String user);
 }

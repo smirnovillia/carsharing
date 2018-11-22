@@ -35,22 +35,15 @@ import com.itacademy.jd2.is.carsharing.web.dto.UserAccountDTO;
 @RequestMapping(value = "/registration")
 public class RegistrationController {
 
-	private final IUserAccountService userAccountService;
 	private final ICustomerService customerService;
-	private final UserAccountFromDTOConverter userFromDtoConverter;
-	private final UserAccountToDTOConverter userToDtoConverter;
 	private final CustomerFromDTOConverter customerFromDtoConverter;
 	private final CustomerToDTOConverter customerToDtoConverter;
 
 	@Autowired
-	public RegistrationController(IUserAccountService userAccountService, ICustomerService customerService,
-			UserAccountFromDTOConverter userFromDtoConverter, UserAccountToDTOConverter userToDtoConverter,
+	public RegistrationController(ICustomerService customerService,
 			CustomerFromDTOConverter customerFromDtoConverter, CustomerToDTOConverter customerToDtoConverter) {
 		super();
-		this.userAccountService = userAccountService;
 		this.customerService = customerService;
-		this.userFromDtoConverter = userFromDtoConverter;
-		this.userToDtoConverter = userToDtoConverter;
 		this.customerFromDtoConverter = customerFromDtoConverter;
 		this.customerToDtoConverter = customerToDtoConverter;
 	}
@@ -58,37 +51,28 @@ public class RegistrationController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
-		final IUserAccount newUser = userAccountService.createEntity();
 		final ICustomer newCustomer = customerService.createEntity();
-		hashMap.put("formUser", userToDtoConverter.apply(newUser));
-		hashMap.put("formCustomer", customerToDtoConverter.apply(newCustomer));
+		hashMap.put("formModel", customerToDtoConverter.apply(newCustomer));
 
 		return new ModelAndView("registration", hashMap);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String registrate(@RequestParam("f1") final MultipartFile driverLicense,
-			@RequestParam("f2") final MultipartFile passport, 
-			@Valid @ModelAttribute("formUser") UserAccountDTO formUser,
-			@Valid @ModelAttribute("formCustomer") CustomerDTO formCustomer, final BindingResult result)
+	public String registrate(@RequestParam("driverLicense") final MultipartFile driverLicense,
+			@RequestParam("passport") final MultipartFile passport, @RequestParam("image") final MultipartFile image, 
+			@Valid @ModelAttribute("formModel") CustomerDTO formCustomer, final BindingResult result)
 			throws IOException {
 
 		if (result.hasErrors()) {
 			return "registration";
 		} else {
-			final IUserAccount user = userFromDtoConverter.apply(formUser);
 			final ICustomer customer = customerFromDtoConverter.apply(formCustomer);
 			final String driverLicenseString = new BufferedReader(new InputStreamReader(driverLicense.getInputStream()))
 					.lines().collect(Collectors.joining("\n"));
 			final String customerPassportString = new BufferedReader(new InputStreamReader(passport.getInputStream()))
 					.lines().collect(Collectors.joining("\n"));
-			final String customerImageString = new BufferedReader(new InputStreamReader(image.getInputStream())).lines()
-					.collect(Collectors.joining("\n"));
 			customer.setDriverLicense(driverLicenseString);
 			customer.setCustomerPassport(customerPassportString);
-			customer.setCustomerImage(customerImageString);
-			user.setUserRole(Role.ROLE_CUSTOMER);
-			userAccountService.save(user);
 			customerService.save(customer);
 			return "redirect:/index";
 		}

@@ -5,6 +5,7 @@ import java.util.function.Function;
 import org.springframework.stereotype.Component;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 import com.itacademy.jd2.is.carsharing.web.dto.CustomerDTO;
 
 @Component
@@ -20,6 +21,8 @@ public class CustomerToDTOConverter implements Function<ICustomer, CustomerDTO> 
 		dto.setDriverLicense(entity.getDriverLicense());
 		dto.setCustomerPassport(entity.getCustomerPassport());
 		dto.setCustomerImage(entity.getCustomerImage());
+		
+		final IUserAccount userAccount = entity.getUserAccount();
 		return dto;
 	}
 

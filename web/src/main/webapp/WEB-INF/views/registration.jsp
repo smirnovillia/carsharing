@@ -2,25 +2,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h3>Registration Form</h3>
 <div class="row">
-	<form:form class="col s12" method="POST" modelAttribute="formUser">
+	<form:form class="col s12" method="POST" modelAttribute="formModel">
 		<form:input path="id" type="hidden" />
 		<div class="row">
 			<div class="input-field col s12 center">
-				<form:input path="login" type="text" disabled="${readonly}" />
-				<form:errors path="login" cssClass="red-text" />
+				<form:input path="user.login" type="text" disabled="${readonly}" />
+				<br>
+				<form:errors path="user.login" cssClass="red-text" />
 				<label for="login">Login</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 center">
-				<form:input path="password" type="password" disabled="${readonly}" />
-				<form:errors path="password" cssClass="red-text" />
+				<form:input path="user.password" type="password"
+					disabled="${readonly}" />
+				<form:errors path="user.password" cssClass="red-text" />
 				<label for="name">Password</label>
 			</div>
 		</div>
-	</form:form>
-	<form:form class="col s12" method="POST" modelAttribute="formCustomer">
-		<form:input path="id" type="hidden" />
 		<div class="row">
 			<div class="input-field col s12 center">
 				<form:input path="firstName" type="text" disabled="${readonly}" />
@@ -44,44 +43,46 @@
 			</div>
 		</div>
 		<div class="row">
-			<form method="POST" enctype="multipart/form-data">
-				<div class="file-field input-field col s12 center">
-					<div class="btn">
-						<span>File</span> <input type="file">
+			<div>
+				<form method="POST" enctype="multipart/form-data">
+					<div class="file-field input-field col s12 center">
+						<div class="btn">
+							<span>File</span> <input type="file" name="driverLicense">
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text"
+								placeholder="Driver license">
+						</div>
 					</div>
-					<div class="file-path-wrapper">
-						<input class="file-path validate" type="text" name="driverLicense"
-							placeholder="Driver license">
+				</form>
+			</div>
+			<div>
+				<form method="POST" enctype="multipart/form-data">
+					<div class="file-field input-field col s12 center">
+						<div class="btn">
+							<span>File</span> <input type="file" name="passport">
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text"
+								placeholder="Passport">
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
+			<div>
+				<form method="POST" enctype="multipart/form-data">
+					<div class="file-field input-field col s12 center">
+						<div class="btn">
+							<span>File</span> <input type="file" name="image">
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text" placeholder="Image">
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
-		<div class="row">
-			<form method="POST" enctype="multipart/form-data">
-				<div class="file-field input-field col s12 center">
-					<div class="btn">
-						<span>File</span> <input type="file" name="f1">
-					</div>
-					<div class="file-path-wrapper">
-						<input class="file-path validate" type="text" name="passport"
-							placeholder="Passport">
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="row">
-			<form method="POST" enctype="multipart/form-data">
-				<div class="file-field input-field col s12 center">
-					<div class="btn">
-						<span>File</span> <input type="file" name="f2">
-					</div>
-					<div class="file-path-wrapper">
-						<input class="file-path validate" type="text" name="image"
-							placeholder="Image">
-					</div>
-				</div>
-			</form>
-		</div>
+		<div class="row"></div>
 	</form:form>
 	<div class="row">
 		<div class="col s10">
@@ -98,3 +99,5 @@
 		</div>
 	</div>
 </div>
+
+

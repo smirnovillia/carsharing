@@ -92,4 +92,17 @@ public class UserAccountServiceImpl implements IUserAccountService {
 		dao.deleteAll();
 	}
 
+	@Override
+	public IUserAccount getByLogin(String login) {
+		IUserAccount theUser = dao.createEntity();  
+		for (IUserAccount users : getAll()) {
+			if(users.getLogin().equals(login)) {
+				theUser = users;
+			}
+		}
+		return theUser;
+	}
+	
+	
+
 }

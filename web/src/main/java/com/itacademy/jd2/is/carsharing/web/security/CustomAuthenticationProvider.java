@@ -12,6 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 
 @Component("customAuthenticationProvider")
@@ -30,21 +31,29 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		final String username = authentication.getPrincipal() + "";
 		final String password = authentication.getCredentials() + "";
 
-		// TODO find use by login
-		if (!"admin".equals(username)) {
+		final IUserAccount userAccount = userAccountService.getByLogin(username);
+
+		if (userAccount == null) {
+			throw new BadCredentialsException("no such user");
+		}
+
+		if (!userAccount.getLogin().equals(username)) {
 			throw new BadCredentialsException("1000");
 		}
 
 		// TODO verify password (DB contains hasn - not a plain password)
-		if (!"nimda".equals(password)) {
+
+		if (!userAccount.getPassword().equals(password)) {
 			throw new BadCredentialsException("1000");
 		}
 
-		final int userId = 1; // FIXME: it should be the real user id from DB
+		final int userId = userAccount.getId(); // FIXME: it should be the real user id from DB
 
 		final List<String> userRoles = new ArrayList<>();// TODO get list of user's
 		// roles
-		userRoles.add("ROLE_ADMIN");
+
+		String role = userAccount.getUserRole().name();
+		userRoles.add("ROLE_" + role);
 
 		final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		for (final String roleName : userRoles) {

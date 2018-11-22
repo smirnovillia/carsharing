@@ -2,6 +2,9 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 public class CarDTO {
 
 	private Integer id;
@@ -14,6 +17,10 @@ public class CarDTO {
 	private String colorName;
 	private double mileage;
 	private String condition;
+	
+	@NotNull
+	@Valid
+	private TrackingDTO trackingDTO = new TrackingDTO();
 
 	private Date created;
 	private Date updated;
