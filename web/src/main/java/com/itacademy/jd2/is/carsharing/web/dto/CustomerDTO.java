@@ -2,6 +2,9 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 public class CustomerDTO {
 
 	private Integer id;
@@ -16,7 +19,17 @@ public class CustomerDTO {
 	private Date created;
 	private Date updated;
 	
-	//UserAccountDTO
+	@NotNull
+	@Valid
+	private UserAccountDTO user = new UserAccountDTO();
+	
+	public UserAccountDTO getUser() {
+		return user;
+	}
+
+	public void setUser(UserAccountDTO user) {
+		this.user = user;
+	}
 
 	public Integer getId() {
 		return id;
