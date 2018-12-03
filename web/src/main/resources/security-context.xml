@@ -13,7 +13,7 @@
 
     <http>
        <!--  <intercept-url pattern="/brand**" access="hasRole('ROLE_ADMIN')" /> -->
-        <intercept-url pattern="/car**" access="hasRole('ROLE_ADMIN')" /> 
+        <intercept-url pattern="/**" access="isAuthenticated()" /> 
 
         <form-login login-page="/login" default-target-url="/"
             authentication-failure-url="/login?error"

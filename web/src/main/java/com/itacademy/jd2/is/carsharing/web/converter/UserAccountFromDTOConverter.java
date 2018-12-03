@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 import com.itacademy.jd2.is.carsharing.web.dto.UserAccountDTO;
 
@@ -21,6 +22,7 @@ public class UserAccountFromDTOConverter implements Function<UserAccountDTO, IUs
 		entity.setId(dto.getId());
 		entity.setLogin(dto.getLogin());
 		entity.setPassword(dto.getPassword());
+		entity.setUserRole(Role.values()[dto.getUserRole()]);
 		return entity;
 	}
 

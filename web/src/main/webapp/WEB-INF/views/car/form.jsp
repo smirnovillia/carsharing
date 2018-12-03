@@ -26,6 +26,42 @@
 			</div>
 		</div>	
 		<div class="row">
+			<div class="input-field col s12">
+				<form:select path="releaseDate" disabled="${readonly}">
+					<form:options items="${releaseChoices}" />
+				</form:select>
+				<form:errors path="releaseDate" cssClass="red-text" />
+				<label for="releaseDate">release date</label>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="input-field col s12">
+				<form:select path="modificationId" disabled="${readonly}">
+					<form:options items="${modificationsChoices}" />
+				</form:select>
+				<form:errors path="modificationId" cssClass="red-text" />
+				<label for="modificationId">modification</label>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="input-field col s12">
+				<form:select path="modificationId" disabled="${readonly}">
+					<form:options items="${modificationsChoices}" />
+				</form:select>
+				<form:errors path="modificationId" cssClass="red-text" />
+				<label for="modificationId">modification</label>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="input-field col s12">
+				<form:select path="modificationId" disabled="${readonly}">
+					<form:options items="${modificationsChoices}" />
+				</form:select>
+				<form:errors path="modificationId" cssClass="red-text" />
+				<label for="modificationId">modification</label>
+			</div>
+		</div>	
+		<div class="row">
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">
