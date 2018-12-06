@@ -1,6 +1,6 @@
 package com.itacademy.jd2.is.carsharing.web.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class TrackingDTO {
 
