@@ -3,6 +3,7 @@ package com.itacademy.jd2.is.carsharing.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		if (entity.getCreated() == null) {
 			LOGGER.info("new customer created" + entity);
 			entity.setCreated(modifedOn);
+			String plainPass = entity.getUserAccount().getPassword();
+			String hashed = BCrypt.hashpw(plainPass, BCrypt.gensalt(12));
+			entity.getUserAccount().setPassword(hashed);
 			dao.insert(entity);
 		} else {
 			LOGGER.info("customer updated" + entity);

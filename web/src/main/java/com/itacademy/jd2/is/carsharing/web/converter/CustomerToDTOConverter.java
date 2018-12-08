@@ -21,8 +21,9 @@ public class CustomerToDTOConverter implements Function<ICustomer, CustomerDTO> 
 		dto.setDriverLicense(entity.getDriverLicense());
 		dto.setCustomerPassport(entity.getCustomerPassport());
 		dto.setCustomerImage(entity.getCustomerImage());
-		
-		final IUserAccount userAccount = entity.getUserAccount();
+		dto.setCreated(entity.getCreated());
+		dto.setUpdated(entity.getUpdated());
+	
 		return dto;
 	}
 

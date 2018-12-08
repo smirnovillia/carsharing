@@ -21,7 +21,7 @@ public class CustomerDTO {
 	
 	@NotNull
 	@Valid
-	private UserAccountDTO user = new UserAccountDTO();
+	private UserAccountDTO user;
 	
 	public UserAccountDTO getUser() {
 		return user;

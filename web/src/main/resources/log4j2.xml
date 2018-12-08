@@ -24,10 +24,10 @@
 			<AppenderRef ref="RollingFile" />
 		</Root>
 
-		<Logger name="com.itacademy.jd2.dz.cardealer.service" level="debug"
+<!-- 		<Logger name="com.itacademy.jd2.is.carsharing.service" level="debug"
 			additivity="false">
 			<AppenderRef ref="Console" />
-		</Logger>
+		</Logger> -->
 
 	</Loggers>
 </Configuration>
