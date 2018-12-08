@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.ICustomerDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.CustomerFilter;
 import com.itacademy.jd2.is.carsharing.service.ICustomerService;
 
@@ -48,6 +49,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			String plainPass = entity.getUserAccount().getPassword();
 			String hashed = BCrypt.hashpw(plainPass, BCrypt.gensalt(12));
 			entity.getUserAccount().setPassword(hashed);
+			entity.getUserAccount().setUserRole(Role.values()[1]);
 			dao.insert(entity);
 		} else {
 			LOGGER.info("customer updated" + entity);

@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
@@ -37,21 +38,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			throw new BadCredentialsException("no such user");
 		}
 
+		final String hashedPass = BCrypt.hashpw(password, BCrypt.gensalt(12));
 
-		// TODO verify password (DB contains hasn - not a plain password)
-		
-		
-		if ( false && !userAccount.getPassword().equals(password)) {
+		if (!BCrypt.checkpw(password, hashedPass)) {
 			throw new BadCredentialsException("1000");
 		}
-		
 
-		final int userId = userAccount.getId(); // FIXME: it should be the real user id from DB
+		final int userId = userAccount.getId();
 
-		final List<String> userRoles = new ArrayList<>();// TODO get list of user's
-		// roles
+		final List<String> userRoles = new ArrayList<>();
 
-		String role = userAccount.getUserRole().name();
+		final String role = userAccount.getUserRole().toString();
 		userRoles.add("ROLE_" + role);
 
 		final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
