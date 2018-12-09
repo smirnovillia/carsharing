@@ -62,7 +62,7 @@ public class RegistrationController {
 					"LQ0vdmLtaMTgjbrTmtk8YjEAUm0IOUFNmS66I3yC");
 			final AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion("us-east-1")
 					.withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
-			final String bucketName = user.getLogin() + UUID.randomUUID();
+			final String bucketName = user.getCustomer().getLastName() + UUID.randomUUID();
 			s3Client.createBucket(bucketName);
 			try {
 
@@ -79,7 +79,7 @@ public class RegistrationController {
 			final String driverLicensePath = driverLicense.getObjectContent().getHttpRequest().getURI().toString();
 			user.getCustomer().setDriverLicense(driverLicensePath);
 			userAccountService.save(user, user.getCustomer());
-			return "redirect:/index";
+			return "redirect:/login";
 		}
 
 	}

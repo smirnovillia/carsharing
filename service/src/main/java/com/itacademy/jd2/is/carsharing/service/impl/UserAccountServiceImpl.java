@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.util.Date;
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,9 @@ public class UserAccountServiceImpl implements IUserAccountService {
 		if (entity.getId() == null) {
 			LOGGER.info("new user account created" + entity);
 			entity.setCreated(modifedDate);
+			String plainPass = entity.getPassword();
+			String hashed = BCrypt.hashpw(plainPass, BCrypt.gensalt(12));
+			entity.setPassword(hashed);
 			dao.insert(entity);
 			
 			customer.setId(entity.getId());
