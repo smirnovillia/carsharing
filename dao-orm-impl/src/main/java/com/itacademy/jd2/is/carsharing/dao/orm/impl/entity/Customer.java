@@ -15,26 +15,35 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 
 @Entity
-public class Customer extends BaseEntity implements ICustomer {
+public class Customer implements ICustomer {
+
+	@Id
+	private Integer id;
 
 	@Column
 	private String firstName;
-	
+
 	@Column
 	private String lastName;
-	
+
 	@Column
 	private Date birthday;
-	
+
 	@Column
 	private String driverLicense;
-	
+
 	@Column
 	private boolean driverLicenseStatus;
-	
+
 	@OneToOne(fetch = FetchType.LAZY, optional = false, targetEntity = UserAccount.class)
 	@PrimaryKeyJoinColumn
 	private IUserAccount userAccount;
+
+	@Column(updatable = false)
+	private Date created;
+
+	@Column
+	private Date updated;
 
 	@Override
 	public String getFirstName() {
@@ -95,11 +104,36 @@ public class Customer extends BaseEntity implements ICustomer {
 	public void setUserAccount(IUserAccount userAccount) {
 		this.userAccount = userAccount;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
 
 	@Override
 	public String toString() {
-		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday
-				+ ", driverLicense=" + driverLicense + ", driverLicenseStatus=" + driverLicenseStatus;
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday
+				+ ", driverLicense=" + driverLicense + ", driverLicenseStatus=" + driverLicenseStatus + ", created="
+				+ created + ", updated=" + updated + "]";
 	}
 
 

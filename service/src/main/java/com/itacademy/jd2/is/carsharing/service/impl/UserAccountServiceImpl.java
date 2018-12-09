@@ -13,6 +13,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.ICustomerDao;
 import com.itacademy.jd2.is.carsharing.dao.api.IUserAccountDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.UserAccountFilter;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 
 @Service
@@ -20,16 +21,22 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountServiceImpl.class);
 	private IUserAccountDao dao;
+	private ICustomerDao customerDao;
 
 	@Autowired
-	public UserAccountServiceImpl(IUserAccountDao dao) {
+	public UserAccountServiceImpl(IUserAccountDao dao, ICustomerDao customerDao) {
 		super();
 		this.dao = dao;
+		this.customerDao = customerDao;
 	}
-	
+
 	@Override
 	public IUserAccount createEntity() {
 		return dao.createEntity();
+	}
+	
+	public ICustomer createCustomerEntity() {
+		return customerDao.createEntity();
 	}
 
 	@Override
@@ -57,7 +64,30 @@ public class UserAccountServiceImpl implements IUserAccountService {
 			dao.update(entity);
 		}
 	}
-	
+
+	@Override
+	public void save(IUserAccount entity, ICustomer customer) {
+		final Date modifedDate = new Date();
+		entity.setUpdated(modifedDate);
+		customer.setUpdated(modifedDate);
+		if (entity.getId() == null) {
+			LOGGER.info("new user account created" + entity);
+			entity.setCreated(modifedDate);
+			dao.insert(entity);
+			
+			customer.setId(entity.getId());
+			customer.setCreated(modifedDate);
+			customer.setUserAccount(entity);
+			customerDao.insert(customer);
+			
+			entity.setCustomer(customer);
+		} else {
+			LOGGER.info("user account updated" + entity);
+			dao.update(entity);
+			customerDao.update(customer);
+		}
+	}
+
 	@Override
 	public void delete(Integer id) {
 		dao.delete(id);
@@ -70,41 +100,49 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	@Override
 	public IUserAccount getByLogin(String login) {
-		IUserAccount theUser = dao.createEntity();  
+		IUserAccount theUser = dao.createEntity();
 		for (IUserAccount users : getAll()) {
-			if(users.getLogin().equals(login)) {
+			if (users.getLogin().equals(login)) {
 				theUser = users;
 			}
 		}
 		return theUser;
 	}
-	
+
 	public void encryptPass(String pass) {
 		String algorithm = "SHA";
 
-        byte[] plainText = pass.getBytes();
+		byte[] plainText = pass.getBytes();
 
-        try {
-            MessageDigest md = MessageDigest.getInstance(algorithm);
+		try {
+			MessageDigest md = MessageDigest.getInstance(algorithm);
 
-            md.reset();
-            md.update(plainText);
-            byte[] encodedPassword = md.digest();
+			md.reset();
+			md.update(plainText);
+			byte[] encodedPassword = md.digest();
 
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < encodedPassword.length; i++) {
-                if ((encodedPassword[i] & 0xff) < 0x10) {
-                    sb.append("0");
-                }
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < encodedPassword.length; i++) {
+				if ((encodedPassword[i] & 0xff) < 0x10) {
+					sb.append("0");
+				}
 
-                sb.append(Long.toString(encodedPassword[i] & 0xff, 16));
-            }
+				sb.append(Long.toString(encodedPassword[i] & 0xff, 16));
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
-	
+
+	@Override
+	public List<IUserAccount> find(UserAccountFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(UserAccountFilter filter) {
+		return dao.getCount(filter);
+	}
 
 }

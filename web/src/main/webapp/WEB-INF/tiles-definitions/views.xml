@@ -39,11 +39,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/registration.jsp" />
 	</definition>
 	
-		<definition name="customer.list" extends="DefaultTemplate">
+		<definition name="user.list" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/customer/list.jsp" />
 	</definition>
 
-	<definition name="customer.edit" extends="DefaultTemplate">
+	<definition name="user.edit" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/customer/form.jsp" />
 	</definition>
 

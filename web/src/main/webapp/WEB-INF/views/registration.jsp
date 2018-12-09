@@ -7,39 +7,40 @@
 		<form:input path="id" type="hidden" />
 		<div class="row">
 			<div class="input-field col s12 center">
-				<form:input path="user.login" type="text" disabled="${readonly}" />
+				<form:input path="login" type="text" disabled="${readonly}" />
 				<br>
-				<form:errors path="user.login" cssClass="red-text" />
+				<form:errors path="login" cssClass="red-text" />
 				<label for="login">Login</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 center">
-				<form:input path="user.password" type="password"
+				<form:input path="password" type="password"
 					disabled="${readonly}" />
-				<form:errors path="user.password" cssClass="red-text" />
+				<form:errors path="password" cssClass="red-text" />
 				<label for="name">Password</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 center">
-				<form:input path="firstName" type="text" disabled="${readonly}" />
-				<form:errors path="firstName" cssClass="red-text" />
+				<form:input path="customer.firstName" type="text" disabled="${readonly}" />
+				<form:errors path="customer.firstName" cssClass="red-text" />
 				<label for="firstName">First Name</label>
 			</div>
 		</div>
+		<form:input path="userRole" type="hidden" value='1' />
 		<div class="row">
 			<div class="input-field col s12 center">
-				<form:input path="lastName" type="text" disabled="${readonly}" />
-				<form:errors path="lastName" cssClass="red-text" />
+				<form:input path="customer.lastName" type="text" disabled="${readonly}" />
+				<form:errors path="customer.lastName" cssClass="red-text" />
 				<label for="lastName">Last Name</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12 center">
-				<form:input path="birthday" type="text" disabled="${readonly}"
+				<form:input path="customer.birthday" type="text" disabled="${readonly}"
 					cssClass="datepicker" />
-				<form:errors path="birthday" cssClass="red-text" />
+				<form:errors path="customer.birthday" cssClass="red-text" />
 				<label for="birthday">Birthday</label>
 			</div>
 		</div>
@@ -53,6 +54,7 @@
 				</div>
 			</div>
 		</div>
+		<form:input path="customer.driverLicenseStatus" type="hidden" value='true' />
 		<div class="row">
 			<div class="col s10">
 				<a class="btn waves-effect waves-light right" href="${contextPath}">back<i

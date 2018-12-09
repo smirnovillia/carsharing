@@ -1,17 +1,11 @@
 package com.itacademy.jd2.is.carsharing.web.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.validation.Valid;
-
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,69 +25,60 @@ import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.transfer.TransferManager;
-import com.amazonaws.services.s3.transfer.Upload;
-import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
-import com.itacademy.jd2.is.carsharing.service.ICustomerService;
-import com.itacademy.jd2.is.carsharing.web.converter.CustomerFromDTOConverter;
-import com.itacademy.jd2.is.carsharing.web.converter.CustomerToDTOConverter;
-import com.itacademy.jd2.is.carsharing.web.dto.CustomerDTO;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
+import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
+import com.itacademy.jd2.is.carsharing.web.converter.UserAccountFromDTOConverter;
+import com.itacademy.jd2.is.carsharing.web.converter.UserAccountToDTOConverter;
+import com.itacademy.jd2.is.carsharing.web.dto.UserAccountDTO;
 
 @Controller
 @RequestMapping(value = "/registration")
 public class RegistrationController {
 
-	private final ICustomerService customerService;
-	private final CustomerFromDTOConverter customerFromDtoConverter;
-	private final CustomerToDTOConverter customerToDtoConverter;
-
 	@Autowired
-	public RegistrationController(ICustomerService customerService, CustomerFromDTOConverter customerFromDtoConverter,
-			CustomerToDTOConverter customerToDtoConverter) {
-		super();
-		this.customerService = customerService;
-		this.customerFromDtoConverter = customerFromDtoConverter;
-		this.customerToDtoConverter = customerToDtoConverter;
-	}
+	private IUserAccountService userAccountService;
+	@Autowired
+	private UserAccountFromDTOConverter userAccountFromDtoConverter;
+	@Autowired
+	private UserAccountToDTOConverter userAccountToDtoConverter;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showForm() {
+	public ModelAndView showRegistrationForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
-		final ICustomer newCustomer = customerService.createEntity();
-		hashMap.put("formModel", customerToDtoConverter.apply(newCustomer));
-
+		final UserAccountDTO dto = new UserAccountDTO();
+		hashMap.put("formModel", dto);
 		return new ModelAndView("registration", hashMap);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String registrate(@RequestParam("file") MultipartFile file,
-			@Valid @ModelAttribute("formModel") CustomerDTO formCustomer, final BindingResult result)
-			throws IOException {
+			@ModelAttribute("formModel") UserAccountDTO formModel, BindingResult result) throws IOException {
 
 		if (result.hasErrors()) {
 			return "registration";
 		} else {
-			final ICustomer customer = customerFromDtoConverter.apply(formCustomer);
+			final IUserAccount user = userAccountFromDtoConverter.apply(formModel);
 			final BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIAJBFM4F4TYLTU3PNA",
 					"LQ0vdmLtaMTgjbrTmtk8YjEAUm0IOUFNmS66I3yC");
 			final AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion("us-east-1")
 					.withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
-			final String bucketName = customer.getUserAccount().getLogin() + UUID.randomUUID();
+			final String bucketName = user.getLogin() + UUID.randomUUID();
 			s3Client.createBucket(bucketName);
 			try {
-				
-				InputStream is = file.getInputStream();
-				
+
+				final InputStream is = file.getInputStream();
+
 				s3Client.putObject(
 						new PutObjectRequest(bucketName, file.getOriginalFilename(), is, new ObjectMetadata())
 								.withCannedAcl(CannedAccessControlList.PublicRead));
 			} catch (final Exception e) {
 				e.printStackTrace();
 			}
-			final S3Object driverLicense = s3Client.getObject(new GetObjectRequest(bucketName, file.getOriginalFilename()));
+			final S3Object driverLicense = s3Client
+					.getObject(new GetObjectRequest(bucketName, file.getOriginalFilename()));
 			final String driverLicensePath = driverLicense.getObjectContent().getHttpRequest().getURI().toString();
-			customer.setDriverLicense(driverLicensePath);
-			customerService.save(customer);
+			user.getCustomer().setDriverLicense(driverLicensePath);
+			userAccountService.save(user, user.getCustomer());
 			return "redirect:/index";
 		}
 
