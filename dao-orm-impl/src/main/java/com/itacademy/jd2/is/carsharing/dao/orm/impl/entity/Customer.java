@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -13,17 +15,8 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 
 @Entity
-public class Customer implements ICustomer {
+public class Customer extends BaseEntity implements ICustomer {
 
-	@Id
-	private Integer id;
-
-	@Column(updatable = false)
-	private Date created;
-
-	@Column
-	private Date updated;
-	
 	@Column
 	private String firstName;
 	
@@ -38,12 +31,6 @@ public class Customer implements ICustomer {
 	
 	@Column
 	private boolean driverLicenseStatus;
-	
-	@Column
-	private String customerPassport;
-	
-	@Column
-	private String customerImage;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = false, targetEntity = UserAccount.class)
 	@PrimaryKeyJoinColumn
@@ -100,27 +87,6 @@ public class Customer implements ICustomer {
 	}
 
 	@Override
-	public String getCustomerPassport() {
-		return customerPassport;
-	}
-
-	@Override
-	public void setCustomerPassport(String customerPassport) {
-		this.customerPassport = customerPassport;
-	}
-
-	@Override
-	public String getCustomerImage() {
-		return customerImage;
-	}
-
-	@Override
-	public void setCustomerImage(String customerImage) {
-		this.customerImage = customerImage;
-	}
-	
-	
-	@Override
 	public IUserAccount getUserAccount() {
 		return userAccount;
 	}
@@ -133,33 +99,8 @@ public class Customer implements ICustomer {
 	@Override
 	public String toString() {
 		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", birthday=" + birthday
-				+ ", driverLicense=" + driverLicense + ", driverLicenseStatus=" + driverLicenseStatus
-				+ ", customerPassport=" + customerPassport + ", customerImage=" + customerImage + "]";
+				+ ", driverLicense=" + driverLicense + ", driverLicenseStatus=" + driverLicenseStatus;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
-
-	public Date getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(Date updated) {
-		this.updated = updated;
-	}
-	
 
 }

@@ -26,14 +26,6 @@ public interface ICustomer extends IBaseEntity {
 
 	void setDriverLicenseStatus(boolean driverLicenseStatus);
 
-	String getCustomerPassport();
-
-	void setCustomerPassport(String customerPassport);
-
-	String getCustomerImage();
-
-	void setCustomerImage(String customerImage);
-
 	IUserAccount getUserAccount();
 
 	void setUserAccount(IUserAccount userAccount);

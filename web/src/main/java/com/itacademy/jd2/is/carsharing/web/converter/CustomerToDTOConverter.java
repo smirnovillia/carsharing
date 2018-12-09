@@ -19,8 +19,9 @@ public class CustomerToDTOConverter implements Function<ICustomer, CustomerDTO> 
 		dto.setLastName(entity.getLastName());
 		dto.setBirthday(entity.getBirthday());
 		dto.setDriverLicense(entity.getDriverLicense());
-		dto.setCustomerPassport(entity.getCustomerPassport());
-		dto.setCustomerImage(entity.getCustomerImage());
+		dto.setDriverLicenseStatus(entity.isDriverLicenseStatus());
+//		dto.setCustomerPassport(entity.getCustomerPassport());
+//		dto.setCustomerImage(entity.getCustomerImage());
 		dto.setCreated(entity.getCreated());
 		dto.setUpdated(entity.getUpdated());
 	

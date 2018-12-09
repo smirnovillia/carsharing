@@ -25,7 +25,7 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 	@Override
 	public void update(ICustomer entity) {
 		executeStatement(new PreparedStatementAction<ICustomer>(String.format(
-				"update %s set first_name=?, last_name=?, birthday=?, driver_license=?, driver_license_status=?, customer_passport=?, customer_image=?, updated=? where id=?",
+				"update %s set first_name=?, last_name=?, birthday=?, driver_license=?, driver_license_status=?, updated=? where id=?",
 				getTableName())) {
 
 			@Override
@@ -35,10 +35,8 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 				pStmt.setObject(3, entity.getBirthday(), Types.DATE);
 				pStmt.setString(4, entity.getDriverLicense());
 				pStmt.setBoolean(5, entity.isDriverLicenseStatus());
-				pStmt.setString(6, entity.getCustomerPassport());
-				pStmt.setString(7, entity.getCustomerImage());
-				pStmt.setObject(8, entity.getUpdated(), Types.TIMESTAMP);
-				pStmt.setInt(9, entity.getId());
+				pStmt.setObject(6, entity.getUpdated(), Types.TIMESTAMP);
+				pStmt.setInt(7, entity.getId());
 
 				pStmt.executeUpdate();
 
@@ -50,7 +48,7 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 	@Override
 	public void insert(ICustomer entity) {
 		executeStatement(new PreparedStatementAction<ICustomer>(String.format(
-				"insert into %s (id, first_name, last_name, birthday, driver_license, driver_license_status, customer_passport, customer_image, created, updated) values (?,?,?,?,?,?,?,?,?,?)",
+				"insert into %s (id, first_name, last_name, birthday, driver_license, driver_license_status, created, updated) values (?,?,?,?,?,?,?,?)",
 				getTableName()), true) {
 
 			@Override
@@ -61,8 +59,6 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 				pStmt.setObject(4, entity.getBirthday(), Types.DATE);
 				pStmt.setString(5, entity.getDriverLicense());
 				pStmt.setBoolean(6, entity.isDriverLicenseStatus());
-				pStmt.setString(7, entity.getCustomerPassport());
-				pStmt.setString(8, entity.getCustomerImage());
 				pStmt.setObject(9, entity.getCreated(), Types.TIMESTAMP);
 				pStmt.setObject(10, entity.getUpdated(), Types.TIMESTAMP);
 				
@@ -82,8 +78,6 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 		entity.setBirthday(resultSet.getDate("birthday"));
 		entity.setDriverLicense(resultSet.getString("driver_license"));
 		entity.setDriverLicenseStatus(resultSet.getBoolean("driver_license_status"));
-		entity.setCustomerPassport(resultSet.getString("customer_passport"));
-		entity.setCustomerImage(resultSet.getString("customer_image"));
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		return entity;

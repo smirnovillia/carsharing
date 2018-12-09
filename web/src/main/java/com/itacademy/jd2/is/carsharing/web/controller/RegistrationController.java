@@ -1,12 +1,17 @@
 package com.itacademy.jd2.is.carsharing.web.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,6 +31,8 @@ import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.transfer.TransferManager;
+import com.amazonaws.services.s3.transfer.Upload;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.service.ICustomerService;
 import com.itacademy.jd2.is.carsharing.web.converter.CustomerFromDTOConverter;
@@ -59,7 +66,7 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String registrate(@RequestParam MultipartFile[] files,
+	public String registrate(@RequestParam("file") MultipartFile file,
 			@Valid @ModelAttribute("formModel") CustomerDTO formCustomer, final BindingResult result)
 			throws IOException {
 
@@ -69,36 +76,23 @@ public class RegistrationController {
 			final ICustomer customer = customerFromDtoConverter.apply(formCustomer);
 			final BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIAJBFM4F4TYLTU3PNA",
 					"LQ0vdmLtaMTgjbrTmtk8YjEAUm0IOUFNmS66I3yC");
-			final AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+			final AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion("us-east-1")
 					.withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
-			final String bucketName = customer.getUserAccount().getLogin();
+			final String bucketName = customer.getUserAccount().getLogin() + UUID.randomUUID();
 			s3Client.createBucket(bucketName);
 			try {
-				final InputStream driverLicenseIS = files[0].getInputStream();
-				final InputStream passportIS = files[1].getInputStream();
-				final InputStream imageIS = files[2].getInputStream();
-
-				s3Client.putObject(new PutObjectRequest(bucketName, files[0].getOriginalFilename(), driverLicenseIS,
-						new ObjectMetadata()).withCannedAcl(CannedAccessControlList.PublicRead));
-				s3Client.putObject(new PutObjectRequest(bucketName, files[1].getOriginalFilename(), passportIS,
-						new ObjectMetadata()).withCannedAcl(CannedAccessControlList.PublicRead));
+				
+				InputStream is = file.getInputStream();
+				
 				s3Client.putObject(
-						new PutObjectRequest(bucketName, files[2].getOriginalFilename(), imageIS, new ObjectMetadata())
+						new PutObjectRequest(bucketName, file.getOriginalFilename(), is, new ObjectMetadata())
 								.withCannedAcl(CannedAccessControlList.PublicRead));
 			} catch (final Exception e) {
 				e.printStackTrace();
 			}
-			final S3Object drivLicense = s3Client
-					.getObject(new GetObjectRequest(bucketName, files[0].getOriginalFilename()));
-			final String driverLicensePath = drivLicense.getObjectContent().getHttpRequest().getURI().toString();
-			final S3Object passport = s3Client
-					.getObject(new GetObjectRequest(bucketName, files[1].getOriginalFilename()));
-			final String passportPath = passport.getObjectContent().getHttpRequest().getURI().toString();
-			final S3Object image = s3Client.getObject(new GetObjectRequest(bucketName, files[2].getOriginalFilename()));
-			final String imagePath = image.getObjectContent().getHttpRequest().getURI().toString();
+			final S3Object driverLicense = s3Client.getObject(new GetObjectRequest(bucketName, file.getOriginalFilename()));
+			final String driverLicensePath = driverLicense.getObjectContent().getHttpRequest().getURI().toString();
 			customer.setDriverLicense(driverLicensePath);
-			customer.setCustomerPassport(passportPath);
-			customer.setCustomerImage(imagePath);
 			customerService.save(customer);
 			return "redirect:/index";
 		}

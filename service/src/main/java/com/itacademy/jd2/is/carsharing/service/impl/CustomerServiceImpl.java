@@ -46,6 +46,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		if (entity.getCreated() == null) {
 			LOGGER.info("new customer created" + entity);
 			entity.setCreated(modifedOn);
+			entity.setDriverLicenseStatus(true);
 			String plainPass = entity.getUserAccount().getPassword();
 			String hashed = BCrypt.hashpw(plainPass, BCrypt.gensalt(12));
 			entity.getUserAccount().setPassword(hashed);

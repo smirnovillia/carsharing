@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
@@ -13,7 +16,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
 
 @Entity
 public class UserAccount extends BaseEntity implements IUserAccount {
-
+	
 	@Column
 	private String login;
 	

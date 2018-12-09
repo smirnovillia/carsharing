@@ -235,8 +235,6 @@ public class AbstractTest {
 		entity.setBirthday(getRandomDate());
 		entity.setDriverLicense("licence - " + getRandomPrefix());
 		entity.setDriverLicenseStatus(getRandomBoolean());
-		entity.setCustomerPassport("passport - " + getRandomPrefix());
-		entity.setCustomerImage("customer image - " + getRandomPrefix());
 		entity.setUserAccount(userAccount);
 		customerService.save(entity);
 		return entity;

@@ -74,6 +74,12 @@ public class CustomerDaoImpl extends AbstractDaoImpl<ICustomer, Integer> impleme
 	            return from.get(Customer_.firstName);
 	        case "lastName":
 	            return from.get(Customer_.lastName);
+	        case "birthday":
+	            return from.get(Customer_.birthday);
+	        case "driverLicense":
+	            return from.get(Customer_.driverLicense);
+	        case "driverLicenseStatus":
+	            return from.get(Customer_.driverLicenseStatus);
 	        default:
 	            throw new UnsupportedOperationException(
 	                    "sorting is not supported by column:" + sortColumn);

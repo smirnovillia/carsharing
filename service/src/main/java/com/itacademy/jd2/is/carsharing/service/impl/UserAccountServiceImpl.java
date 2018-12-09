@@ -20,13 +20,11 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountServiceImpl.class);
 	private IUserAccountDao dao;
-	private ICustomerDao customerDao;
 
 	@Autowired
-	public UserAccountServiceImpl(IUserAccountDao dao, ICustomerDao customerDao) {
+	public UserAccountServiceImpl(IUserAccountDao dao) {
 		super();
 		this.dao = dao;
-		this.customerDao = customerDao;
 	}
 	
 	@Override
@@ -60,29 +58,6 @@ public class UserAccountServiceImpl implements IUserAccountService {
 		}
 	}
 	
-	@Override
-	public void save(IUserAccount user, ICustomer customer) {
-		final Date modifedOn = new Date();
-		user.setUpdated(modifedOn);
-		customer.setUpdated(modifedOn);
-		if (user.getId() == null) {
-			LOGGER.info("new user account, new customer created" + user);
-			user.setCreated(modifedOn);
-			dao.insert(user);
-			
-			customer.setId(user.getId());
-			customer.setCreated(modifedOn);
-			customer.setUserAccount(user);
-			customerDao.insert(customer);
-			
-			user.setCustomer(customer);
-		} else {
-			LOGGER.info("user account, customer updated" + user);
-			dao.update(user);
-			customerDao.update(customer);
-		}
-	}
-
 	@Override
 	public void delete(Integer id) {
 		dao.delete(id);

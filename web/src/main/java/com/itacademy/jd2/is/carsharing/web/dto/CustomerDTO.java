@@ -5,16 +5,22 @@ import java.util.Date;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class CustomerDTO {
 
 	private Integer id;
 
 	private String firstName;
 	private String lastName;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
+	
 	private String driverLicense;
-	private String customerPassport;
-	private String customerImage;
+	private Boolean driverLicenseStatus;
+//	private String customerPassport;
+//	private String customerImage;
 
 	private Date created;
 	private Date updated;
@@ -70,22 +76,30 @@ public class CustomerDTO {
 	public void setDriverLicense(String driverLicense) {
 		this.driverLicense = driverLicense;
 	}
-
-	public String getCustomerPassport() {
-		return customerPassport;
+	
+	public Boolean getDriverLicenseStatus() {
+		return driverLicenseStatus;
 	}
 
-	public void setCustomerPassport(String customerPassport) {
-		this.customerPassport = customerPassport;
+	public void setDriverLicenseStatus(Boolean driverLicenseStatus) {
+		this.driverLicenseStatus = driverLicenseStatus;
 	}
 
-	public String getCustomerImage() {
-		return customerImage;
-	}
-
-	public void setCustomerImage(String customerImage) {
-		this.customerImage = customerImage;
-	}
+//	public String getCustomerPassport() {
+//		return customerPassport;
+//	}
+//
+//	public void setCustomerPassport(String customerPassport) {
+//		this.customerPassport = customerPassport;
+//	}
+//
+//	public String getCustomerImage() {
+//		return customerImage;
+//	}
+//
+//	public void setCustomerImage(String customerImage) {
+//		this.customerImage = customerImage;
+//	}
 
 	public Date getCreated() {
 		return created;

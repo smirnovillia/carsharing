@@ -28,8 +28,6 @@ public class CustomerServiceTest extends AbstractTest{
 		assertNotNull(entityFromDb.getBirthday());
 		assertNotNull(entityFromDb.getDriverLicense());
 		assertNotNull(entityFromDb.isDriverLicenseStatus());
-		assertNotNull(entityFromDb.getCustomerPassport());
-		assertNotNull(entityFromDb.getCustomerImage());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
 		assertTrue(entityFromDb.getCreated().equals(entityFromDb.getUpdated()));
@@ -55,8 +53,6 @@ public class CustomerServiceTest extends AbstractTest{
 		assertNotNull(entityFromDb.getBirthday());
 		assertNotNull(entityFromDb.getDriverLicense());
 		assertNotNull(entityFromDb.isDriverLicenseStatus());
-		assertNotNull(entityFromDb.getCustomerPassport());
-		assertNotNull(entityFromDb.getCustomerImage());
 		assertNotNull(entityFromDb.getCreated());
 		assertNotNull(entityFromDb.getUpdated());
 		assertEquals(entity.getCreated(), entityFromDb.getCreated());
@@ -81,8 +77,6 @@ public class CustomerServiceTest extends AbstractTest{
 			assertNotNull(entityFromDb.getBirthday());
 			assertNotNull(entityFromDb.getDriverLicense());
 			assertNotNull(entityFromDb.isDriverLicenseStatus());
-			assertNotNull(entityFromDb.getCustomerPassport());
-			assertNotNull(entityFromDb.getCustomerImage());
 			assertNotNull(entityFromDb.getCreated());
 			assertNotNull(entityFromDb.getUpdated());
 		}

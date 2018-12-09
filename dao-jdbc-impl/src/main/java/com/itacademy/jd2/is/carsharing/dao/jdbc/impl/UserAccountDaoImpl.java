@@ -4,12 +4,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IUserAccountDao;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Role;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.CustomerFilter;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.UserAccountFilter;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.UserAccount;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
@@ -83,6 +87,19 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 	@Override
 	protected String getTableName() {
 		return "user_account";
+	}
+	
+	@Override
+	public List<IUserAccount> find(final UserAccountFilter filter) {
+		final StringBuilder sqlTile = new StringBuilder("");
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(final UserAccountFilter filter) {
+		return (int) executeCountQuery("");
 	}
 
 }
