@@ -8,7 +8,7 @@
 			<ul class="left hide-on-med-and-down">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<li><a href="${baseUrl}/car">Cars</a></li>
-					<li><a href="${baseUrl}/customer">Customers</a></li>
+					<li><a href="${baseUrl}/user">Users</a></li>
 					<a class="right" href="${baseUrl}/execute_logout" title="logout"><i
 						class="material-icons">arrow_forward</i></a>
 				</sec:authorize>

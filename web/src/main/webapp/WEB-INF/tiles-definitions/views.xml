@@ -40,11 +40,11 @@
 	</definition>
 	
 		<definition name="user.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/customer/list.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/user/list.jsp" />
 	</definition>
 
-	<definition name="user.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/customer/form.jsp" />
+	<definition name="user.profile" extends="DefaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/user/profile.jsp" />
 	</definition>
 
 </tiles-definitions>
