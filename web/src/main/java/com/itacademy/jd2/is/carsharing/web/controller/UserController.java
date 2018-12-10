@@ -8,10 +8,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,13 +20,12 @@ import com.itacademy.jd2.is.carsharing.dao.api.filter.UserAccountFilter;
 import com.itacademy.jd2.is.carsharing.service.ICustomerService;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 import com.itacademy.jd2.is.carsharing.web.converter.UserAccountToDTOConverter;
-import com.itacademy.jd2.is.carsharing.web.dto.CustomerDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.UserAccountDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
 
 @Controller
 @RequestMapping(value = "/user")
-public class UserController extends AbstractController<CustomerDTO> {
+public class UserController extends AbstractController<UserAccountDTO> {
 
 	@Autowired
 	private ICustomerService customerService;
@@ -38,15 +34,15 @@ public class UserController extends AbstractController<CustomerDTO> {
 	@Autowired
 	private UserAccountToDTOConverter toDtoConverter;
 
-	@InitBinder
-	public void initBinder(WebDataBinder dataBinder) {
+//	@InitBinder
+//	public void initBinder(WebDataBinder dataBinder) {
+//
+//		final StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+//
+//		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+//	}
 
-		final StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-
-		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-	}
-
-	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(final HttpServletRequest req,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
@@ -80,7 +76,7 @@ public class UserController extends AbstractController<CustomerDTO> {
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
 
-		return new ModelAndView("user.edit", hashMap);
+		return new ModelAndView("user.profile", hashMap);
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
@@ -90,7 +86,7 @@ public class UserController extends AbstractController<CustomerDTO> {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 
-		return new ModelAndView("user.edit", hashMap);
+		return new ModelAndView("user.profile", hashMap);
 	}
 
 }

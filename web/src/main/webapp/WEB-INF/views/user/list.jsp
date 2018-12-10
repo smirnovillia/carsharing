@@ -8,10 +8,10 @@
 <table class="bordered highlight">
     <tbody>
         <tr>
-            <th><mytaglib:sort-link pageUrl="${pagesUser}" column="customer.id">id</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesUser}" column="id">id</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesUser}" column="login">login</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesUser}" column="customer.firstName">first name</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesUser}" column="customer.birthday">last name</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesUser}" column="firstName">first name</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesUser}" column="birthday">last name</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesUser}" column="created">created</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesUser}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>
