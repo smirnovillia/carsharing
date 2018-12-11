@@ -12,7 +12,7 @@
 					<a class="right" href="${baseUrl}/execute_logout" title="logout"><i
 						class="material-icons">arrow_forward</i></a>
 				</sec:authorize>
-				<sec:authorize access="hasRole('ROLE_USER')">
+				<sec:authorize access="hasRole('ROLE_CUSTOMER')">
 					<li><a href="${baseUrl}/">Home</a></li>
 					<li><a href="${baseUrl}/search">Search</a></li>
 					<a class="right" href="${baseUrl}/execute_logout" title="logout"><i

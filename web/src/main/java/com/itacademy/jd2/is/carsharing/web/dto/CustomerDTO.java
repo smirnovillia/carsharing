@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class CustomerDTO {
 
+	private Integer id;
 	private String firstName;
 	private String lastName;
 
@@ -14,6 +15,19 @@ public class CustomerDTO {
 
 	private String driverLicense;
 	private Boolean driverLicenseStatus;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date created;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updated;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -54,5 +68,23 @@ public class CustomerDTO {
 	public void setDriverLicenseStatus(Boolean driverLicenseStatus) {
 		this.driverLicenseStatus = driverLicenseStatus;
 	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+	
+	
 
 }

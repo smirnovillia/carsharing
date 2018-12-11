@@ -18,16 +18,16 @@
         </tr>
         <c:forEach var="user" items="${gridItems}" varStatus="loopCounter">
             <tr>
-                <td><c:out value="${customer.id}" /></td>
-                <td><c:out value="${login}" /></td>
-                <td><c:out value="${customer.firstName}" /></td>
-                <td><c:out value="${customer.lastName}" /></td>
-                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${customer.birthday}" /></td>
-                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${customer.created}" /></td>
-                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${customer.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesUser}/${customer.id}"><i class="material-icons">info</i></a> <a
-                    class="btn-floating" href="${pagesUser}/${customer.id}/edit"><i class="material-icons">edit</i></a> <a
-                    class="btn-floating red" href="${pagesUser}/${customer.id}/delete"><i class="material-icons">delete</i></a></td>
+                <td><c:out value="${user.customer.id}" /></td>
+                <td><c:out value="${user.login}" /></td>
+                <td><c:out value="${user.customer.firstName}" /></td>
+                <td><c:out value="${user.customer.lastName}" /></td>
+                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.customer.birthday}" /></td>
+                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.customer.created}" /></td>
+                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.customer.updated}" /></td>
+                <td class="right"><a class="btn-floating" href="${pagesUser}/${user.customer.id}"><i class="material-icons">info</i></a> <a
+                    class="btn-floating" href="${pagesUser}/${user.customer.id}/edit"><i class="material-icons">edit</i></a> <a
+                    class="btn-floating red" href="${pagesUser}/${user.customer.id}/delete"><i class="material-icons">delete</i></a></td>
             </tr>
         </c:forEach>
     </tbody>
