@@ -57,28 +57,10 @@ public class RegistrationController {
 		if (result.hasErrors()) {
 			return "registration";
 		} else {
+			final InputStream is = file.getInputStream();
 			final IUserAccount user = userAccountFromDtoConverter.apply(formModel);
-			final BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIAJBFM4F4TYLTU3PNA",
-					"LQ0vdmLtaMTgjbrTmtk8YjEAUm0IOUFNmS66I3yC");
-			final AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion("us-east-1")
-					.withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
-			final String bucketName = user.getCustomer().getLastName().toLowerCase() + UUID.randomUUID();
-			s3Client.createBucket(bucketName);
-			try {
-
-				final InputStream is = file.getInputStream();
-
-				s3Client.putObject(
-						new PutObjectRequest(bucketName, file.getOriginalFilename(), is, new ObjectMetadata())
-								.withCannedAcl(CannedAccessControlList.PublicRead));
-			} catch (final Exception e) {
-				e.printStackTrace();
-			}
-			final S3Object driverLicense = s3Client
-					.getObject(new GetObjectRequest(bucketName, file.getOriginalFilename()));
-			final String driverLicensePath = driverLicense.getObjectContent().getHttpRequest().getURI().toString();
-			user.getCustomer().setDriverLicense(driverLicensePath);
-			userAccountService.save(user, user.getCustomer());
+			
+			userAccountService.save(user, user.getCustomer(), file.getOriginalFilename(), is);
 			return "redirect:/login";
 		}
 

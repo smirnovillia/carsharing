@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -74,12 +76,14 @@ public class UserAccountDaoImpl extends AbstractDaoImpl<IUserAccount, Integer> i
 	            return from.get(UserAccount_.updated);
 	        case "id":
 	            return from.get(UserAccount_.id);
-	        case "firstName":
+	        case "login":
 	            return from.get(UserAccount_.login);
+	        case "firstName":
+	            return from.join(UserAccount_.customer, JoinType.LEFT).get(Customer_.firstName);
 	        case "lastName":
-	            return from.get(UserAccount_.password);
+	            return from.join(UserAccount_.customer, JoinType.LEFT).get(Customer_.lastName);
 	        case "birthday":
-	            return from.get(UserAccount_.userRole);
+	            return from.join(UserAccount_.customer, JoinType.LEFT).get(Customer_.birthday);
 	        default:
 	            throw new UnsupportedOperationException(
 	                    "sorting is not supported by column:" + sortColumn);

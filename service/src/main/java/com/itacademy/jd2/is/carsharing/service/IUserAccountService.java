@@ -1,5 +1,6 @@
 package com.itacademy.jd2.is.carsharing.service;
 
+import java.io.InputStream;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -36,6 +37,9 @@ public interface IUserAccountService {
 	List<IUserAccount> find(UserAccountFilter filter);
 
 	long getCount(UserAccountFilter filter);
+
+	@Transactional
+	void save(IUserAccount entity, ICustomer customer, String fileName, InputStream file);
 	
 	
 }

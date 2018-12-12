@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IUserAccount;
+import com.itacademy.jd2.is.carsharing.web.dto.CustomerDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.UserAccountDTO;
 
 @Component
@@ -23,11 +24,13 @@ public class UserAccountToDTOConverter implements Function<IUserAccount, UserAcc
 
 		final ICustomer customer = entity.getCustomer();
 		if (customer != null) {
-			userDto.getCustomer().setFirstName(customer.getFirstName());
-			userDto.getCustomer().setLastName(customer.getLastName());
-			userDto.getCustomer().setBirthday(customer.getBirthday());
-			userDto.getCustomer().setDriverLicense(customer.getDriverLicense());
-			userDto.getCustomer().setDriverLicenseStatus(customer.isDriverLicenseStatus());
+			CustomerDTO customerDTO = userDto.getCustomer();
+			customerDTO.setId(customer.getId());
+			customerDTO.setFirstName(customer.getFirstName());
+			customerDTO.setLastName(customer.getLastName());
+			customerDTO.setBirthday(customer.getBirthday());
+			customerDTO.setDriverLicense(customer.getDriverLicense());
+			customerDTO.setDriverLicenseStatus(customer.isDriverLicenseStatus());
 		}
 		return userDto;
 	}
