@@ -12,8 +12,6 @@
 			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="id">id</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="model">model</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCar}"
-					column="modification">modification</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}"
 					column="releaseDate">release date</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="vin">vin</mytaglib:sort-link></th>
 			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="color">color</mytaglib:sort-link></th>
@@ -27,7 +25,6 @@
 			<tr>
 				<td><c:out value="${car.id}" /></td>
 				<td><c:out value="${car.modelName}" /></td>
-				<td><c:out value="${car.modification}" /></td>
 				<td><c:out value="${car.vin}" /></td>
 				<td><c:out value="${car.colorName}" /></td>
 				<td><c:out value="${car.mileage}" /></td>
