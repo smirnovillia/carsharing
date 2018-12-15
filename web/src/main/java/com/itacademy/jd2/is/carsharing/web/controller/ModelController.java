@@ -35,22 +35,14 @@ import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
 @RequestMapping(value = "/data/model")
 public class ModelController extends AbstractController<ModelDTO> {
 
-	private final IModelService modelService;
-
-	private final IBrandService brandService;
-
-	private final ModelToDTOConverter toDtoConverter;
-	private final ModelFromDTOConverter fromDtoConverter;
-
 	@Autowired
-	public ModelController(IModelService modelService, IBrandService brandService, ModelToDTOConverter toDtoConverter,
-			ModelFromDTOConverter fromDtoConverter) {
-		super();
-		this.modelService = modelService;
-		this.brandService = brandService;
-		this.toDtoConverter = toDtoConverter;
-		this.fromDtoConverter = fromDtoConverter;
-	}
+	private IModelService modelService;
+	@Autowired
+	private IBrandService brandService;
+	@Autowired
+	private ModelToDTOConverter toDtoConverter;
+	@Autowired
+	private ModelFromDTOConverter fromDtoConverter;
 
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
@@ -89,9 +81,12 @@ public class ModelController extends AbstractController<ModelDTO> {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final ModelDTO formModel, final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final ModelDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
-			return "model.edit";
+			final Map<String, Object> hashMap = new HashMap<>();
+			hashMap.put("formModel", formModel);
+			loadCommonFormModels(hashMap);
+			return new ModelAndView("model.edit", hashMap);
 		} else {
 			final IModel entity = fromDtoConverter.apply(formModel);
 			modelService.save(entity);
@@ -112,7 +107,7 @@ public class ModelController extends AbstractController<ModelDTO> {
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
-
+		loadCommonFormModels(hashMap);
 		return new ModelAndView("model.edit", hashMap);
 	}
 
@@ -122,7 +117,7 @@ public class ModelController extends AbstractController<ModelDTO> {
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
-
+		loadCommonFormModels(hashMap);
 		return new ModelAndView("model.edit", hashMap);
 	}
 
