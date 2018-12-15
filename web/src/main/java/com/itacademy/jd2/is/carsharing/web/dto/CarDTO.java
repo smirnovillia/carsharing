@@ -18,10 +18,6 @@ public class CarDTO {
 	private double mileage;
 	private String condition;
 	
-	@NotNull
-	@Valid
-	private TrackingDTO trackingDTO = new TrackingDTO();
-
 	private Date created;
 	private Date updated;
 
