@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.ModelFilter;
+import com.itacademy.jd2.is.carsharing.service.IBrandService;
 import com.itacademy.jd2.is.carsharing.service.IModelService;
 import com.itacademy.jd2.is.carsharing.web.converter.ModelFromDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.converter.ModelToDTOConverter;
@@ -35,14 +37,17 @@ public class ModelController extends AbstractController<ModelDTO> {
 
 	private final IModelService modelService;
 
+	private final IBrandService brandService;
+
 	private final ModelToDTOConverter toDtoConverter;
 	private final ModelFromDTOConverter fromDtoConverter;
 
 	@Autowired
-	public ModelController(IModelService modelService, ModelToDTOConverter toDtoConverter,
+	public ModelController(IModelService modelService, IBrandService brandService, ModelToDTOConverter toDtoConverter,
 			ModelFromDTOConverter fromDtoConverter) {
 		super();
 		this.modelService = modelService;
+		this.brandService = brandService;
 		this.toDtoConverter = toDtoConverter;
 		this.fromDtoConverter = fromDtoConverter;
 	}
@@ -78,9 +83,8 @@ public class ModelController extends AbstractController<ModelDTO> {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
-		final IModel newEntity = modelService.createEntity();
-		hashMap.put("formModel", toDtoConverter.apply(newEntity));
-
+		hashMap.put("formModel", new ModelDTO());
+		loadCommonFormModels(hashMap);
 		return new ModelAndView("model.edit", hashMap);
 	}
 
@@ -91,14 +95,14 @@ public class ModelController extends AbstractController<ModelDTO> {
 		} else {
 			final IModel entity = fromDtoConverter.apply(formModel);
 			modelService.save(entity);
-			return "redirect:/model";
+			return "redirect:/data/model";
 		}
 	}
 
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
 		modelService.delete(id);
-		return "redirect:/model";
+		return "redirect:/data/model";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -120,6 +124,15 @@ public class ModelController extends AbstractController<ModelDTO> {
 		hashMap.put("formModel", dto);
 
 		return new ModelAndView("model.edit", hashMap);
+	}
+
+	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+		final List<IBrand> brands = brandService.getAll();
+
+		final Map<Integer, String> brandsMap = brands.stream()
+				.collect(Collectors.toMap(IBrand::getId, IBrand::getName));
+		hashMap.put("brandsChoices", brandsMap);
+
 	}
 
 }

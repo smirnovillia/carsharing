@@ -20,6 +20,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.CarFilter;
 import com.itacademy.jd2.is.carsharing.dao.orm.impl.entity.Car;
 import com.itacademy.jd2.is.carsharing.dao.orm.impl.entity.Car_;
+import com.itacademy.jd2.is.carsharing.dao.orm.impl.entity.Color_;
 import com.itacademy.jd2.is.carsharing.dao.orm.impl.entity.Model_;
 
 @Repository
@@ -41,10 +42,10 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
         cq.select(from);
 
         from.fetch(Car_.model, JoinType.LEFT);
+        from.fetch(Car_.color, JoinType.LEFT);
 
         applyFilter(filter, cb, cq, from);
 
-        // set sort params
         if (filter.getSortColumn() != null) {
             final Path<?> expression = getSortPath(from, filter.getSortColumn());
             cq.orderBy(new OrderImpl(expression, filter.getSortOrder()));
@@ -72,10 +73,14 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
             return from.get(Car_.updated);
         case "id":
             return from.get(Car_.id);
-        case "vin":
-            return from.get(Car_.vin);
         case "model":
-            return from.get(Car_.model).get(Model_.name);
+            return from.join(Car_.model, JoinType.LEFT).get(Model_.name);
+        case "releaseDate":
+            return from.get(Car_.releaseDate);
+        case "color":
+            return from.join(Car_.color, JoinType.LEFT).get(Color_.name);
+        case "mileage":
+            return from.get(Car_.mileage);
         default:
             throw new UnsupportedOperationException(
                     "sorting is not supported by column:" + sortColumn);

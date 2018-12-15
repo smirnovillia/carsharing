@@ -1,6 +1,6 @@
-package com.itacademy.jd2.is.carsharing.dao.api.filter;
+package com.itacademy.jd2.is.carsharing.web.dto.search;
 
-public class CarFilter extends AbstractFilter{
+public class CarSearchDTO {
 
 	private String body;
 
@@ -51,4 +51,5 @@ public class CarFilter extends AbstractFilter{
 	public void setEngineCapacity(Integer engineCapacity) {
 		this.engineCapacity = engineCapacity;
 	}
+
 }

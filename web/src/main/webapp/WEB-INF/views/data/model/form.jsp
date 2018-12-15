@@ -14,11 +14,11 @@
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<form:select path="brandId" disabled="${readonly}">
+				<form:select path="brandName" disabled="${readonly}">
 					<form:options items="${brandChoices}" />
 				</form:select>
-				<form:errors path="brandId" cssClass="red-text" />
-				<label for="brandId">model</label>
+				<form:errors path="brandName" cssClass="red-text" />
+				<label for="brandName">brand</label>
 			</div>
 		</div>
 		<div class="row">

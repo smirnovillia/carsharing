@@ -1,15 +1,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<h4 class="header">Edit customer</h4>
+<h4 class="header">Profile</h4>
 <div class="row">
-	<form:form class="col s12" method="POST" action="${pagesCustomer}"
+	<form:form class="col s12" method="GET" action="${pagesUser}"
 		modelAttribute="formModel">
 		<form:input path="id" type="hidden" />
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="name" type="text" disabled="${readonly}" />
-				<form:errors path="name" cssClass="red-text" />
-				<label for="firstName">First name</label>
+				<form:input path="customer.firstName" type="text" disabled="${readonly}" />
+				<form:errors path="customer.firstName" cssClass="red-text" />
+				<label for="customer.firstName">First name</label>
 			</div>
 		</div>
 		<div class="row">
@@ -20,7 +20,7 @@
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesCustomer}">list<i
+				<a class="btn waves-effect waves-light right" href="${pagesUser}">list<i
 					class="material-icons right"></i>
 				</a>
 			</div>

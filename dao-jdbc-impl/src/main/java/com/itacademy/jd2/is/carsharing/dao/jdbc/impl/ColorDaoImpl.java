@@ -4,11 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IColorDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ColorFilter;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Color;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
@@ -75,6 +77,19 @@ public class ColorDaoImpl extends AbstractDaoImpl<IColor, Integer> implements IC
 	@Override
 	protected String getTableName() {
 		return "color";
+	}
+	
+	@Override
+	public List<IColor> find(final ColorFilter filter) {
+		final StringBuilder sqlTile = new StringBuilder("");
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(final ColorFilter filter) {
+		return executeCountQuery("");
 	}
 
 }

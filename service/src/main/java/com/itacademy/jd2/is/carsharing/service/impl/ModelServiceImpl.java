@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.itacademy.jd2.is.carsharing.dao.api.IBrandDao;
 import com.itacademy.jd2.is.carsharing.dao.api.IModelDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ModelFilter;
 import com.itacademy.jd2.is.carsharing.service.IModelService;
 
 @Service
@@ -65,5 +66,17 @@ public class ModelServiceImpl implements IModelService {
 	public IModel createEntity() {
 		return dao.createEntity();
 	}
+
+	@Override
+	public List<IModel> find(ModelFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(ModelFilter filter) {
+		return dao.getCount(filter);
+	}
+	
+	
 
 }

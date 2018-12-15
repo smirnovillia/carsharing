@@ -1,5 +1,7 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
+import java.util.Collection;
+
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Drive;
@@ -32,4 +34,5 @@ public interface IModification extends IBaseEntity {
 	int getTankCapacity();
 
 	void setTankCapacity(int tankCapacity);
+
 }

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.itacademy.jd2.is.carsharing.dao.api.IModelDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ModelFilter;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Brand;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Model;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
@@ -81,5 +83,19 @@ public class ModelDaoImpl extends AbstractDaoImpl<IModel, Integer> implements IM
 		entity.setBrand(brand);
 		return entity;
 	}
+
+	@Override
+	public List<IModel> find(ModelFilter filter) {
+		final StringBuilder sqlTile = new StringBuilder("");
+		appendSort(filter, sqlTile);
+		appendPaging(filter, sqlTile);
+		return executeFindQuery(sqlTile.toString());
+	}
+
+	@Override
+	public long getCount(ModelFilter filter) {
+		return executeCountQuery("");
+	}
+	
 
 }

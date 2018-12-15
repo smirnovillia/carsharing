@@ -6,13 +6,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,15 +24,15 @@ import com.itacademy.jd2.is.carsharing.service.ICarService;
 import com.itacademy.jd2.is.carsharing.service.IColorService;
 import com.itacademy.jd2.is.carsharing.service.IModelService;
 import com.itacademy.jd2.is.carsharing.service.IModificationService;
-import com.itacademy.jd2.is.carsharing.web.converter.CarFromDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.converter.CarToDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.dto.CarDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.search.CarSearchDTO;
 
 @Controller
-@RequestMapping(value = "/car")
-public class CarController extends AbstractController<CarDTO> {
+@RequestMapping(value = "/search")
+public class SearchController extends AbstractController<CarDTO> {
+
 	private static final String SEARCH_FORM_MODEL = "searchFormModel";
 	private static final String SEARCH_DTO = CarController.class.getSimpleName() + "_SEACH_DTO";
 
@@ -47,8 +44,6 @@ public class CarController extends AbstractController<CarDTO> {
 	private IModelService modelService;
 	@Autowired
 	private IColorService colorService;
-	@Autowired
-	private CarFromDTOConverter fromDtoConverter;
 	@Autowired
 	private CarToDTOConverter toDtoConverter;
 
@@ -97,57 +92,9 @@ public class CarController extends AbstractController<CarDTO> {
 		models.put("gridItems", dtos);
 		models.put(SEARCH_FORM_MODEL, searchDto);
 
+		loadCommonFormModels(models);
+
 		return new ModelAndView("car.list", models);
-	}
-
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView showForm() {
-		final Map<String, Object> hashMap = new HashMap<>();
-		final CarDTO dto = new CarDTO();
-		hashMap.put("formModel", dto);
-		loadCommonFormModels(hashMap);
-		return new ModelAndView("car.edit", hashMap);
-	}
-
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public Object save(@Valid @ModelAttribute("formModel") final CarDTO formModel, final BindingResult result) {
-		if (result.hasErrors()) {
-			final Map<String, Object> hashMap = new HashMap<>();
-			hashMap.put("formModel", formModel);
-			loadCommonFormModels(hashMap);
-			return new ModelAndView("car.edit", hashMap);
-		} else {
-			final ICar entity = fromDtoConverter.apply(formModel);
-			carService.save(entity);
-			return "redirect:/car";
-		}
-	}
-
-	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
-		carService.delete(id);
-		return "redirect:/car";
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final ICar dbModel = carService.get(id);
-		final CarDTO dto = toDtoConverter.apply(dbModel);
-		final Map<String, Object> hashMap = new HashMap<>();
-		hashMap.put("formModel", dto);
-		hashMap.put("readonly", true);
-		loadCommonFormModels(hashMap);
-		return new ModelAndView("car.edit", hashMap);
-	}
-
-	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final CarDTO dto = toDtoConverter.apply(carService.get(id));
-
-		final Map<String, Object> hashMap = new HashMap<>();
-		hashMap.put("formModel", dto);
-		loadCommonFormModels(hashMap);
-		return new ModelAndView("car.edit", hashMap);
 	}
 
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {

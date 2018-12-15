@@ -3,7 +3,6 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" scope="request" />
 <c:set var="pagesCar" value="${pageContext.request.contextPath}/car" scope="request" />
 <c:set var="pagesUser" value="${pageContext.request.contextPath}/user" scope="request" />
-<c:set var="pagesData" value="${pageContext.request.contextPath}/data" scope="request" />
 <c:set var="pagesSearch" value="${pageContext.request.contextPath}/search" scope="request" />
 <c:set var="pagesProfile" value="${pageContext.request.contextPath}/user/profile" scope="request" />
 <c:set var="pagesBrand" value="${pageContext.request.contextPath}/data/brand" scope="request" />

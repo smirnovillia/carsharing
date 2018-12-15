@@ -71,4 +71,11 @@ public class CarServiceImpl implements ICarService{
 	public List<ICar> find(CarFilter filter) {
 		return dao.find(filter);
 	}
+
+	@Override
+	public long getCount(CarFilter filter) {
+		return dao.getCount(filter);
+	}
+	
+	
 }

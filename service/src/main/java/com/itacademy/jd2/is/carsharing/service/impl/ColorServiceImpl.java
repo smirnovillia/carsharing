@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IColorDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ColorFilter;
 import com.itacademy.jd2.is.carsharing.service.IColorService;
 
 @Service
@@ -64,5 +65,17 @@ public class ColorServiceImpl implements IColorService{
 	public IColor createEntity() {
 		return dao.createEntity();
 	}
+
+	@Override
+	public List<IColor> find(ColorFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public long getCount(ColorFilter filter) {
+		return dao.getCount(filter);
+	}
+	
+	
 
 }

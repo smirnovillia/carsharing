@@ -13,7 +13,9 @@ public class ModelDTO {
 	@Size(min = 1, max = 50)
 	private String name;
 
-	private String brand;
+	private Integer brandId;
+
+	private String brandName;
 
 	private Date created;
 
@@ -35,12 +37,20 @@ public class ModelDTO {
 		this.name = name;
 	}
 
-	public String getBrand() {
-		return brand;
+	public Integer getBrandId() {
+		return brandId;
 	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setBrandId(Integer brandId) {
+		this.brandId = brandId;
+	}
+
+	public String getBrandName() {
+		return brandName;
+	}
+
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 
 	public Date getCreated() {

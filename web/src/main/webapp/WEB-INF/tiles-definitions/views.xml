@@ -15,14 +15,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
 	</definition>
 
-	<definition name="brand.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/brand/list.jsp" />
-	</definition>
-
-	<definition name="brand.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/brand/form.jsp" />
-	</definition>
-
 	<definition name="login" extends="DefaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
 	</definition>

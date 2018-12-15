@@ -33,19 +33,12 @@ import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
 @RequestMapping(value = "/data/brand")
 public class BrandController extends AbstractController<BrandDTO> {
 
-	private final IBrandService brandService;
-
-	private final BrandToDTOConverter toDtoConverter;
-	private final BrandFromDTOConverter fromDtoConverter;
-
 	@Autowired
-	private BrandController(IBrandService brandService, BrandToDTOConverter toDtoConverter,
-			BrandFromDTOConverter fromDtoConverter) {
-		super();
-		this.brandService = brandService;
-		this.toDtoConverter = toDtoConverter;
-		this.fromDtoConverter = fromDtoConverter;
-	}
+	private IBrandService brandService;
+	@Autowired
+	private BrandToDTOConverter toDtoConverter;
+	@Autowired
+	private BrandFromDTOConverter fromDtoConverter;
 
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
@@ -91,14 +84,14 @@ public class BrandController extends AbstractController<BrandDTO> {
 		} else {
 			final IBrand entity = fromDtoConverter.apply(formModel);
 			brandService.save(entity);
-			return "redirect:/brand";
+			return "redirect:/data/brand";
 		}
 	}
 
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
 		brandService.delete(id);
-		return "redirect:/brand";
+		return "redirect:/data/brand";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

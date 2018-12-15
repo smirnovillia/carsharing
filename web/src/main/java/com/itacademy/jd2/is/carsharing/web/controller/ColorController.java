@@ -21,31 +21,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
-import com.itacademy.jd2.is.carsharing.dao.api.filter.BrandFilter;
-import com.itacademy.jd2.is.carsharing.service.IBrandService;
-import com.itacademy.jd2.is.carsharing.web.converter.BrandFromDTOConverter;
-import com.itacademy.jd2.is.carsharing.web.converter.BrandToDTOConverter;
-import com.itacademy.jd2.is.carsharing.web.dto.BrandDTO;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ColorFilter;
+import com.itacademy.jd2.is.carsharing.service.IColorService;
+import com.itacademy.jd2.is.carsharing.web.converter.ColorFromDTOConverter;
+import com.itacademy.jd2.is.carsharing.web.converter.ColorToDTOConverter;
+import com.itacademy.jd2.is.carsharing.web.dto.ColorDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
 
 @Controller
-@RequestMapping(value = "/data/brand")
-public class ColorController extends AbstractController<BrandDTO> {
-
-	private final IBrandService brandService;
-
-	private final BrandToDTOConverter toDtoConverter;
-	private final BrandFromDTOConverter fromDtoConverter;
+@RequestMapping(value = "/data/color")
+public class ColorController extends AbstractController<ColorDTO> {
 
 	@Autowired
-	private ColorController(IBrandService brandService, BrandToDTOConverter toDtoConverter,
-			BrandFromDTOConverter fromDtoConverter) {
-		super();
-		this.brandService = brandService;
-		this.toDtoConverter = toDtoConverter;
-		this.fromDtoConverter = fromDtoConverter;
-	}
+	private IColorService colorService;
+	@Autowired
+	private ColorToDTOConverter toDtoConverter;
+	@Autowired
+	private ColorFromDTOConverter fromDtoConverter;
 
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
@@ -63,63 +56,63 @@ public class ColorController extends AbstractController<BrandDTO> {
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
-		final BrandFilter filter = new BrandFilter();
+		final ColorFilter filter = new ColorFilter();
 		prepareFilter(gridState, filter);
 
-		final List<IBrand> entities = brandService.find(filter);
-		final List<BrandDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
-		gridState.setTotalCount(brandService.getCount(filter));
+		final List<IColor> entities = colorService.find(filter);
+		final List<ColorDTO> dtos = entities.stream().map(toDtoConverter).collect(Collectors.toList());
+		gridState.setTotalCount(colorService.getCount(filter));
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
-		return new ModelAndView("brand.list", models);
+		return new ModelAndView("color.list", models);
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView showForm() {
 		final Map<String, Object> hashMap = new HashMap<>();
-		final IBrand newEntity = brandService.createEntity();
+		final IColor newEntity = colorService.createEntity();
 		hashMap.put("formModel", toDtoConverter.apply(newEntity));
 
-		return new ModelAndView("brand.edit", hashMap);
+		return new ModelAndView("color.edit", hashMap);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("formModel") final BrandDTO formModel, final BindingResult result) {
+	public String save(@Valid @ModelAttribute("formModel") final ColorDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
-			return "brand.edit";
+			return "color.edit";
 		} else {
-			final IBrand entity = fromDtoConverter.apply(formModel);
-			brandService.save(entity);
-			return "redirect:/brand";
+			final IColor entity = fromDtoConverter.apply(formModel);
+			colorService.save(entity);
+			return "redirect:/color";
 		}
 	}
 
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
-		brandService.delete(id);
-		return "redirect:/brand";
+		colorService.delete(id);
+		return "redirect:/color";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IBrand dbModel = brandService.get(id);
-		final BrandDTO dto = toDtoConverter.apply(dbModel);
+		final IColor dbModel = colorService.get(id);
+		final ColorDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 		hashMap.put("readonly", true);
 
-		return new ModelAndView("brand.edit", hashMap);
+		return new ModelAndView("color.edit", hashMap);
 	}
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final BrandDTO dto = toDtoConverter.apply(brandService.get(id));
+		final ColorDTO dto = toDtoConverter.apply(colorService.get(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
 
-		return new ModelAndView("brand.edit", hashMap);
+		return new ModelAndView("color.edit", hashMap);
 	}
 
 }

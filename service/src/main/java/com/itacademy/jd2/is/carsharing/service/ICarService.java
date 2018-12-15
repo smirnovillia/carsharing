@@ -25,5 +25,9 @@ public interface ICarService {
 	ICar createEntity();
 	
 	List<ICar> find(CarFilter filter);
+
+	long getCount(CarFilter filter);
+	
+	
 	
 }

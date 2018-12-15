@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ColorFilter;
 
 public interface IColorService {
 	IColor get(Integer id);
@@ -22,4 +23,8 @@ public interface IColorService {
 
 	@Transactional
 	IColor createEntity();
+
+	List<IColor> find(ColorFilter filter);
+
+	long getCount(ColorFilter filter);
 }
