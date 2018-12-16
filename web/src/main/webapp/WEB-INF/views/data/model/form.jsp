@@ -24,11 +24,11 @@
 		<div class="row">
 			<div class="input-field  col s12">
 				<form:select path="colorIds" disabled="${readonly}" multiple="true">
-					<option value="" disabled ${empty formModel.colorIds? "selected":""}>выберите поддерживаемые цвета</option>
+					<option value="" disabled ${empty formModel.colorIds? "selected":""}></option>
 					<form:options items="${colorChoices}" />
 				</form:select>
 				<form:errors path="colorIds" cssClass="red-text" />
-				<label for="colorIds" class="multiselect-label">поддерживаемые цвета</label>
+				<label for="colorIds" class="multiselect-label">Supported colors</label>
 			</div>
 		</div>
 		<div class="row">
