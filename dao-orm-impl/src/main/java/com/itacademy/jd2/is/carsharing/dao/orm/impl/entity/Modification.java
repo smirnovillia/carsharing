@@ -14,86 +14,86 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
 @Entity
 public class Modification extends BaseEntity implements IModification {
 
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Body body;
-	
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Fuel fuel;
-	
-	@Column
-	private int engineCapacity;
-	
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Drive drive;
-	
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Gearbox gearbox;
-	
-	@Column
-	private int tankCapacity;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Body body;
 
-	@Override
-	public Body getBody() {
-		return body;
-	}
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Fuel fuel;
 
-	@Override
-	public void setBody(Body body) {
-		this.body = body;
-	}
+    @Column
+    private Integer engineCapacity;
 
-	@Override
-	public Fuel getFuel() {
-		return fuel;
-	}
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Drive drive;
 
-	@Override
-	public void setFuel(Fuel fuel) {
-		this.fuel = fuel;
-	}
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Gearbox gearbox;
 
-	@Override
-	public int getEngineCapacity() {
-		return engineCapacity;
-	}
+    @Column
+    private Integer tankCapacity;
 
-	@Override
-	public void setEngineCapacity(int engineCapacity) {
-		this.engineCapacity = engineCapacity;
-	}
+    @Override
+    public Body getBody() {
+        return body;
+    }
 
-	@Override
-	public Drive getDrive() {
-		return drive;
-	}
+    @Override
+    public void setBody(Body body) {
+        this.body = body;
+    }
 
-	@Override
-	public void setDrive(Drive drive) {
-		this.drive = drive;
-	}
+    @Override
+    public Fuel getFuel() {
+        return fuel;
+    }
 
-	@Override
-	public Gearbox getGearbox() {
-		return gearbox;
-	}
+    @Override
+    public void setFuel(Fuel fuel) {
+        this.fuel = fuel;
+    }
 
-	@Override
-	public void setGearbox(Gearbox gearbox) {
-		this.gearbox = gearbox;
-	}
+    @Override
+    public Integer getEngineCapacity() {
+        return engineCapacity;
+    }
 
-	@Override
-	public int getTankCapacity() {
-		return tankCapacity;
-	}
+    @Override
+    public void setEngineCapacity(Integer engineCapacity) {
+        this.engineCapacity = engineCapacity;
+    }
 
-	@Override
-	public void setTankCapacity(int tankCapacity) {
-		this.tankCapacity = tankCapacity;
-	}
+    @Override
+    public Drive getDrive() {
+        return drive;
+    }
+
+    @Override
+    public void setDrive(Drive drive) {
+        this.drive = drive;
+    }
+
+    @Override
+    public Gearbox getGearbox() {
+        return gearbox;
+    }
+
+    @Override
+    public void setGearbox(Gearbox gearbox) {
+        this.gearbox = gearbox;
+    }
+
+    @Override
+    public Integer getTankCapacity() {
+        return tankCapacity;
+    }
+
+    @Override
+    public void setTankCapacity(Integer tankCapacity) {
+        this.tankCapacity = tankCapacity;
+    }
 
 }

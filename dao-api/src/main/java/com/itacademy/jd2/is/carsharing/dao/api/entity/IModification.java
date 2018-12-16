@@ -1,38 +1,35 @@
 package com.itacademy.jd2.is.carsharing.dao.api.entity;
 
-import java.util.Collection;
-
 import com.itacademy.jd2.is.carsharing.dao.api.base.IBaseEntity;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Drive;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Fuel;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
 
-
 public interface IModification extends IBaseEntity {
 
-	Body getBody();
-	
-	void setBody(Body body);
-	
-	Fuel getFuel();
+    Body getBody();
 
-	void setFuel(Fuel fuel);
+    void setBody(Body body);
 
-	int getEngineCapacity();
+    Fuel getFuel();
 
-	void setEngineCapacity(int engineCapacity);
+    void setFuel(Fuel fuel);
 
-	Drive getDrive();
+    Integer getEngineCapacity();
 
-	void setDrive(Drive drive);
+    void setEngineCapacity(Integer engineCapacity);
 
-	Gearbox getGearbox();
+    Drive getDrive();
 
-	void setGearbox(Gearbox gearbox);
+    void setDrive(Drive drive);
 
-	int getTankCapacity();
+    Gearbox getGearbox();
 
-	void setTankCapacity(int tankCapacity);
+    void setGearbox(Gearbox gearbox);
+
+    Integer getTankCapacity();
+
+    void setTankCapacity(Integer tankCapacity);
 
 }
