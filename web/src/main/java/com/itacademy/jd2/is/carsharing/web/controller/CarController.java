@@ -152,6 +152,8 @@ public class CarController extends AbstractController<CarDTO> {
 
 	private void loadCommonFormModels(final Map<String, Object> hashMap) {
 
+		final Map<Integer, Object> conditionMap = carService.getAll().stream()
+				.collect(Collectors.toMap(ICar::getId, ICar::getCondition));
 		final Map<Integer, String> modelMap = modelService.getAll().stream()
 				.collect(Collectors.toMap(IModel::getId, IModel::getName));
 		final Map<Integer, String> colorMap = colorService.getAll().stream()
@@ -165,6 +167,7 @@ public class CarController extends AbstractController<CarDTO> {
 		final Map<Integer, Object> gearboxMap = modificationService.getAll().stream()
 				.collect(Collectors.toMap(IModification::getId, IModification::getGearbox));
 
+		hashMap.put("conditionChoices", conditionMap);
 		hashMap.put("modelChoices", modelMap);
 		hashMap.put("colorChoices", colorMap);
 		hashMap.put("bodyChoices", bodyMap);

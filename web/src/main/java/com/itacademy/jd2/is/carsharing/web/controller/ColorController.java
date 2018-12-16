@@ -84,14 +84,14 @@ public class ColorController extends AbstractController<ColorDTO> {
 		} else {
 			final IColor entity = fromDtoConverter.apply(formModel);
 			colorService.save(entity);
-			return "redirect:/color";
+			return "redirect:/data/color";
 		}
 	}
 
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
 	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
 		colorService.delete(id);
-		return "redirect:/color";
+		return "redirect:/data/color";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.ICarDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.CarFilter;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
 
@@ -38,6 +39,7 @@ public class CarServiceImpl implements ICarService{
 		if (entity.getId() == null) {
 			LOGGER.info("new car created" + entity);
 			entity.setCreated(modifedOn);
+			entity.setCondition(Condition.AVAILABLE);
 			dao.insert(entity);
 		} else {
 			LOGGER.info("car" + entity);

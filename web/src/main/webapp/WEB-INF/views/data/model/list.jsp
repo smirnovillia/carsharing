@@ -10,7 +10,7 @@
         <tr>
             <th><mytaglib:sort-link pageUrl="${pagesModel}" column="id">id</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesModel}" column="name">name</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesModel}" column="brand">brand</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesModel}" column="brandName">brand</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesModel}" column="created">created</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesModel}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>
@@ -19,7 +19,7 @@
             <tr>
                 <td><c:out value="${model.id}" /></td>
                 <td><c:out value="${model.name}" /></td>
-                <td><c:out value="${model.brand}" /></td>
+                <td><c:out value="${model.brandName}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${model.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${model.updated}" /></td>
                 <td class="right"><a class="btn-floating" href="${pagesModel}/${model.id}"><i class="material-icons">info</i></a> <a

@@ -11,7 +11,7 @@
             <th><mytaglib:sort-link pageUrl="${pagesColor}" column="id">id</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesColor}" column="name">name</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesColor}" column="created">created</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesCOlor}" column="updated">updated</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesColor}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>
         </tr>
         <c:forEach var="color" items="${gridItems}" varStatus="loopCounter">

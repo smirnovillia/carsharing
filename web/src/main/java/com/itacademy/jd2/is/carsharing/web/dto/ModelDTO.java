@@ -13,6 +13,7 @@ public class ModelDTO {
 	@Size(min = 1, max = 50)
 	private String name;
 
+	@NotNull
 	private Integer brandId;
 
 	private String brandName;

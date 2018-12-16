@@ -9,7 +9,11 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Drive;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Fuel;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
 import com.itacademy.jd2.is.carsharing.service.IColorService;
 import com.itacademy.jd2.is.carsharing.service.IModelService;
@@ -38,7 +42,13 @@ public class CarFromDTOConverter implements Function<CarDTO, ICar> {
 		entity.setModel(model);
 
 		final IModification modification = modificationService.createEntity();
-		modification.setId(dto.getModificationId());
+		modification.setId(dto.getModification().getId());
+		modification.setBody(Body.valueOf(dto.getModification().getBody()));
+		modification.setFuel(Fuel.valueOf(dto.getModification().getFuel()));
+		modification.setEngineCapacity(dto.getModification().getEngineCapacity());
+		modification.setDrive(Drive.valueOf(dto.getModification().getDrive()));
+		modification.setGearbox(Gearbox.valueOf(dto.getModification().getGearbox()));
+		modification.setTankCapacity(dto.getModification().getTankCapacity());
 		entity.setModification(modification);
 
 		entity.setReleaseDate(dto.getReleaseDate());
