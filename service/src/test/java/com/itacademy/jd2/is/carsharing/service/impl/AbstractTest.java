@@ -152,7 +152,7 @@ public class AbstractTest {
 		final IModification modification = saveNewModification();
 		final IColor color = saveNewColor();
 		final ICar entity = carService.createEntity();
-		entity.setModel(model);
+		//entity.setModel(model);
 		entity.setModification(modification);
 		entity.setReleaseDate(getRandomInt());
 		entity.setVin("vin - " + getRandomPrefix());

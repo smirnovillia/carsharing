@@ -27,4 +27,6 @@ public interface IModelService {
 	List<IModel> find(ModelFilter filter);
 
 	long getCount(ModelFilter filter);
+
+	IModel getFullInfo(Integer id);
 }

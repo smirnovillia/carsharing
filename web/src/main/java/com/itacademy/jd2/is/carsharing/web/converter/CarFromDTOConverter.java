@@ -37,18 +37,9 @@ public class CarFromDTOConverter implements Function<CarDTO, ICar> {
 		final ICar entity = carService.createEntity();
 		entity.setId(dto.getId());
 
-		final IModel model = modelService.createEntity();
-		model.setId(dto.getModelId());
-		entity.setModel(model);
-
+	
 		final IModification modification = modificationService.createEntity();
-		modification.setId(dto.getModification().getId());
-		modification.setBody(Body.valueOf(dto.getModification().getBody()));
-		modification.setFuel(Fuel.valueOf(dto.getModification().getFuel()));
-		modification.setEngineCapacity(dto.getModification().getEngineCapacity());
-		modification.setDrive(Drive.valueOf(dto.getModification().getDrive()));
-		modification.setGearbox(Gearbox.valueOf(dto.getModification().getGearbox()));
-		modification.setTankCapacity(dto.getModification().getTankCapacity());
+		modification.setId(dto.getModificationId());
 		entity.setModification(modification);
 
 		entity.setReleaseDate(dto.getReleaseDate());

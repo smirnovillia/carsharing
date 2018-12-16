@@ -76,6 +76,11 @@ public class ModelServiceImpl implements IModelService {
 	public long getCount(ModelFilter filter) {
 		return dao.getCount(filter);
 	}
+
+	@Override
+	public IModel getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
 	
 	
 

@@ -22,7 +22,7 @@
                 <td><c:out value="${model.brandName}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${model.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${model.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesModel}/${model.id}"><i class="material-icons">info</i></a> <a
+                <td class="right"><a class="btn-floating" href="${pagesCar}/add?modelId=${model.id}"><i class="material-icons">add</i></a> <a class="btn-floating" href="${pagesModification}?modelId=${model.id}"><i class="material-icons">build</i></a> <a class="btn-floating" href="${pagesModel}/${model.id}"><i class="material-icons">info</i></a> <a
                     class="btn-floating" href="${pagesModel}/${model.id}/edit"><i class="material-icons">edit</i></a> <a
                     class="btn-floating red" href="${pagesModel}/${model.id}/delete"><i class="material-icons">delete</i></a></td>
             </tr>

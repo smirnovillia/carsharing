@@ -5,9 +5,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
 
 public interface ICar extends IBaseEntity {
 
-	IModel getModel();
 
-	void setModel(IModel model);
 
 	IModification getModification();
 

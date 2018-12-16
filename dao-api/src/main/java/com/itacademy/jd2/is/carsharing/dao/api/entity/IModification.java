@@ -8,28 +8,32 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
 
 public interface IModification extends IBaseEntity {
 
-    Body getBody();
+	IModel getModel();
 
-    void setBody(Body body);
+	void setModel(IModel model);
 
-    Fuel getFuel();
+	Body getBody();
 
-    void setFuel(Fuel fuel);
+	void setBody(Body body);
 
-    Integer getEngineCapacity();
+	Fuel getFuel();
 
-    void setEngineCapacity(Integer engineCapacity);
+	void setFuel(Fuel fuel);
 
-    Drive getDrive();
+	Integer getEngineCapacity();
 
-    void setDrive(Drive drive);
+	void setEngineCapacity(Integer engineCapacity);
 
-    Gearbox getGearbox();
+	Drive getDrive();
 
-    void setGearbox(Gearbox gearbox);
+	void setDrive(Drive drive);
 
-    Integer getTankCapacity();
+	Gearbox getGearbox();
 
-    void setTankCapacity(Integer tankCapacity);
+	void setGearbox(Gearbox gearbox);
+
+	Integer getTankCapacity();
+
+	void setTankCapacity(Integer tankCapacity);
 
 }

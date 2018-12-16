@@ -15,6 +15,7 @@ public class ModificationToDTOConverter implements Function<IModification, Modif
 		final ModificationDTO dto = new ModificationDTO();
 
 		dto.setId(entity.getId());
+		dto.setModelId(entity.getModel().getId());
 		dto.setBody(entity.getBody().toString());
 		dto.setFuel(entity.getFuel().toString());
 		dto.setEngineCapacity(entity.getEngineCapacity());

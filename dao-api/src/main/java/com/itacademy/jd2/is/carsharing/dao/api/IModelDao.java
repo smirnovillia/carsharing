@@ -11,4 +11,6 @@ public interface IModelDao extends IBaseDao<IModel, Integer> {
 
 	long getCount(ModelFilter filter);
 
+	IModel getFullInfo(Integer id);
+
 }

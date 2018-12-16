@@ -25,6 +25,7 @@
 			<tr>
 				<td><c:out value="${car.id}" /></td>
 				<td><c:out value="${car.modelName}" /></td>
+				<td><c:out value="${car.releaseDate}" /></td>
 				<td><c:out value="${car.vin}" /></td>
 				<td><c:out value="${car.colorName}" /></td>
 				<td><c:out value="${car.mileage}" /></td>
@@ -41,5 +42,3 @@
 	</tbody>
 </table>
 <jspFragments:paging />
-<a class="waves-effect waves-light btn right" href="${pagesCar}/add"><i
-	class="material-icons">add</i></a>

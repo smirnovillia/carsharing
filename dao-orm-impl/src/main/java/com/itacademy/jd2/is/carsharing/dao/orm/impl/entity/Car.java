@@ -16,9 +16,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
 @Entity
 public class Car extends BaseEntity implements ICar {
 
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Model.class)
-	private IModel model;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Modification.class)
 	private IModification modification;
 	
@@ -38,15 +36,6 @@ public class Car extends BaseEntity implements ICar {
 	@Enumerated(EnumType.STRING)
 	private Condition condition;
 
-	@Override
-	public IModel getModel() {
-		return model;
-	}
-
-	@Override
-	public void setModel(IModel model) {
-		this.model = model;
-	}
 
 	@Override
 	public IModification getModification() {
@@ -108,10 +97,5 @@ public class Car extends BaseEntity implements ICar {
 		this.condition = condition;
 	}
 
-	@Override
-	public String toString() {
-		return "Car [model=" + model + ", modification=" + modification + ", releaseDate=" + releaseDate + ", vin="
-				+ vin + ", color=" + color + ", mileage=" + mileage + ", condition=" + condition + "]";
-	}
 	
 }

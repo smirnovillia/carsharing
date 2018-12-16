@@ -9,7 +9,6 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
 import com.itacademy.jd2.is.carsharing.web.dto.CarDTO;
-import com.itacademy.jd2.is.carsharing.web.dto.ModificationDTO;
 
 @Component
 public class CarToDTOConverter implements Function<ICar, CarDTO> {
@@ -19,21 +18,12 @@ public class CarToDTOConverter implements Function<ICar, CarDTO> {
 		final CarDTO dto = new CarDTO();
 		dto.setId(entity.getId());
 
-		final IModel model = entity.getModel();
+		IModification modification = entity.getModification();
+		dto.setModificationId(modification.getId());
+		IModel model = modification.getModel();
 		dto.setModelId(model.getId());
 		dto.setModelName(model.getName());
-
-		final IModification modification = entity.getModification();
-		if (modification != null) {
-			final ModificationDTO modificationDTO = dto.getModification();
-			modificationDTO.setId(modification.getId());
-			modificationDTO.setBody(modification.getBody().toString());
-			modificationDTO.setFuel(modification.getFuel().toString());
-			modificationDTO.setEngineCapacity(modification.getEngineCapacity());
-			modificationDTO.setDrive(modification.getDrive().toString());
-			modificationDTO.setGearbox(modification.getGearbox().toString());
-			modificationDTO.setTankCapacity(modification.getTankCapacity());
-		}
+		
 
 		dto.setReleaseDate(entity.getReleaseDate());
 		dto.setVin(entity.getVin());

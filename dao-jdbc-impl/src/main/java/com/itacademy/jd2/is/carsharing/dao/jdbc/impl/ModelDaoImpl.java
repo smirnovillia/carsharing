@@ -96,6 +96,11 @@ public class ModelDaoImpl extends AbstractDaoImpl<IModel, Integer> implements IM
 	public long getCount(ModelFilter filter) {
 		return executeCountQuery("");
 	}
+
+	@Override
+	public IModel getFullInfo(Integer id) {
+		throw new RuntimeException("not implemented");
+	}
 	
 
 }

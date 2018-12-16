@@ -11,4 +11,6 @@ public interface ICarDao extends IBaseDao<ICar, Integer> {
 
 	long getCount(CarFilter filter);
 
+	ICar getFullInfo(Integer id);
+
 }

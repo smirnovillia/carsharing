@@ -22,6 +22,16 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="input-field  col s12">
+				<form:select path="colorIds" disabled="${readonly}" multiple="true">
+					<option value="" disabled ${empty formModel.colorIds? "selected":""}>выберите поддерживаемые цвета</option>
+					<form:options items="${colorChoices}" />
+				</form:select>
+				<form:errors path="colorIds" cssClass="red-text" />
+				<label for="colorIds" class="multiselect-label">поддерживаемые цвета</label>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col s6"></div>
 			<div class="col s3">
 				<c:if test="${!readonly}">

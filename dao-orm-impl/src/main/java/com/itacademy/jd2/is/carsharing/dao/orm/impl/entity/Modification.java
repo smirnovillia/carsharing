@@ -4,7 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Drive;
@@ -14,6 +17,10 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
 @Entity
 public class Modification extends BaseEntity implements IModification {
 
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Model.class)
+	private IModel model;
+	
+	
     @Column
     @Enumerated(EnumType.STRING)
     private Body body;
@@ -95,5 +102,20 @@ public class Modification extends BaseEntity implements IModification {
     public void setTankCapacity(Integer tankCapacity) {
         this.tankCapacity = tankCapacity;
     }
+
+	public IModel getModel() {
+		return model;
+	}
+
+	public void setModel(IModel model) {
+		this.model = model;
+	}
+
+	@Override
+	public String toString() {
+		return "Modification [fuel=" + fuel + ", engineCapacity=" + engineCapacity + ", drive=" + drive + "]";
+	}
+    
+    
 
 }

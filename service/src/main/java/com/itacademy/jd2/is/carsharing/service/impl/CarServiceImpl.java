@@ -15,11 +15,10 @@ import com.itacademy.jd2.is.carsharing.dao.api.filter.CarFilter;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
 
 @Service
-public class CarServiceImpl implements ICarService{
+public class CarServiceImpl implements ICarService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CarServiceImpl.class);
 	private ICarDao dao;
-	
-	
+
 	@Autowired
 	public CarServiceImpl(ICarDao dao) {
 		super();
@@ -28,7 +27,7 @@ public class CarServiceImpl implements ICarService{
 
 	@Override
 	public ICar createEntity() {
-		
+
 		return dao.createEntity();
 	}
 
@@ -68,7 +67,7 @@ public class CarServiceImpl implements ICarService{
 		final List<ICar> all = dao.selectAll();
 		return all;
 	}
-	
+
 	@Override
 	public List<ICar> find(CarFilter filter) {
 		return dao.find(filter);
@@ -78,6 +77,10 @@ public class CarServiceImpl implements ICarService{
 	public long getCount(CarFilter filter) {
 		return dao.getCount(filter);
 	}
-	
-	
+
+	@Override
+	public ICar getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
+
 }

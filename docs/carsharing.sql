@@ -126,7 +126,7 @@ ALTER SEQUENCE public.brand_id_seq OWNED BY public.brand.id;
 
 CREATE TABLE public.car (
     id integer NOT NULL,
-    model_id integer NOT NULL,
+   
     modification_id integer NOT NULL,
     release_date integer NOT NULL,
     vin character varying(50) NOT NULL,
@@ -398,6 +398,7 @@ ALTER SEQUENCE public.model_id_seq OWNED BY public.model.id;
 
 CREATE TABLE public.modification (
     id integer NOT NULL,
+    model_id integer NOT NULL,
     body character varying(50) NOT NULL,
     fuel character varying(50) NOT NULL,
     engine_capacity integer NOT NULL,
@@ -1174,7 +1175,7 @@ ALTER TABLE ONLY public.black_list
 -- Name: car car_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.car
+ALTER TABLE ONLY public.modification
     ADD CONSTRAINT car_fk0 FOREIGN KEY (model_id) REFERENCES public.model(id);
 
 

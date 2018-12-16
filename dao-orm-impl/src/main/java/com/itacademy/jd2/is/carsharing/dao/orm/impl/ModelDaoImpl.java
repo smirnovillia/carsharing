@@ -93,4 +93,22 @@ public class ModelDaoImpl extends AbstractDaoImpl<IModel, Integer> implements IM
 		}
 	}
 
+	@Override
+	public IModel getFullInfo(Integer id) {
+		final EntityManager em = getEntityManager();
+		final CriteriaBuilder cb = em.getCriteriaBuilder();
+		final CriteriaQuery<IModel> cq = cb.createQuery(IModel.class);
+		final Root<Model> from = cq.from(Model.class);
+		cq.select(from);
+
+		from.fetch(Model_.brand, JoinType.LEFT);
+		
+		from.fetch(Model_.colors, JoinType.LEFT);
+		cq.distinct(true);
+		
+		cq.where(cb.equal(from.get(Model_.id), id));
+
+		return em.createQuery(cq).getSingleResult();
+	}
+
 }

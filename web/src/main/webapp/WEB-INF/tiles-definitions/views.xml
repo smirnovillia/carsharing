@@ -4,71 +4,103 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-	<definition name="DefaultTemplate" template="/WEB-INF/views/main-template.jsp">
+	<definition name="DefaultTemplate"
+		template="/WEB-INF/views/main-template.jsp">
 		<put-attribute name="title" value="Каршерный" />
-		<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/footer.jsp" />
 	</definition>
 
 	<definition name="index" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/index.jsp" />
 	</definition>
 
 	<definition name="login" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/login.jsp" />
 	</definition>
 
 	<definition name="car.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/car/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/car/list.jsp" />
 	</definition>
 
 	<definition name="car.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/car/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/car/form.jsp" />
 	</definition>
 
 	<definition name="registration" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/registration.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/registration.jsp" />
 	</definition>
 
 	<definition name="user.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/user/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/user/list.jsp" />
 	</definition>
 
 	<definition name="user.profile" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/user/profile.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/user/profile.jsp" />
 	</definition>
 
 	<definition name="search" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/search.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/search.jsp" />
 	</definition>
 
 	<definition name="data" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/data.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/data.jsp" />
 	</definition>
 
 	<definition name="brand.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/data/brand/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/brand/list.jsp" />
 	</definition>
-	
+
 	<definition name="brand.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/data/brand/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/brand/form.jsp" />
 	</definition>
 
 	<definition name="model.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/data/model/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/model/list.jsp" />
 	</definition>
-	
+
 	<definition name="model.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/data/model/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/model/form.jsp" />
 	</definition>
-	
+
 	<definition name="color.list" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/data/color/list.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/color/list.jsp" />
 	</definition>
-	
+
 	<definition name="color.edit" extends="DefaultTemplate">
-		<put-attribute name="body" value="/WEB-INF/views/data/color/form.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/color/form.jsp" />
 	</definition>
+
+	<definition name="modification.list"
+		extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/modification/list.jsp" />
+	</definition>
+
+
+	<definition name="modification.edit"
+		extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/modification/form.jsp" />
+	</definition>
+
 
 </tiles-definitions>

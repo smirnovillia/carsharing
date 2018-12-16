@@ -23,7 +23,7 @@ public class CarServiceTest extends AbstractTest{
 		assertNotNull(entityFromDb.getModification());
 //		assertEquals(entity.getModification().getId(), entityFromDb.getModification().getId());
 		assertNotNull(entityFromDb.getId());
-		assertNotNull(entityFromDb.getModel());
+		//assertNotNull(entityFromDb.getModel());
 //		assertEquals(entity.getModel().getId(), entityFromDb.getModel().getId());
 		assertNotNull(entityFromDb.getReleaseDate());
 		assertNotNull(entityFromDb.getVin());
@@ -51,7 +51,7 @@ public class CarServiceTest extends AbstractTest{
 		assertNotNull(entityFromDb);
 //		assertEquals(newModification.getId(), entityFromDb.getModification().getId());
 		assertNotNull(entityFromDb.getId());
-		assertNotNull(entityFromDb.getModel());
+		//assertNotNull(entityFromDb.getModel());
 		assertNotNull(entityFromDb.getReleaseDate());
 		assertNotNull(entityFromDb.getVin());
 		assertNotNull(entityFromDb.getColor());
@@ -76,7 +76,7 @@ public class CarServiceTest extends AbstractTest{
 
 		for (final ICar entityFromDb : allEntities) {
 			assertNotNull(entityFromDb.getId());
-			assertNotNull(entityFromDb.getModel());
+			//assertNotNull(entityFromDb.getModel());
 			assertNotNull(entityFromDb.getModification());
 			assertNotNull(entityFromDb.getReleaseDate());
 			assertNotNull(entityFromDb.getVin());

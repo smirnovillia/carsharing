@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.enums.Body;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Drive;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Fuel;
 import com.itacademy.jd2.is.carsharing.dao.api.enums.Gearbox;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ModificationFilter;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Modification;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
 
@@ -97,6 +99,11 @@ public class ModificationDaoImpl extends AbstractDaoImpl<IModification, Integer>
 	@Override
 	protected String getTableName() {
 		return "modification";
+	}
+
+	@Override
+	public List<IModification> find(ModificationFilter filter) {
+		throw new RuntimeException("not implemented");
 	}
 
 }

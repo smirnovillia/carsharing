@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IBrand;
+import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.ModelFilter;
 import com.itacademy.jd2.is.carsharing.service.IBrandService;
+import com.itacademy.jd2.is.carsharing.service.IColorService;
 import com.itacademy.jd2.is.carsharing.service.IModelService;
 import com.itacademy.jd2.is.carsharing.web.converter.ModelFromDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.converter.ModelToDTOConverter;
@@ -39,6 +41,8 @@ public class ModelController extends AbstractController<ModelDTO> {
 	private IModelService modelService;
 	@Autowired
 	private IBrandService brandService;
+	@Autowired
+	private IColorService colorService;
 	@Autowired
 	private ModelToDTOConverter toDtoConverter;
 	@Autowired
@@ -102,7 +106,7 @@ public class ModelController extends AbstractController<ModelDTO> {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IModel dbModel = modelService.get(id);
+		final IModel dbModel = modelService.getFullInfo(id);
 		final ModelDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -113,7 +117,7 @@ public class ModelController extends AbstractController<ModelDTO> {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		final ModelDTO dto = toDtoConverter.apply(modelService.get(id));
+		final ModelDTO dto = toDtoConverter.apply(modelService.getFullInfo(id));
 
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
@@ -127,6 +131,10 @@ public class ModelController extends AbstractController<ModelDTO> {
 		final Map<Integer, String> brandsMap = brands.stream()
 				.collect(Collectors.toMap(IBrand::getId, IBrand::getName));
 		hashMap.put("brandsChoices", brandsMap);
+
+		final Map<Integer, String> colorsMap = colorService.getAll().stream()
+				.collect(Collectors.toMap(IColor::getId, IColor::getName));
+		hashMap.put("colorChoices", colorsMap);
 
 	}
 

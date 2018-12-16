@@ -2,13 +2,20 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class CarDTO {
 
 	private Integer id;
+
+	@NotNull
+	private Integer modificationId;
+	@NotNull
 	private Integer modelId;
 	private String modelName;
 	private int releaseDate;
 	private String vin;
+	@NotNull
 	private Integer colorId;
 	private String colorName;
 	private double mileage;
@@ -17,22 +24,12 @@ public class CarDTO {
 	private Date created;
 	private Date updated;
 
-	private ModificationDTO modification = new ModificationDTO();
-
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getModelId() {
-		return modelId;
-	}
-
-	public void setModelId(Integer modelId) {
-		this.modelId = modelId;
 	}
 
 	public String getModelName() {
@@ -107,12 +104,22 @@ public class CarDTO {
 		this.updated = updated;
 	}
 
-	public void setModification(ModificationDTO modification) {
-		this.modification = modification;
+	public Integer getModificationId() {
+		return modificationId;
 	}
 
-	public ModificationDTO getModification() {
-		return modification;
+	public void setModificationId(Integer modificationId) {
+		this.modificationId = modificationId;
 	}
+
+	public Integer getModelId() {
+		return modelId;
+	}
+
+	public void setModelId(Integer modelId) {
+		this.modelId = modelId;
+	}
+	
+	
 
 }

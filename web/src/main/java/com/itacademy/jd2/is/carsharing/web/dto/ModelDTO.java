@@ -1,6 +1,7 @@
 package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -9,6 +10,7 @@ public class ModelDTO {
 
 	private Integer id;
 
+	private Set<Integer> colorIds;
 	@NotNull(message = "is requered")
 	@Size(min = 1, max = 50)
 	private String name;
@@ -21,6 +23,14 @@ public class ModelDTO {
 	private Date created;
 
 	private Date updated;
+
+	public Set<Integer> getColorIds() {
+		return colorIds;
+	}
+
+	public void setColorIds(Set<Integer> colorIds) {
+		this.colorIds = colorIds;
+	}
 
 	public Integer getId() {
 		return id;

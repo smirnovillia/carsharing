@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IModificationDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ModificationFilter;
 import com.itacademy.jd2.is.carsharing.service.IModificationService;
 
 @Service
@@ -63,6 +64,11 @@ public class ModificationServiceImpl implements IModificationService {
 	@Override
 	public IModification createEntity() {
 		return dao.createEntity();
+	}
+
+	@Override
+	public List<IModification> find(ModificationFilter filter) {
+		return dao.find(filter);
 	}
 
 }

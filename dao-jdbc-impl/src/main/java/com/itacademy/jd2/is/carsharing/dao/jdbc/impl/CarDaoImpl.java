@@ -38,7 +38,6 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 			
 			@Override
 			public ICar doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setInt(1, entity.getModel().getId());
 				pStmt.setInt(2, entity.getModification().getId());
 				pStmt.setInt(3, entity.getReleaseDate());
 				pStmt.setString(4, entity.getVin());
@@ -71,7 +70,6 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 			
 			@Override
 			public ICar doWithPreparedStatement(final PreparedStatement pStmt) throws SQLException {
-				pStmt.setInt(1, entity.getModel().getId());
 				pStmt.setInt(2, entity.getModification().getId());
 				pStmt.setInt(3, entity.getReleaseDate());
 				pStmt.setString(4, entity.getVin());
@@ -103,10 +101,6 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 		entity.setCreated(resultSet.getTimestamp("created"));
 		entity.setUpdated(resultSet.getTimestamp("updated"));
 		
-		final IModel model = new Model();
-		model.setId((Integer) resultSet.getObject("model_id"));
-		entity.setModel(model);
-		
 		final IModification modification = new Modification();
 		modification.setId((Integer) resultSet.getObject("modification_id"));
 		entity.setModification(modification);
@@ -129,6 +123,11 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 	@Override
 	public long getCount(CarFilter filter) {
 		return executeCountQuery("");
+	}
+
+	@Override
+	public ICar getFullInfo(Integer id) {
+		throw new RuntimeException("not implemented");
 	}
 
 }
