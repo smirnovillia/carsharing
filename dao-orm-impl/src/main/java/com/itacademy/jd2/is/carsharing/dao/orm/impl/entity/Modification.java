@@ -113,8 +113,10 @@ public class Modification extends BaseEntity implements IModification {
 
 	@Override
 	public String toString() {
-		return "Modification [fuel=" + fuel + ", engineCapacity=" + engineCapacity + ", drive=" + drive + "]";
+		return "Body - " + body + "| Fuel - " + fuel + "| Drive - " + drive + "| Gearbox - " + gearbox;
 	}
+
+	
     
     
 

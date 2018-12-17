@@ -18,9 +18,10 @@
 		<intercept-url pattern="/index.jsp" access="permitAll" />
 		<intercept-url pattern="/login.jsp" access="permitAll" />
 		<intercept-url pattern="/registration.jsp" access="permitAll" />
-		<intercept-url pattern="/car/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/user/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/data/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/car/*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/user/*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/data/*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/search/*" access="hasRole('ROLE_CUSTOMER')" />
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login?error"
 			username-parameter="username" password-parameter="password" />

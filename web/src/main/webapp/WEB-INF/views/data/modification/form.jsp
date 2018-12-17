@@ -31,7 +31,7 @@
 					<form:options items="${driveChoices}" />
 				</form:select>
 				<form:errors path="drive" cssClass="red-text" />
-				<label for="body">drive</label>
+				<label for="drive">drive</label>
 			</div>
 		</div>
 		<div class="row">

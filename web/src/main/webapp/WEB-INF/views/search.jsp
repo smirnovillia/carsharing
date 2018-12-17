@@ -56,20 +56,19 @@
 <table class="bordered highlight">
 	<tbody>
 			<tr>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="id">id</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="model">model</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}"
+			<th><mytaglib:sort-link pageUrl="${pagesSearch}" column="id">id</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesSearch}" column="modelName">model</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesSearch}"
 					column="releaseDate">release date</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="color">color</mytaglib:sort-link></th>
-			<th><mytaglib:sort-link pageUrl="${pagesCar}" column="mileage">mileage</mytaglib:sort-link></th>
+			<th><mytaglib:sort-link pageUrl="${pagesSearch}" column="color">color</mytaglib:sort-link></th>
 			<th></th>
 		</tr>
 		<c:forEach var="car" items="${gridItems}" varStatus="loopCounter">
 			<tr>
 				<td><c:out value="${car.id}" /></td>
 				<td><c:out value="${car.modelName}" /></td>
+				<td><c:out value="${car.releaseDate}" /></td>
 				<td><c:out value="${car.colorName}" /></td>
-				<td><c:out value="${car.mileage}" /></td>
 			</tr>
 		</c:forEach>
 	</tbody>

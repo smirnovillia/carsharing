@@ -1,11 +1,8 @@
 package com.itacademy.jd2.is.carsharing.web.controller;
 
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
-import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
-import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.CarFilter;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.ModificationFilter;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
@@ -83,10 +78,6 @@ public class SearchController extends AbstractController<CarDTO> {
 			filter.setGearbox(searchDto.getGearbox());
 		}
 
-		if (searchDto.getEngineCapacity() != null) {
-			filter.setEngineCapacity(searchDto.getEngineCapacity());
-		}
-
 		prepareFilter(gridState, filter);
 
 		final List<ICar> entities = carService.find(filter);
@@ -97,15 +88,13 @@ public class SearchController extends AbstractController<CarDTO> {
 		models.put("gridItems", dtos);
 		models.put(SEARCH_FORM_MODEL, searchDto);
 
-//		loadCommonFormModels(models);
-
-		return new ModelAndView("car.list", models);
+		return new ModelAndView("search", models);
 	}
 
 	private void loadCommonFormModels(final Map<String, Object> hashMap, Integer modelId) {
 
 		if (modelId != null) {
-			ModificationFilter filter = new ModificationFilter();
+			final ModificationFilter filter = new ModificationFilter();
 			filter.setModelId(modelId);
 			final Map<Integer, String> modificationsMap = modificationService.find(filter).stream()
 					.collect(Collectors.toMap(IModification::getId, IModification::toString));
@@ -115,13 +104,6 @@ public class SearchController extends AbstractController<CarDTO> {
 					.collect(Collectors.toMap(IColor::getId, IColor::getName));
 			hashMap.put("colorChoices", colorMap);
 		}
-
-		Map<Object, Object> yearsMap = new TreeMap<>();
-		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-		for (int i = currentYear - 20; i < currentYear; i++) {
-			yearsMap.put(i, i);
-		}
-		hashMap.put("releaseDateChoices", yearsMap);
 
 	}
 

@@ -13,14 +13,32 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col s6"></div>
-			<div class="col s3">
+			<div class="input-field col s12">
+				<form:input path="customer.lastName" type="text" disabled="${readonly}" />
+				<form:errors path="customer.lastName" cssClass="red-text" />
+				<label for="customer.lastName">First name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				<form:input path="customer.birthday" type="date" disabled="${readonly}" />
+				<form:errors path="customer.birthday" cssClass="red-text" />
+				<label for="customer.birthday">First name</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+					<a> href = </a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 center">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">save</button>
+					<button class="btn waves-effect waves-light " type="submit">save</button>
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesUser}">list<i
+				<a class="btn waves-effect waves-light " href="${pagesUser}">list<i
 					class="material-icons right"></i>
 				</a>
 			</div>
