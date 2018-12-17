@@ -2,23 +2,29 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class CustomerDTO {
 
 	private Integer id;
+	@NotNull
+	@Size(min = 1, max = 50)
 	private String firstName;
+	@NotNull
+	@Size(min = 1, max = 50)
 	private String lastName;
-
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 
+	@NotNull
 	private String driverLicense;
 	private Boolean driverLicenseStatus;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date created;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updated;
 	
 	public Integer getId() {

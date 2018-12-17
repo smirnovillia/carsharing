@@ -2,15 +2,23 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class CarServiceHistoryDTO {
 
 	private Integer id;
+	@NotNull
 	private Integer carId;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date serviceDate;
+	@NotNull
 	private Double carMileage;
+	@NotNull
 	private String serviceCompany;
+	@NotNull
 	private Double servicePrice;
-
 	private Date created;
 	private Date updated;
 	

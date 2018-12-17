@@ -2,11 +2,16 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class TrackingDTO {
 
 	private Integer id;
+	@NotNull
 	private Integer carId;
+	@NotNull
 	private Double latitude;
+	@NotNull
 	private Double longitude;
 
 	private Date created;

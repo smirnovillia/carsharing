@@ -2,15 +2,26 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class InsuranceDTO {
 
 	private Integer id;
+	@NotNull
 	private Integer carId;
+	@NotNull
 	private String insuranceCompany;
+	@NotNull
 	private String insuranceNumber;
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date issued;
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date expiried;
-
+	
 	private Date created;
 	private Date updated;
 

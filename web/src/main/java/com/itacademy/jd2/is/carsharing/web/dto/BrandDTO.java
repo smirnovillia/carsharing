@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class BrandDTO {
 	private Integer id;
 
@@ -13,7 +15,6 @@ public class BrandDTO {
 	private String name;
 
 	private Date created;
-
 	private Date updated;
 
 	public Integer getId() {

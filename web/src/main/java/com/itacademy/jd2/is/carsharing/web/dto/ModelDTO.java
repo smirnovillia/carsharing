@@ -6,12 +6,14 @@ import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ModelDTO {
 
 	private Integer id;
-
+	@NotNull
 	private Set<Integer> colorIds;
-	@NotNull(message = "is requered")
+	@NotNull(message = "is requred")
 	@Size(min = 1, max = 50)
 	private String name;
 
@@ -21,7 +23,6 @@ public class ModelDTO {
 	private String brandName;
 
 	private Date created;
-
 	private Date updated;
 
 	public Set<Integer> getColorIds() {

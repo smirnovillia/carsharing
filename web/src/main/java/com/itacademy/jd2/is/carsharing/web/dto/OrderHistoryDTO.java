@@ -2,14 +2,22 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class OrderHistoryDTO {
 
 	private Integer id;
+	@NotNull
 	private Integer customerId;
+	@NotNull
 	private Integer carId;
+	@NotNull
 	private Date orderDate;
+	@NotNull
 	private Double orderMileage;
+	@NotNull
 	private Double rate;
+	@NotNull
 	private Double price;
 	private Date created;
 	private Date updated;

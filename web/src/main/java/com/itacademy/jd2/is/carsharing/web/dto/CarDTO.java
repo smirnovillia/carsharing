@@ -3,6 +3,7 @@ package com.itacademy.jd2.is.carsharing.web.dto;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class CarDTO {
 
@@ -13,12 +14,17 @@ public class CarDTO {
 	@NotNull
 	private Integer modelId;
 	private String modelName;
+	@NotNull
 	private int releaseDate;
+	@NotNull(message = "is requred")
+	@Size(min = 1, max = 50)
 	private String vin;
 	@NotNull
 	private Integer colorId;
 	private String colorName;
+	@NotNull
 	private double mileage;
+	@NotNull
 	private String condition;
 
 	private Date created;

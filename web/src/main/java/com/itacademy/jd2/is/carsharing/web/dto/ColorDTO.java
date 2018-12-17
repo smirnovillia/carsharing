@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class ColorDTO {
 
 	private Integer id;
@@ -14,7 +16,6 @@ public class ColorDTO {
 	private String name;
 
 	private Date created;
-
 	private Date updated;
 
 	public Integer getId() {

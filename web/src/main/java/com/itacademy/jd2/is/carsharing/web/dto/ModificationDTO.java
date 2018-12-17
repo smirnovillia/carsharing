@@ -9,11 +9,17 @@ public class ModificationDTO {
 	private Integer id;
 	@NotNull
 	private Integer modelId;
+	@NotNull
 	private String body;
+	@NotNull
 	private String fuel;
+	@NotNull
 	private String drive;
+	@NotNull
 	private String gearbox;
+	@NotNull
 	private Integer tankCapacity;
+	@NotNull
 	private Integer engineCapacity;
 	private Date created;
 	private Date updated;

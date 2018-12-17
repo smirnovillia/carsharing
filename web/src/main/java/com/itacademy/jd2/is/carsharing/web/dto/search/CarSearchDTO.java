@@ -1,13 +1,16 @@
 package com.itacademy.jd2.is.carsharing.web.dto.search;
 
+import javax.validation.constraints.NotNull;
+
 public class CarSearchDTO {
 
+	@NotNull
 	private String body;
-
+	@NotNull
 	private String fuel;
-
+	@NotNull
 	private String drive;
-
+	@NotNull
 	private String gearbox;
 
 	private Integer engineCapacity;

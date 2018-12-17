@@ -4,18 +4,26 @@ import java.util.Date;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class UserAccountDTO {
 
 	private Integer id;
 	@NotNull
+	@Size(min = 1, max = 50)
+	@Email
 	private String login;
 	@NotNull
 	private String password;
-	@NotNull
+
 	private Integer userRole;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date created;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updated;
 
 	@NotNull

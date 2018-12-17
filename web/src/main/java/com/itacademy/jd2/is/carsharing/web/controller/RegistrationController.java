@@ -6,8 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +34,14 @@ public class RegistrationController {
 	private UserAccountFromDTOConverter userAccountFromDtoConverter;
 	@Autowired
 	private UserAccountToDTOConverter userAccountToDtoConverter;
+	
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+
+		final StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView showRegistrationForm() {

@@ -1,8 +1,11 @@
 package com.itacademy.jd2.is.carsharing.web.controller;
 
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +22,9 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IColor;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModel;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.CarFilter;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.ModificationFilter;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
 import com.itacademy.jd2.is.carsharing.service.IColorService;
 import com.itacademy.jd2.is.carsharing.service.IModelService;
@@ -92,32 +97,31 @@ public class SearchController extends AbstractController<CarDTO> {
 		models.put("gridItems", dtos);
 		models.put(SEARCH_FORM_MODEL, searchDto);
 
-		loadCommonFormModels(models);
+//		loadCommonFormModels(models);
 
 		return new ModelAndView("car.list", models);
 	}
 
-	private void loadCommonFormModels(final Map<String, Object> hashMap) {
+	private void loadCommonFormModels(final Map<String, Object> hashMap, Integer modelId) {
 
-		final Map<Integer, String> modelMap = modelService.getAll().stream()
-				.collect(Collectors.toMap(IModel::getId, IModel::getName));
-		final Map<Integer, String> colorMap = colorService.getAll().stream()
-				.collect(Collectors.toMap(IColor::getId, IColor::getName));
-		final Map<Integer, Object> bodyMap = modificationService.getAll().stream()
-				.collect(Collectors.toMap(IModification::getId, IModification::getBody));
-		final Map<Integer, Object> driveMap = modificationService.getAll().stream()
-				.collect(Collectors.toMap(IModification::getId, IModification::getDrive));
-		final Map<Integer, Object> fuelMap = modificationService.getAll().stream()
-				.collect(Collectors.toMap(IModification::getId, IModification::getFuel));
-		final Map<Integer, Object> gearboxMap = modificationService.getAll().stream()
-				.collect(Collectors.toMap(IModification::getId, IModification::getGearbox));
+		if (modelId != null) {
+			ModificationFilter filter = new ModificationFilter();
+			filter.setModelId(modelId);
+			final Map<Integer, String> modificationsMap = modificationService.find(filter).stream()
+					.collect(Collectors.toMap(IModification::getId, IModification::toString));
+			hashMap.put("modificationsChoices", modificationsMap);
 
-		hashMap.put("modelChoices", modelMap);
-		hashMap.put("colorChoices", colorMap);
-		hashMap.put("bodyChoices", bodyMap);
-		hashMap.put("driveChoices", driveMap);
-		hashMap.put("fuelChoices", fuelMap);
-		hashMap.put("gearboxChoices", gearboxMap);
+			final Map<Integer, String> colorMap = modelService.getFullInfo(modelId).getColors().stream()
+					.collect(Collectors.toMap(IColor::getId, IColor::getName));
+			hashMap.put("colorChoices", colorMap);
+		}
+
+		Map<Object, Object> yearsMap = new TreeMap<>();
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		for (int i = currentYear - 20; i < currentYear; i++) {
+			yearsMap.put(i, i);
+		}
+		hashMap.put("releaseDateChoices", yearsMap);
 
 	}
 
