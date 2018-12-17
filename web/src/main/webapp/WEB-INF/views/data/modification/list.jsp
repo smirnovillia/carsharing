@@ -18,11 +18,16 @@
                 <td><c:out value="${dto.id}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesModification}/${dto.id}"><i class="material-icons">info</i></a> <a
-                    class="btn-floating" href="${pagesModification}/${dto.id}/edit"><i class="material-icons">edit</i></a> <a
+                <td class="right"><a class="btn-floating grey" href="${pagesModification}/${dto.id}"><i class="material-icons">info</i></a> <a
+                    class="btn-floating orange" href="${pagesModification}/${dto.id}/edit"><i class="material-icons">edit</i></a> <a
                     class="btn-floating red" href="${pagesModification}/${dto.id}/delete"><i class="material-icons">delete</i></a></td>
             </tr>
         </c:forEach>
     </tbody>
 </table>
-<a class="waves-effect waves-light btn right" href="${pagesModification}/add?modelId=${modelId}"><i class="material-icons">add</i></a>
+<a class="btn waves-effect waves-light right red" href="${pagesModification}/add?modelId=${modelId}"><i class="material-icons">add</i></a>
+<div>
+<a class="btn waves-effect waves-light left grey" href="${pagesModel}">back to model<i	class="material-icons "></i></a>
+</div>
+
+

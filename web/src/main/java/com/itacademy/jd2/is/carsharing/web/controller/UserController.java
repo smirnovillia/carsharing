@@ -65,12 +65,6 @@ public class UserController extends AbstractController<UserAccountDTO> {
 		return new ModelAndView("user.list", models);
 	}
 
-	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-	public String delete(@PathVariable(name = "id", required = true) final Integer id) {
-		userAccountService.delete(id);
-		return "redirect:/user";
-	}
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
 		final IUserAccount dbModel = userAccountService.get(id);

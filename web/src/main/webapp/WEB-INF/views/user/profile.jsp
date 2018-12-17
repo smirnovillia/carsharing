@@ -27,8 +27,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="input-field col s12">
-					<a> href = </a>
+			<div class="input-field col s6">
+					<img alt="image" src="${formModel.customer.driverLicense}"/>
 			</div>
 		</div>
 		<div class="row">
@@ -38,8 +38,8 @@
 				</c:if>
 			</div>
 			<div class="col s3">
-				<a class="btn waves-effect waves-light " href="${pagesUser}">list<i
-					class="material-icons right"></i>
+				<a class="btn waves-effect waves-light red" href="${pagesUser}">back<i
+					class="material-icons "></i>
 				</a>
 			</div>
 		</div>

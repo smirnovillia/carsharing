@@ -63,8 +63,8 @@
 				<c:if test="${!readonly}">
 					<button class="btn waves-effect waves-light" type="submit">save</button>
 				</c:if>
-				<a class="btn waves-effect waves-light" href="${pagesCar}">back<i
-					class="material-icons right"></i>
+				<a class="btn waves-effect waves-light red" href="${pagesCar}">back<i
+					class="material-icons "></i>
 				</a>
 			</div>
 		</div>

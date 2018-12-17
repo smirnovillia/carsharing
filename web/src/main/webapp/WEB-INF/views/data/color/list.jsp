@@ -28,4 +28,4 @@
     </tbody>
 </table>
 <jspFragments:paging />
-<a class="waves-effect waves-light btn right" href="${pagesColor}/add"><i class="material-icons">add</i></a>
+<a class="btn waves-effect waves-light right red" href="${pagesColor}/add"><i class="material-icons">add</i></a>

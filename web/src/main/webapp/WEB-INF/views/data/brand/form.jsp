@@ -13,15 +13,12 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col s6"></div>
-			<div class="col s3">
+			<div class="col s12 center">
 				<c:if test="${!readonly}">
-					<button class="btn waves-effect waves-light right" type="submit">save</button>
+					<button class="btn waves-effect waves-light " type="submit">save</button>
 				</c:if>
-			</div>
-			<div class="col s3">
-				<a class="btn waves-effect waves-light right" href="${pagesBrand}">list<i
-					class="material-icons right"></i>
+				<a class="btn waves-effect waves-light red" href="${pagesBrand}">back<i
+					class="material-icons "></i>
 				</a>
 			</div>
 		</div>

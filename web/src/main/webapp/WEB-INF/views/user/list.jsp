@@ -26,9 +26,8 @@
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.customer.birthday}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.created}" /></td>
                 <td><fmt:formatDate pattern="yyyy-MM-dd" value="${user.updated}" /></td>
-                <td class="right"><a class="btn-floating" href="${pagesUser}/${user.customer.id}"><i class="material-icons">info</i></a> <a
-                    class="btn-floating" href="${pagesUser}/${user.customer.id}/edit"><i class="material-icons">edit</i></a> <a
-                    class="btn-floating red" href="${pagesUser}/${user.customer.id}/delete"><i class="material-icons">delete</i></a></td>
+                <td class="right"><a class="btn-floating grey" href="${pagesUser}/${user.customer.id}"><i class="material-icons">info</i></a> <a
+                    class="btn-floating blue" href="${pagesUser}/${user.customer.id}/edit"><i class="material-icons">edit</i></a> </td>
             </tr>
         </c:forEach>
     </tbody>

@@ -8,6 +8,7 @@
 <c:set var="pagesBrand" value="${pageContext.request.contextPath}/data/brand" scope="request" />
 <c:set var="pagesModel" value="${pageContext.request.contextPath}/data/model" scope="request" />
 <c:set var="pagesColor" value="${pageContext.request.contextPath}/data/color" scope="request" />
+<c:set var="pagesTracking" value="${pageContext.request.contextPath}/data/tracking" scope="request" />
 <c:set var="pagesModification" value="${pageContext.request.contextPath}/data/modification" scope="request" />
 
 

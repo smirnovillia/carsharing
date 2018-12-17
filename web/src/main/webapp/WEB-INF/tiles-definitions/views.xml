@@ -95,11 +95,22 @@
 			value="/WEB-INF/views/data/modification/list.jsp" />
 	</definition>
 
-
 	<definition name="modification.edit"
 		extends="DefaultTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/views/data/modification/form.jsp" />
+	</definition>
+	
+	<definition name="tracking.list"
+		extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/tracking/list.jsp" />
+	</definition>
+
+	<definition name="tracking.add"
+		extends="DefaultTemplate">
+		<put-attribute name="body"
+			value="/WEB-INF/views/data/tracking/form.jsp" />
 	</definition>
 
 
