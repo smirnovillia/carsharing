@@ -13,7 +13,7 @@
 					<form:options items="${modificationsChoices}" />
 				</form:select>
 				<form:errors path="modificationId" cssClass="red-text" />
-				<label for="modificationId">model</label>
+				<label for="modificationId">Model</label>
 			</div>
 		</div>
 		<div class="row">
@@ -39,14 +39,14 @@
 					<form:options items="${colorChoices}" />
 				</form:select>
 				<form:errors path="colorId" cssClass="red-text" />
-				<label for="colorId">color</label>
+				<label for="colorId">Color</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
 				<form:input path="mileage" type="number" disabled="${readonly}" />
 				<form:errors path="mileage" cssClass="red-text" />
-				<label for="mileage">mileage</label>
+				<label for="mileage">Mileage</label>
 			</div>
 		</div>
 		<div class="row">
@@ -55,7 +55,7 @@
 					<form:options items="${conditionChoices}" />
 				</form:select>
 				<form:errors path="condition" cssClass="red-text" />
-				<label for="condition">condition</label>
+				<label for="condition">Condition</label>
 			</div>
 		</div>
 		<div class="row">

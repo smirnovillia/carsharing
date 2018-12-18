@@ -9,7 +9,7 @@
 			<div class="input-field col s12">
 				<form:input path="name" type="text" disabled="${readonly}" />
 				<form:errors path="name" cssClass="red-text" />
-				<label for="name">name</label>
+				<label for="name">Name</label>
 			</div>
 		</div>
 		<div class="row">
@@ -18,7 +18,7 @@
 					<form:options items="${brandsChoices}" />
 				</form:select>
 				<form:errors path="brandId" cssClass="red-text" />
-				<label for="brandId">brand</label>
+				<label for="brandId">Brand</label>
 			</div>
 		</div>
 		<div class="row">

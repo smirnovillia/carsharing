@@ -17,7 +17,7 @@
 					<form:options items="${modificationsChoices}" />
 				</form:select>
 				<form:errors path="modificationId" cssClass="red-text" />
-				<label for="modificationId">model</label>
+				<label for="modificationId">Model</label>
 			</div>
 		</div>
 		<div class="row">
@@ -37,7 +37,7 @@
 					<form:options items="${colorChoices}" />
 				</form:select>
 				<form:errors path="colorId" cssClass="red-text" />
-				<label for="colorId">color</label>
+				<label for="colorId">Color</label>
 			</div>
 		</div>
 		<form:input path="mileage" type="hidden" />

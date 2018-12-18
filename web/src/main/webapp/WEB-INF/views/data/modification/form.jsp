@@ -13,7 +13,7 @@
 					<form:options items="${bodyChoices}" />
 				</form:select>
 				<form:errors path="body" cssClass="red-text" />
-				<label for="body">body</label>
+				<label for="body">Body</label>
 			</div>
 		</div>
 		<div class="row">
@@ -22,7 +22,7 @@
 					<form:options items="${fuelChoices}" />
 				</form:select>
 				<form:errors path="fuel" cssClass="red-text" />
-				<label for="fuel">fuel</label>
+				<label for="fuel">Fuel</label>
 			</div>
 		</div>
 		<div class="row">
@@ -31,7 +31,7 @@
 					<form:options items="${driveChoices}" />
 				</form:select>
 				<form:errors path="drive" cssClass="red-text" />
-				<label for="drive">drive</label>
+				<label for="drive">Drive</label>
 			</div>
 		</div>
 		<div class="row">
@@ -40,7 +40,7 @@
 					<form:options items="${gearboxChoices}" />
 				</form:select>
 				<form:errors path="gearbox" cssClass="red-text" />
-				<label for="gearbox">gearbox</label>
+				<label for="gearbox">Gearbox</label>
 			</div>
 		</div>
 

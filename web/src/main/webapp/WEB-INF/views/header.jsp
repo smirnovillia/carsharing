@@ -15,10 +15,10 @@
 					<li><a href="${baseUrl}/user">Users</a></li>
 
 
-					<li><a href="${baseUrl}/data/brand">brand</a></li>
-					<li><a href="${baseUrl}/data/model">model</a></li>
-					<li><a href="${baseUrl}/data/color">color</a></li>
-					<li><a href="${baseUrl}/data/tracking">tracking</a></li>
+					<li><a href="${baseUrl}/data/brand">Brand</a></li>
+					<li><a href="${baseUrl}/data/model">Model</a></li>
+					<li><a href="${baseUrl}/data/color">Color</a></li>
+					<li><a href="${baseUrl}/data/tracking">Tracking</a></li>
 
 
 
