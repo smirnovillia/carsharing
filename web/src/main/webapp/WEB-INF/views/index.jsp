@@ -4,27 +4,35 @@
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
 <script
-	src="https://api-maps.yandex.ru/2.1/?apikey=<423d1045-9802-4ce3-85f4-19f86fb3b0b4>&lang=en_US"
+	src="https://api-maps.yandex.ru/2.1/?apikey=423d1045-9802-4ce3-85f4-19f86fb3b0b4>&lang=en_US"
 	type="text/javascript"></script>
 <script type="text/javascript">
 	ymaps.ready(init);
 	var myMap;
 
 	function init() {
-		var cars = new ymaps.GeoObject({
-		 geometry: {
-		        type: "Point",
-		        coordinates: ${coord}
-		      });
-	
+		
 		myMap = new ymaps.Map("map", {
 			center : [ 53.90, 27.56 ],
 			zoom : 11
 		});
 
+		var allPoints=${coord}||[];
+		allPoints.forEach(function(point){
+			var cars = new ymaps.GeoObject({
+				 geometry: {
+				        type: "Point",
+				        coordinates: point
+				      }});
+			
 
-		myMap.geoObjects.add(cars);
-	}
+
+				myMap.geoObjects.add(cars);
+	
+		});
+		
+		
+			}
 </script>
 </head>
 <body>

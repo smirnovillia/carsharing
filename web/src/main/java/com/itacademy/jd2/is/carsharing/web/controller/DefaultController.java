@@ -48,7 +48,7 @@ public class DefaultController extends AbstractController<CarDTO> {
 	public ModelAndView showPage() {
 
 		final TrackingFilter filter = new TrackingFilter();
-//		filter.setCondition(Condition.AVAILABLE);
+		filter.setCondition(Condition.AVAILABLE);
 		final List<ITracking> entities = trackingService.find(filter);
 		List<List<Double>> coordinations = entities.stream()
 				.map(tracking -> Arrays.asList(tracking.getLatitude(), tracking.getLongitude()))
