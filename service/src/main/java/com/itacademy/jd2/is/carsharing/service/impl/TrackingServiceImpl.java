@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.ITrackingDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.TrackingFilter;
 import com.itacademy.jd2.is.carsharing.service.ITrackingService;
 
 @Service
@@ -64,5 +65,12 @@ public class TrackingServiceImpl implements ITrackingService {
 	public ITracking createEntity() {
 		return dao.createEntity();
 	}
+
+	@Override
+	public List<ITracking> find(TrackingFilter filter) {
+		return dao.find(filter);
+	}
+	
+	
 
 }

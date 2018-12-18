@@ -1,5 +1,7 @@
 package com.itacademy.jd2.is.carsharing.dao.api.filter;
 
+import com.itacademy.jd2.is.carsharing.dao.api.enums.Condition;
+
 public class CarFilter extends AbstractFilter{
 
 	private String body;
@@ -11,6 +13,8 @@ public class CarFilter extends AbstractFilter{
 	private String gearbox;
 
 	private Integer engineCapacity;
+	
+	private Condition condition;
 
 	public String getBody() {
 		return body;
@@ -51,4 +55,13 @@ public class CarFilter extends AbstractFilter{
 	public void setEngineCapacity(Integer engineCapacity) {
 		this.engineCapacity = engineCapacity;
 	}
+
+	public Condition getCondition() {
+		return condition;
+	}
+
+	public void setCondition(Condition condition) {
+		this.condition = condition;
+	}
+	
 }

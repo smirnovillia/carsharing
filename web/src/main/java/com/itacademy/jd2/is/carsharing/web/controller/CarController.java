@@ -38,13 +38,10 @@ import com.itacademy.jd2.is.carsharing.web.converter.CarFromDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.converter.CarToDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.dto.CarDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
-import com.itacademy.jd2.is.carsharing.web.dto.search.CarSearchDTO;
 
 @Controller
 @RequestMapping(value = "/car")
 public class CarController extends AbstractController<CarDTO> {
-	private static final String SEARCH_FORM_MODEL = "searchFormModel";
-	private static final String SEARCH_DTO = CarController.class.getSimpleName() + "_SEACH_DTO";
 
 	@Autowired
 	private ICarService carService;
@@ -58,7 +55,7 @@ public class CarController extends AbstractController<CarDTO> {
 	private CarFromDTOConverter fromDtoConverter;
 	@Autowired
 	private CarToDTOConverter toDtoConverter;
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 
@@ -68,39 +65,14 @@ public class CarController extends AbstractController<CarDTO> {
 	}
 
 	@RequestMapping(method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView index(final HttpServletRequest req, @ModelAttribute(SEARCH_FORM_MODEL) CarSearchDTO searchDto,
+	public ModelAndView index(final HttpServletRequest req,
 			@RequestParam(name = "page", required = false) final Integer pageNumber,
 			@RequestParam(name = "sort", required = false) final String sortColumn) {
 		final GridStateDTO gridState = getListDTO(req);
 		gridState.setPage(pageNumber);
 		gridState.setSort(sortColumn, "id");
 
-		if (req.getMethod().equalsIgnoreCase("get")) {
-			searchDto = getSearchDTO(req);
-		} else {
-			req.getSession().setAttribute(SEARCH_DTO, searchDto);
-		}
-
 		final CarFilter filter = new CarFilter();
-		if (searchDto.getBody() != null) {
-			filter.setBody(searchDto.getBody());
-		}
-
-		if (searchDto.getFuel() != null) {
-			filter.setFuel(searchDto.getFuel());
-		}
-
-		if (searchDto.getDrive() != null) {
-			filter.setDrive(searchDto.getDrive());
-		}
-
-		if (searchDto.getGearbox() != null) {
-			filter.setGearbox(searchDto.getGearbox());
-		}
-
-		if (searchDto.getEngineCapacity() != null) {
-			filter.setEngineCapacity(searchDto.getEngineCapacity());
-		}
 
 		prepareFilter(gridState, filter);
 
@@ -110,7 +82,6 @@ public class CarController extends AbstractController<CarDTO> {
 
 		final Map<String, Object> models = new HashMap<>();
 		models.put("gridItems", dtos);
-		models.put(SEARCH_FORM_MODEL, searchDto);
 
 		return new ModelAndView("car.list", models);
 	}
@@ -130,7 +101,7 @@ public class CarController extends AbstractController<CarDTO> {
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
 			hashMap.put("formModel", formModel);
-			Integer modelId = formModel.getModelId();
+			final Integer modelId = formModel.getModelId();
 			loadCommonFormModels(hashMap, modelId);
 			return new ModelAndView("car.edit", hashMap);
 		} else {
@@ -159,7 +130,7 @@ public class CarController extends AbstractController<CarDTO> {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable(name = "id", required = true) final Integer id) {
-		ICar dbModel = carService.getFullInfo(id);
+		final ICar dbModel = carService.getFullInfo(id);
 		final CarDTO dto = toDtoConverter.apply(dbModel);
 
 		final Map<String, Object> hashMap = new HashMap<>();
@@ -168,10 +139,22 @@ public class CarController extends AbstractController<CarDTO> {
 		return new ModelAndView("car.edit", hashMap);
 	}
 
+	@RequestMapping(value = "/{id}/order", method = RequestMethod.GET)
+	public ModelAndView makeOrder(@PathVariable(name = "id", required = true) final Integer id) {
+
+		final ICar dbModel = carService.getFullInfo(id);
+		final CarDTO dto = toDtoConverter.apply(dbModel);
+		final Map<String, Object> hashMap = new HashMap<>();
+		hashMap.put("formModel", dto);
+		hashMap.put("readonly", true);
+		loadCommonFormModels(hashMap, dto.getModelId());
+		return new ModelAndView("order", hashMap);
+	}
+
 	private void loadCommonFormModels(final Map<String, Object> hashMap, Integer modelId) {
 
 		if (modelId != null) {
-			ModificationFilter filter = new ModificationFilter();
+			final ModificationFilter filter = new ModificationFilter();
 			filter.setModelId(modelId);
 			final Map<Integer, String> modificationsMap = modificationService.find(filter).stream()
 					.collect(Collectors.toMap(IModification::getId, IModification::toString));
@@ -185,22 +168,13 @@ public class CarController extends AbstractController<CarDTO> {
 		hashMap.put("conditionChoices",
 				Arrays.asList(Condition.values()).stream().collect(Collectors.toMap(Condition::name, Condition::name)));
 
-		Map<Object, Object> yearsMap = new TreeMap<>();
-		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		final Map<Object, Object> yearsMap = new TreeMap<>();
+		final int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 		for (int i = currentYear - 20; i < currentYear; i++) {
 			yearsMap.put(i, i);
 		}
 		hashMap.put("releaseDateChoices", yearsMap);
 
-	}
-
-	private CarSearchDTO getSearchDTO(final HttpServletRequest req) {
-		CarSearchDTO searchDTO = (CarSearchDTO) req.getSession().getAttribute(SEARCH_DTO);
-		if (searchDTO == null) {
-			searchDTO = new CarSearchDTO();
-			req.getSession().setAttribute(SEARCH_DTO, searchDTO);
-		}
-		return searchDTO;
 	}
 
 }

@@ -16,14 +16,14 @@
 			<div class="input-field col s12">
 				<form:input path="customer.lastName" type="text" disabled="${readonly}" />
 				<form:errors path="customer.lastName" cssClass="red-text" />
-				<label for="customer.lastName">First name</label>
+				<label for="customer.lastName">Last name</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
 				<form:input path="customer.birthday" type="date" disabled="${readonly}" />
 				<form:errors path="customer.birthday" cssClass="red-text" />
-				<label for="customer.birthday">First name</label>
+				<label for="customer.birthday">Birthday</label>
 			</div>
 		</div>
 		<div class="row">
@@ -36,8 +36,6 @@
 				<c:if test="${!readonly}">
 					<button class="btn waves-effect waves-light " type="submit">save</button>
 				</c:if>
-			</div>
-			<div class="col s3">
 				<a class="btn waves-effect waves-light red" href="${pagesUser}">back<i
 					class="material-icons "></i>
 				</a>

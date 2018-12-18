@@ -13,6 +13,8 @@ public class CarSearchDTO {
 	@NotNull
 	private String gearbox;
 
+	private String condition;
+
 	private Integer engineCapacity;
 
 	public String getBody() {
@@ -53,6 +55,14 @@ public class CarSearchDTO {
 
 	public void setEngineCapacity(Integer engineCapacity) {
 		this.engineCapacity = engineCapacity;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
 	}
 
 }

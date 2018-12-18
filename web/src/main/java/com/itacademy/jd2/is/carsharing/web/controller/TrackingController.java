@@ -19,29 +19,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.itacademy.jd2.is.carsharing.dao.api.entity.IModification;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
-import com.itacademy.jd2.is.carsharing.dao.api.filter.ModificationFilter;
 import com.itacademy.jd2.is.carsharing.dao.api.filter.TrackingFilter;
 import com.itacademy.jd2.is.carsharing.service.ICarService;
 import com.itacademy.jd2.is.carsharing.service.ITrackingService;
 import com.itacademy.jd2.is.carsharing.web.converter.TrackingFromDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.converter.TrackingToDTOConverter;
-import com.itacademy.jd2.is.carsharing.web.dto.ModificationDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.TrackingDTO;
-
 
 @Controller
 @RequestMapping(value = "/data/tracking")
 public class TrackingController {
 
-	private ITrackingService trackingService;
+	private final ITrackingService trackingService;
 
-	private TrackingFromDTOConverter fromDTOConverter;
-	private TrackingToDTOConverter toDTOConverter;
+	private final TrackingFromDTOConverter fromDTOConverter;
+	private final TrackingToDTOConverter toDTOConverter;
 
-	private ICarService carService;
-	
+	private final ICarService carService;
+
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 
@@ -61,42 +57,35 @@ public class TrackingController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView viewTracking(@RequestParam(name = "carId", required = true) final Integer carId) {
+	public ModelAndView viewTracking() {
 
-		TrackingFilter filter = new TrackingFilter();
-		filter.setCarId(carId);
-		List<ITracking> entities = trackingService.find(filter);
-		final List<ModificationDTO> dtos = entities.stream().map(toDTOConverter).collect(Collectors.toList());
+		final TrackingFilter filter = new TrackingFilter();
+		final List<ITracking> entities = trackingService.find(filter);
+		final List<TrackingDTO> dtos = entities.stream().map(toDTOConverter).collect(Collectors.toList());
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("gridItems", dtos);
-		hashMap.put("modelId", modelId);
-		hashMap.put("modelName", modelService.get(modelId).getName());
-		return new ModelAndView("modification.list", hashMap);
+		return new ModelAndView("tracking.list", hashMap);
 	}
 
-	
-
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView showForm(@RequestParam(name = "modelId", required = true) final Integer modelId) {
+	public ModelAndView showForm(@RequestParam(name = "carId", required = true) final Integer carId) {
 		final Map<String, Object> hashMap = new HashMap<>();
-		ModificationDTO dto = new ModificationDTO();
-		dto.setModelId(modelId);
+		final TrackingDTO dto = new TrackingDTO();
+		dto.setCarId(carId);
 		hashMap.put("formModel", dto);
-		loadCommonFormModels(hashMap);
-		return new ModelAndView("modification.edit", hashMap);
+		return new ModelAndView("tracking.add", hashMap);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public Object save(@Valid @ModelAttribute("formModel") final TrackingDTO formModel,
-			final BindingResult result) {
+	public Object save(@Valid @ModelAttribute("formModel") final TrackingDTO formModel, final BindingResult result) {
 		if (result.hasErrors()) {
 			final Map<String, Object> hashMap = new HashMap<>();
 			hashMap.put("formModel", formModel);
-			return new ModelAndView("modification.edit", hashMap);
+			return new ModelAndView("tracking.add", hashMap);
 		} else {
 			final ITracking entity = fromDTOConverter.apply(formModel);
-			modificationService.save(entity);
-			return "redirect:/data/modification?modelId="+formModel.getModelId();
+			trackingService.save(entity);
+			return "redirect:/data/tracking?carId=" + formModel.getCarId();
 		}
 	}
 

@@ -49,9 +49,9 @@
 			value="/WEB-INF/views/user/profile.jsp" />
 	</definition>
 
-	<definition name="search" extends="DefaultTemplate">
+	<definition name="order" extends="DefaultTemplate">
 		<put-attribute name="body"
-			value="/WEB-INF/views/search.jsp" />
+			value="/WEB-INF/views/car/order.jsp" />
 	</definition>
 
 	<definition name="data" extends="DefaultTemplate">

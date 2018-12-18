@@ -15,10 +15,10 @@ public class Tracking extends BaseEntity implements ITracking {
 	private ICar car;
 	
 	@Column
-	private double latitude;
+	private Double latitude;
 	
 	@Column
-	private double longitude;
+	private Double longitude;
 
 	@Override
 	public ICar getCar() {
@@ -31,29 +31,24 @@ public class Tracking extends BaseEntity implements ITracking {
 	}
 
 	@Override
-	public double getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
 	@Override
-	public void setLatitude(double latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
 	@Override
-	public double getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
 	@Override
-	public void setLongitude(double longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
-	@Override
-	public String toString() {
-		return "Tracking [car=" + car + ", latitude=" + latitude + ", longitude="
-				+ longitude + "]";
-	}
 
 }

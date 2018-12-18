@@ -8,25 +8,24 @@
 <table class="bordered highlight">
     <tbody>
         <tr>
-            <th><mytaglib:sort-link pageUrl="${pagesTracking}" column="id">id</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesTracking}" column="carId">car</mytaglib:sort-link></th>
-             <th><mytaglib:sort-link pageUrl="${pagesTracking}" column="latitude">latitude</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesTracking}" column="longitude">longitude</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesTracking}" column="created">created</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesTracking}" column="updated">updated</mytaglib:sort-link></th>
+            <th>id</th>
+            <th>car</th>
+            <th>latitude</th>
+            <th>longitude</th>
+            <th>created</th>
+            <th>updated</th>
             <th></th>
         </tr>
-        <c:forEach var="tracking" items="${gridItems}" varStatus="loopCounter">
+        <c:forEach var="dto" items="${gridItems}" varStatus="loopCounter">
             <tr>
-                <td><c:out value="${tracking.id}" /></td>
-                <td><c:out value="${tracking.carId}" /></td>
-                <td><c:out value="${tracking.latitude}" /></td>
-                <td><c:out value="${tracking.longitude}" /></td>
-                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${tracking.created}" /></td>
-                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${tracking.updated}" /></td>
+                <td><c:out value="${dto.id}" /></td>
+                <td><c:out value="${dto.carId}" /></td>
+                <td><c:out value="${dto.latitude}" /></td>
+                <td><c:out value="${dto.longitude}" /></td>
+                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.created}" /></td>
+                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${dto.updated}" /></td>
             </tr>
         </c:forEach>
     </tbody>
 </table>
 <jspFragments:paging />
-<a class="btn waves-effect waves-light right red" href="${pagesTracking}/add"><i class="material-icons">add</i></a>

@@ -8,14 +8,14 @@
 		<form:input path="carId" type="hidden" />
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="latitude" type="number" disabled="${readonly}" />
+				<form:input path="latitude" type="number" step="any" disabled="${readonly}" />
 				<form:errors path="latitude" cssClass="red-text" />
 				<label for="latitude">latitude</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
-				<form:input path="longitude" type="number" disabled="${readonly}" />
+				<form:input path="longitude" type="number" step="any" disabled="${readonly}" />
 				<form:errors path="longitude" cssClass="red-text" />
 				<label for="longitude">longitude</label>
 			</div>

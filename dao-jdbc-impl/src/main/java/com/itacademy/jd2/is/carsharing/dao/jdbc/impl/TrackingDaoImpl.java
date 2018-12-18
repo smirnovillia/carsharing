@@ -4,12 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.itacademy.jd2.is.carsharing.dao.api.ITrackingDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.TrackingFilter;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Car;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Tracking;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.util.PreparedStatementAction;
@@ -85,6 +87,11 @@ public class TrackingDaoImpl extends AbstractDaoImpl<ITracking, Integer> impleme
 	@Override
 	protected String getTableName() {
 		return "tracking";
+	}
+	
+	@Override
+	public List<ITracking> find(TrackingFilter filter) {
+		throw new RuntimeException("not implemented");
 	}
 
 }

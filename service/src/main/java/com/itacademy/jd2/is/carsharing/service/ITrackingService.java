@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.TrackingFilter;
 
 public interface ITrackingService {
 	ITracking get(Integer id);
@@ -22,4 +23,6 @@ public interface ITrackingService {
 
 	@Transactional
 	ITracking createEntity();
+
+	List<ITracking> find(TrackingFilter filter);
 }

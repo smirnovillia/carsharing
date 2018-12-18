@@ -8,11 +8,11 @@ public interface ITracking extends IBaseEntity {
 
 	void setCar(ICar car);
 
-	double getLatitude();
+	Double getLatitude();
 
-	void setLatitude(double latitude);
+	void setLatitude(Double latitude);
 
-	double getLongitude();
+	Double getLongitude();
 
-	void setLongitude(double longitude);
+	void setLongitude(Double longitude);
 }

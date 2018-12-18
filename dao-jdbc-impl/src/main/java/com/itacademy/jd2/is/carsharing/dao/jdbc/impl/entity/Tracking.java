@@ -6,8 +6,8 @@ import com.itacademy.jd2.is.carsharing.dao.api.entity.ITracking;
 public class Tracking extends BaseEntity implements ITracking {
 
 	private ICar car;
-	private double latitude;
-	private double longitude;
+	private Double latitude;
+	private Double longitude;
 
 	public ICar getCar() {
 		return car;
@@ -17,26 +17,21 @@ public class Tracking extends BaseEntity implements ITracking {
 		this.car = car;
 	}
 
-	public double getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public double getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
-	@Override
-	public String toString() {
-		return "Tracking [car=" + car + ", latitude=" + latitude + ", longitude="
-				+ longitude + "]";
-	}
 
 }
