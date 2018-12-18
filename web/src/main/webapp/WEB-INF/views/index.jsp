@@ -8,45 +8,47 @@
 	type="text/javascript"></script>
 <script type="text/javascript">
 	ymaps.ready(init);
-	var myMap, myPlacemark;
+	var myMap;
 
 	function init() {
+		var cars = new ymaps.GeoObject({
+		 geometry: {
+		        type: "Point",
+		        coordinates: ${coord}
+		      });
+	
 		myMap = new ymaps.Map("map", {
 			center : [ 53.90, 27.56 ],
 			zoom : 11
 		});
 
-		myPlacemark = new ymaps.Placemark(${coord}, {
-			hintContent : 'Minsk',
-			balloonContent : 'Capital of BLR'
-		});
 
-		myMap.geoObjects.add(myPlacemark);
+		myMap.geoObjects.add(cars);
 	}
 </script>
 </head>
 <body>
 	<h3>Welcome to carsharing service</h3>
 	<sec:authorize access="!isAuthenticated()">
-	<div class="row">
-		<form name='signIn' action="<c:url value='login' />" method='GET'>
-			<div class="row">
-				<div class="col s12 center">
-					<button class="btn waves-effect waves-light btn-large"
-						type="submit">Login</button>
+		<div class="row">
+			<form name='signIn' action="<c:url value='login' />" method='GET'>
+				<div class="row">
+					<div class="col s12 center">
+						<button class="btn waves-effect waves-light btn-large"
+							type="submit">Login</button>
+					</div>
 				</div>
-			</div>
-		</form>
-		<form name='registration' action="<c:url value='registration' />"
-			method='GET'>
-			<div class="row">
-				<div class="col s12 center">
-					<button class="btn waves-effect waves-light btn-large"
-						type="submit">Registration</button>
+			</form>
+			<form name='registration' action="<c:url value='registration' />"
+				method='GET'>
+				<div class="row">
+					<div class="col s12 center">
+						<button class="btn waves-effect waves-light btn-large"
+							type="submit">Registration</button>
+					</div>
 				</div>
-			</div>
-		</form>
-	</div>
+			</form>
+		</div>
 	</sec:authorize>
 	<div class="row">
 		<div class="col s12 center">

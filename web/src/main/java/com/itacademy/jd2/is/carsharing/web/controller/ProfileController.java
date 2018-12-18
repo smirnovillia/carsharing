@@ -18,9 +18,10 @@ import com.itacademy.jd2.is.carsharing.service.ICustomerService;
 import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 import com.itacademy.jd2.is.carsharing.web.converter.UserAccountToDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.dto.UserAccountDTO;
+import com.itacademy.jd2.is.carsharing.web.security.AuthHelper;
 
 @Controller
-//@RequestMapping(value = "/user/profile")
+@RequestMapping(value = "/profile")
 public class ProfileController {
 
 	@Autowired
@@ -38,8 +39,9 @@ public class ProfileController {
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 
-	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
-		final IUserAccount dbModel = userAccountService.get(id);
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView viewDetails() {
+		final IUserAccount dbModel = userAccountService.get(AuthHelper.getLoggedUserId());
 		final UserAccountDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);

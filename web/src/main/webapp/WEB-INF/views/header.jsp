@@ -21,7 +21,7 @@
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_CUSTOMER')">
 					<li><a href="${baseUrl}/car">Order</a></li>
-					<li><a href="${pageContext.request.contextPath}/user/profile">Profile</a></li>
+					<li><a href="${pageContext.request.contextPath}/profile">Profile</a></li>
 					<a class="right" href="${baseUrl}/execute_logout" title="logout"><i
 						class="material-icons">arrow_forward</i></a>
 				</sec:authorize>

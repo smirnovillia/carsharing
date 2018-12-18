@@ -36,7 +36,7 @@
 				<c:if test="${!readonly}">
 					<button class="btn waves-effect waves-light " type="submit">save</button>
 				</c:if>
-				<a class="btn waves-effect waves-light red" href="${pagesUser}">back<i
+				<a class="btn waves-effect waves-light red" href="${contextPath}">back<i
 					class="material-icons "></i>
 				</a>
 			</div>
