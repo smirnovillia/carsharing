@@ -171,13 +171,7 @@ public class UserAccountServiceImpl implements IUserAccountService {
 
 	@Override
 	public IUserAccount getByLogin(String login) {
-		IUserAccount theUser = dao.createEntity();
-		for (IUserAccount users : getAll()) {
-			if (users.getLogin().equals(login)) {
-				theUser = users;
-			}
-		}
-		return theUser;
+		return dao.getByLoging(login);
 	}
 
 

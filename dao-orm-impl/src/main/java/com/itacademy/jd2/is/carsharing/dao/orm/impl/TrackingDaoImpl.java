@@ -59,7 +59,7 @@ public class TrackingDaoImpl extends AbstractDaoImpl<ITracking, Integer> impleme
 		
 		Condition condition = filter.getCondition();
 		if (condition != null) {
-			predicates.add(cb.equal(from.get(Tracking_.car).get(Car_.condition), Condition.AVAILABLE.toString()));
+			predicates.add(cb.equal(from.get(Tracking_.car).get(Car_.condition), Condition.AVAILABLE));
 		}
 
 		if (!predicates.isEmpty()) {

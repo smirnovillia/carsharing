@@ -75,14 +75,20 @@ public class CarDaoImpl extends AbstractDaoImpl<ICar, Integer> implements ICarDa
 			return from.get(Car_.created);
 		case "updated":
 			return from.get(Car_.updated);
+		case "condition":
+			return from.get(Car_.condition);
 		case "id":
 			return from.get(Car_.id);
 		case "releaseDate":
 			return from.get(Car_.releaseDate);
+		case "vin":
+			return from.get(Car_.vin);
 		case "color":
 			return from.join(Car_.color, JoinType.LEFT).get(Color_.name);
 		case "mileage":
 			return from.get(Car_.mileage);
+		case "model":
+			return from.get(Car_.modification).get(Modification_.model).get(Model_.name);
 		default:
 			throw new UnsupportedOperationException("sorting is not supported by column:" + sortColumn);
 		}

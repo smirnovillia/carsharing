@@ -10,7 +10,7 @@
         <tr>
             <th><mytaglib:sort-link pageUrl="${pagesModel}" column="id">id</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesModel}" column="name">name</mytaglib:sort-link></th>
-            <th><mytaglib:sort-link pageUrl="${pagesModel}" column="brandName">brand</mytaglib:sort-link></th>
+            <th><mytaglib:sort-link pageUrl="${pagesModel}" column="brand">brand</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesModel}" column="created">created</mytaglib:sort-link></th>
             <th><mytaglib:sort-link pageUrl="${pagesModel}" column="updated">updated</mytaglib:sort-link></th>
             <th></th>

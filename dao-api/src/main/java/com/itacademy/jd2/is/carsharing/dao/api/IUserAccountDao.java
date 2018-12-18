@@ -12,4 +12,6 @@ public interface IUserAccountDao extends IBaseDao<IUserAccount, Integer>{
 
 	long getCount(UserAccountFilter filter);
 
+	IUserAccount getByLoging(String login);
+
 }
