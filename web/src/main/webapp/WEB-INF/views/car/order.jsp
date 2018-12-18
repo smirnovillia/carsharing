@@ -40,14 +40,8 @@
 				<label for="colorId">color</label>
 			</div>
 		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<form:input path="mileage" type="number" disabled="${readonly}" />
-				<form:errors path="mileage" cssClass="red-text" />
-				<label for="mileage">mileage</label>
-			</div>
-		</div>
-		<form:input path="condition" type="hidden" value='BOOKED' />
+		<form:input path="mileage" type="hidden" />
+		<form:input path="condition" type="hidden" value='ORDERED' />
 		<div class="row">
 			<div class="col s12 center">
 				<button class="btn waves-effect waves-light" type="submit">order</button>

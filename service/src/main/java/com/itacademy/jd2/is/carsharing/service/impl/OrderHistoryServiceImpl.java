@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itacademy.jd2.is.carsharing.dao.api.IOrderHistoryDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IOrderHistory;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.OrderHistoryFilter;
 import com.itacademy.jd2.is.carsharing.service.IOrderHistoryService;
 
 @Service
@@ -64,5 +65,22 @@ public class OrderHistoryServiceImpl implements IOrderHistoryService {
 	public IOrderHistory createEntity() {
 		return dao.createEntity();
 	}
+
+	@Override
+	public long getCount(OrderHistoryFilter filter) {
+		return dao.getCount(filter);
+	}
+	
+	@Override
+	public List<IOrderHistory> find(OrderHistoryFilter filter) {
+		return dao.find(filter);
+	}
+
+	@Override
+	public IOrderHistory getFullInfo(Integer id) {
+		return dao.getFullInfo(id);
+	}
+	
+	
 
 }

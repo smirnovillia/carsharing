@@ -25,6 +25,7 @@ import com.itacademy.jd2.is.carsharing.service.IUserAccountService;
 import com.itacademy.jd2.is.carsharing.web.converter.UserAccountToDTOConverter;
 import com.itacademy.jd2.is.carsharing.web.dto.UserAccountDTO;
 import com.itacademy.jd2.is.carsharing.web.dto.list.GridStateDTO;
+import com.itacademy.jd2.is.carsharing.web.security.AuthHelper;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -67,10 +68,15 @@ public class UserController extends AbstractController<UserAccountDTO> {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ModelAndView viewDetails(@PathVariable(name = "id", required = true) final Integer id) {
+
 		final IUserAccount dbModel = userAccountService.get(id);
+
 		final UserAccountDTO dto = toDtoConverter.apply(dbModel);
 		final Map<String, Object> hashMap = new HashMap<>();
 		hashMap.put("formModel", dto);
+		if (dto.getUserRole() != 0) {
+			hashMap.put("id", AuthHelper.getLoggedUserId());
+		}
 		hashMap.put("readonly", true);
 
 		return new ModelAndView("user.profile", hashMap);

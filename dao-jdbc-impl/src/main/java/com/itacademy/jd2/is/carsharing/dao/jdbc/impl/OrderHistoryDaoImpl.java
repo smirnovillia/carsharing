@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,7 @@ import com.itacademy.jd2.is.carsharing.dao.api.IOrderHistoryDao;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICar;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.ICustomer;
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IOrderHistory;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.OrderHistoryFilter;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Car;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.Customer;
 import com.itacademy.jd2.is.carsharing.dao.jdbc.impl.entity.OrderHistory;
@@ -104,5 +106,22 @@ public class OrderHistoryDaoImpl extends AbstractDaoImpl<IOrderHistory, Integer>
 	protected String getTableName() {
 		return "order_history";
 	}
+
+	@Override
+	public IOrderHistory getFullInfo(Integer id) {
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
+	public long getCount(OrderHistoryFilter filter) {
+		throw new RuntimeException("not implemented");
+	}
+
+	@Override
+	public List<IOrderHistory> find(OrderHistoryFilter filter) {
+		throw new RuntimeException("not implemented");
+	}
+	
+	
 
 }

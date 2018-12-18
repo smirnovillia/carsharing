@@ -10,6 +10,7 @@
 <c:set var="pagesColor" value="${pageContext.request.contextPath}/data/color" scope="request" />
 <c:set var="pagesTracking" value="${pageContext.request.contextPath}/data/tracking" scope="request" />
 <c:set var="pagesModification" value="${pageContext.request.contextPath}/data/modification" scope="request" />
+<c:set var="pagesOrder" value="${pageContext.request.contextPath}/order" scope="request" />
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.itacademy.jd2.is.carsharing.dao.api.entity.IOrderHistory;
+import com.itacademy.jd2.is.carsharing.dao.api.filter.OrderHistoryFilter;
 
 public interface IOrderHistoryService {
 	IOrderHistory get(Integer id);
@@ -22,4 +23,10 @@ public interface IOrderHistoryService {
 
 	@Transactional
 	IOrderHistory createEntity();
+
+	long getCount(OrderHistoryFilter filter);
+
+	IOrderHistory getFullInfo(Integer id);
+
+	List<IOrderHistory> find(OrderHistoryFilter filter);
 }
